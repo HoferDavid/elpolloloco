@@ -15,11 +15,13 @@ class Character extends MovableObject {
     world;
     runningSound = new Audio('audio/running.mp3');
 
+
     constructor() {
         super().loadImg('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
         this.animate();
     }
+
 
     animate() {
 
@@ -28,12 +30,12 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.x += this.speed;
                 this.mirrorObject = false;
-                this.runningSound.play();
+                // this.runningSound.play();
             }
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.mirrorObject = true;
-                this.runningSound.play();
+                // this.runningSound.play();
             }
             this.world.cameraX = -this.x + 100;
         }, 1000 / 60);
@@ -44,6 +46,7 @@ class Character extends MovableObject {
             }
         }, 40);
     };
+
 
     jump() {
 

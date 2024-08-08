@@ -11,41 +11,21 @@ function init() {
 }
 
 
-window.addEventListener('keydown', (event) => {
-    let key = event.key;
-    if (key == 'ArrowRight') {
-        keyboard.RIGHT = true;
+function handleKey(event) {
+    const keyMap = {
+        'ArrowRight': 'RIGHT',
+        'ArrowLeft': 'LEFT',
+        'ArrowUp': 'UP',
+        'ArrowDown': 'DOWN',
+        ' ': 'SPACE'
     }
-    if (key == 'ArrowLeft') {
-        keyboard.LEFT = true;
-    } 
-    if (key == 'ArrowUp') {
-        keyboard.UP = true;
-    } 
-    if (key == 'ArrowDown') {
-        keyboard.DOWN = true;
+    if (keyMap[event.key]) {
+        keyboard[keyMap[event.key]] = (event.type === 'keydown');
     }
-    if (key == ' ') {
-        keyboard.SPACE = true;
-    }
-});
+}
 
 
-window.addEventListener('keyup', (event) => {
-    let key = event.key;
-    if (key == 'ArrowRight') {
-        keyboard.RIGHT = false;
-    }
-    if (key == 'ArrowLeft') {
-        keyboard.LEFT = false;
-    } 
-    if (key == 'ArrowUp') {
-        keyboard.UP = false;
-    } 
-    if (key == 'ArrowDown') {
-        keyboard.DOWN = false;
-    }
-    if (key == ' ') {
-        keyboard.SPACE = false;
-    }
-});
+window.addEventListener('keydown', handleKey);
+window.addEventListener('keyup', handleKey);
+
+

@@ -9,10 +9,12 @@ class MovableObject {
     speed = 0.16;
     mirrorObject = false;
 
+
     loadImg(path) {
         this.img = new Image();
         this.img.src = path;
     }
+
 
     loadImages(arr) {
         arr.forEach((path) => {
@@ -22,9 +24,11 @@ class MovableObject {
         });
     }
 
+
     moveRight() {
         console.log('moving right');   
     }
+
 
     moveLeft() {
         setInterval(() => {
@@ -32,6 +36,7 @@ class MovableObject {
         }, 1000 / 60);
     }
 
+    
     animateObject(images) {
         let i = this.currentImage % this.IMAGES_WALKING.length;
         let path = images[i];
