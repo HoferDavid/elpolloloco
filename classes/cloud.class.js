@@ -1,5 +1,5 @@
 class Cloud extends MovableObject {
-    
+
     y = 50;
     width = 500;
     height = 260;
@@ -11,7 +11,7 @@ class Cloud extends MovableObject {
         super().loadImg(imgPath);
 
         // this.x = Math.random() * 100;
-        this.speed = 0.15 + Math.random() * 0.20;
+        this.speed = 0.1 + Math.random() * 0.20;
 
         console.log(this.speed);
         
