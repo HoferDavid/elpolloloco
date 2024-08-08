@@ -1,13 +1,14 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+soundtrack = new Audio('audio/background.mp3');
 
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
-    console.log('My character is', world.character);
+    // this.soundtrack.play();
 }
 
 

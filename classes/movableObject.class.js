@@ -38,7 +38,7 @@ class MovableObject {
 
     
     animateObject(images) {
-        let i = this.currentImage % this.IMAGES_WALKING.length;
+        let i = this.currentImage % this.IMAGES_ANIMATION.length;
         let path = images[i];
         this.img = this.imgCache[path];
         this.currentImage++;
