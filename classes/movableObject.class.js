@@ -8,6 +8,8 @@ class MovableObject {
     currentImage = 0;
     speed = 0.16;
     mirrorObject = false;
+    speedY = 0;
+    acceleration = 2.5;
 
 
     loadImg(path) {
@@ -26,14 +28,12 @@ class MovableObject {
 
 
     moveRight() {
-        console.log('moving right');   
+        this.x += this.speed;
     }
 
 
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
+        this.x -= this.speed;
     }
 
     
@@ -42,5 +42,25 @@ class MovableObject {
         let path = images[i];
         this.img = this.imgCache[path];
         this.currentImage++;
+    }
+
+
+    isAboveGround() {
+        return this.y < 180;
+    }
+
+
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
+
+    jump() {
+        this.speedY = 30;
     }
 }
