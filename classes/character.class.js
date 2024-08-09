@@ -4,6 +4,8 @@ class Character extends MovableObject {
     height = 260;
     width = 120;
     speed = 10;
+    world;
+    runningSound = new Audio('audio/running.mp3');
     IMAGES_ANIMATION = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -37,8 +39,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
     ];
-    world;
-    runningSound = new Audio('audio/running.mp3');
 
 
     constructor() {

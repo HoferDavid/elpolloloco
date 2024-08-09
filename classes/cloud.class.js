@@ -6,7 +6,6 @@ class Cloud extends MovableObject {
 
 
     constructor(imgPath, x) {
-        // super().loadImg('img/5_background/layers/4_clouds/1.png');
 
         super().loadImg(imgPath);
 
@@ -15,7 +14,6 @@ class Cloud extends MovableObject {
 
         console.log(this.speed);
         
-
         this.x = x;
         this.animate();
     }
