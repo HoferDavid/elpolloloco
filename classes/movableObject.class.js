@@ -10,6 +10,8 @@ class MovableObject {
     mirrorObject = false;
     speedY = 0;
     acceleration = 2.5;
+    energy = 100;
+    offsetY = 0;
 
 
     loadImg(path) {
@@ -24,6 +26,28 @@ class MovableObject {
             img.src = path;
             this.imgCache[path] = img;
         });
+    }
+
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+
+    drawFrame(ctx) {
+        if (this.drawFrameInstance()) {
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
+
+    drawFrameInstance() {
+        const classes = [Character, Chicken, Chick, Coin];
+        return classes.some(cls => this instanceof cls);
     }
 
 
@@ -63,4 +87,32 @@ class MovableObject {
     jump() {
         this.speedY = 30;
     }
+
+
+    isColliding(mo) {
+        return (this.x + this.width) >= mo.x && this.x <= (mo.x + mo.width) && 
+            (this.y + this.offsetY + this.height) >= mo.y &&
+            (this.y + this.offsetY) <= (mo.y + mo.height);
+            // mo.onCollisionCourse;
+    }
+
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+
+    isDead() {
+        return this.energy == 0;
+    }
 }
+
+
+// if (character.x + character.width > chicken.x &&
+//     character.y + character.height > chicken.y &&
+//     character.x < chicken.x &&
+//     character.y < chicken.y + chicken.height
+// )
