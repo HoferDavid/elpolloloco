@@ -10,13 +10,22 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url('img/bodybackground.png');
+  background-image: url('img/bg.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  font-family: 'mexico', Arial, Helvetica, sans-serif;
 }
 
 canvas {
   background-color: black;
-  border: 20px ridge rgb(207, 132, 87);
+  border: 20px groove #70312D;
+  box-shadow: 4px 4px 8px 0px #000000;
+}
+
+h1 {
+  font-size: 96px;
+  color: rgb(69, 28, 37);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 rgb(225, 210, 189), 4px 4px 0 rgb(160, 35, 9);
 }
