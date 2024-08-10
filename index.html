@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El pollo loco</title>
+    <link rel="icon" href="../img/sombrero.png"/>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/fonts.css">
 
     <script src="classes/drawableObject.class.js"></script>
     <script src="classes/movableObject.class.js"></script>
@@ -32,9 +33,47 @@
 
 <body onload="init()">
 
-    <h1>El pollo loco</h1>
+    <div id="fullscreen">
+        <h1>El pollo loco</h1>
 
-    <canvas id="canvas" width="720" height="480"></canvas>
-    
+        <canvas id="canvas" width="720" height="480"></canvas>
+
+        <div class="howtoContainer">
+            <div class="arrowContainer">
+                <img src="../img/left.png" alt="">
+                <div>Arrow Left</div>
+            </div>
+            <div class="seperator"></div>
+            <div>Key-D for Throw</div>
+            <div class="seperator"></div>
+            <div>Space for Jump</div>
+            <div class="seperator"></div>
+            <div class="arrowContainer">
+                <div>Arrow Right</div>
+                <img src="../img/right.png" alt="">
+            </div>
+        </div>
+
+        <div class="infoContainer">
+            <a href="../html/imprint.html">Impressum</a>
+            <img src="img/sombrero.png" alt="Sombrero Icon">
+            <a href="../html/privacy.html">Datenschutz</a>
+            <img src="img/sombrero.png" alt="Sombrero Icon">
+            <a href="https://linkedin.com/in/davidhofer-dev">LinkedIn</a>
+            <img src="img/sombrero.png" alt="Sombrero Icon">
+            <a href="https://github.com/HoferDavid">Github</a>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="madeByDavid">
+        <img id="davidPic" src="../img/dhlogoWhiteTransparent.png"/>
+        <p id="davidText">
+            Made with<img id="heartIcon" src="../img/heartRed.png"/>by David
+        </p>
+        </div>
+    </footer>
+
 </body>
 </html>
