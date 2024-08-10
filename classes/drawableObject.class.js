@@ -39,6 +39,17 @@ class DrawableObject {
     }
 
 
+    drawFrameHitbox(ctx) {
+        if (this.drawFrameInstances()) {
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
+
     drawFrameInstances() {
         const classes = [Character, Chicken, Chick, Coin];
         return classes.some(cls => this instanceof cls);

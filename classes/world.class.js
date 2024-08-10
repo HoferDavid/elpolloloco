@@ -74,6 +74,7 @@ class World {
         }
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.drawFrameHitbox(this.ctx);
 
         if (mo.mirrorObject) {
             this.mirrorImageBack(mo);

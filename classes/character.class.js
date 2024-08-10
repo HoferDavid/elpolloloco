@@ -91,4 +91,15 @@ class Character extends MovableObject {
             }
         }, 40);
     };
+
+
+    drawFrameHitbox(ctx) {
+        if (this.drawFrameInstances()) {
+            ctx.beginPath();
+            ctx.lineWidth = '2';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x, this.y, this.width -10, this.height -10);
+            ctx.stroke();
+        }
+    }
 }
