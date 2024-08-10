@@ -6,12 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-    offset = {
-        x: 0,
-        y: 0,
-        h: 0,
-        w: 0
-    };
+
 
 
     moveRight() {
@@ -52,25 +47,25 @@ class MovableObject extends DrawableObject {
     }
 
 
-    isColliding(obj) {
-        // Berechnung der tatsächlichen Grenzen des aktuellen Objekts
-        const thisLeft = this.x + this.offset.x;
-        const thisRight = thisLeft + this.width + this.offset.w;
-        const thisTop = this.y + this.offset.y;
-        const thisBottom = thisTop + this.height + this.offset.h;
+    // isColliding(obj) {
+    //     // Berechnung der tatsächlichen Grenzen des aktuellen Objekts
+    //     const thisLeft = this.x + this.offset.x;
+    //     const thisRight = thisLeft + this.width + this.offset.w;
+    //     const thisTop = this.y + this.offset.y;
+    //     const thisBottom = thisTop + this.height + this.offset.h;
     
-        // Berechnung der tatsächlichen Grenzen des anderen Objekts
-        const objLeft = obj.x;
-        const objRight = objLeft + obj.width;
-        const objTop = obj.y;
-        const objBottom = objTop + obj.height;
+    //     // Berechnung der tatsächlichen Grenzen des anderen Objekts
+    //     const objLeft = obj.x;
+    //     const objRight = objLeft + obj.width;
+    //     const objTop = obj.y;
+    //     const objBottom = objTop + obj.height;
     
-        // Kollisionserkennung unter Berücksichtigung der Offsets
-        return thisRight >= objLeft &&
-               thisLeft <= objRight &&
-               thisBottom >= objTop &&
-               thisTop <= objBottom;
-    }
+    //     // Kollisionserkennung unter Berücksichtigung der Offsets
+    //     return thisRight >= objLeft &&
+    //            thisLeft <= objRight &&
+    //            thisBottom >= objTop &&
+    //            thisTop <= objBottom;
+    // }
 
 
 

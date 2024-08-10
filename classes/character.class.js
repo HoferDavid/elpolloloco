@@ -7,10 +7,10 @@ class Character extends MovableObject {
     world;
     runningSound = new Audio('audio/running.mp3');
     offset = {
-        x: 0,
-        y: 0,
-        h: 0,
-        w: -20
+        x: 20,
+        y: 100,
+        h: -110,
+        w: -40
     };
 
     IMAGES_ANIMATION = [
@@ -98,17 +98,6 @@ class Character extends MovableObject {
             }
         }, 40);
     };
-
-
-    // drawFrameHitbox(ctx) {
-    //     if (this.drawFrameInstances()) {
-    //         ctx.beginPath();
-    //         ctx.lineWidth = '2';
-    //         ctx.strokeStyle = 'red';
-    //         ctx.rect(this.thisRight, this.thisLeft, this.thisBottom, this.thisTop);
-    //         ctx.stroke();
-    //     }
-    // }
 }
 
 

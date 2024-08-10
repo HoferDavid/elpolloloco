@@ -7,6 +7,13 @@ class DrawableObject {
     imgCache = {};
     currentImage = 0;
 
+    offset = {
+        x: 0,
+        y: 0,
+        h: 0,
+        w: 0
+    };
+
 
     loadImg(path) {
         this.img = new Image();
@@ -31,7 +38,7 @@ class DrawableObject {
     drawFrame(ctx) {
         if (this.drawFrameInstances()) {
             ctx.beginPath();
-            ctx.lineWidth = '2';
+            ctx.lineWidth = '1';
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
@@ -40,11 +47,16 @@ class DrawableObject {
 
 
     drawFrameHitbox(ctx) {
+        const thisLeft = this.x + this.offset.x;
+        const thisTop = this.y + this.offset.y;
+        const hitboxWidth = this.width + this.offset.w;
+        const hitboxHeight = this.height + this.offset.h;
+    
         if (this.drawFrameInstances()) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(thisLeft, thisTop, hitboxWidth, hitboxHeight);
             ctx.stroke();
         }
     }
