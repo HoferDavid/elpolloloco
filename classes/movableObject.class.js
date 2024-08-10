@@ -6,9 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-
-
-
+    
     moveRight() {
         this.x += this.speed;
     }
@@ -47,43 +45,25 @@ class MovableObject extends DrawableObject {
     }
 
 
-    // isColliding(obj) {
-    //     // Berechnung der tatsächlichen Grenzen des aktuellen Objekts
-    //     const thisLeft = this.x + this.offset.x;
-    //     const thisRight = thisLeft + this.width + this.offset.w;
-    //     const thisTop = this.y + this.offset.y;
-    //     const thisBottom = thisTop + this.height + this.offset.h;
+    isColliding(obj) {
+        // Berechnung der tatsächlichen Grenzen des aktuellen Objekts
+        const thisLeft = this.x + this.offset.x;
+        const thisRight = thisLeft + this.width + this.offset.w;
+        const thisTop = this.y + this.offset.y;
+        const thisBottom = thisTop + this.height + this.offset.h;
     
-    //     // Berechnung der tatsächlichen Grenzen des anderen Objekts
-    //     const objLeft = obj.x;
-    //     const objRight = objLeft + obj.width;
-    //     const objTop = obj.y;
-    //     const objBottom = objTop + obj.height;
+        // Berechnung der tatsächlichen Grenzen des anderen Objekts
+        const objLeft = obj.x;
+        const objRight = objLeft + obj.width;
+        const objTop = obj.y;
+        const objBottom = objTop + obj.height;
     
-    //     // Kollisionserkennung unter Berücksichtigung der Offsets
-    //     return thisRight >= objLeft &&
-    //            thisLeft <= objRight &&
-    //            thisBottom >= objTop &&
-    //            thisTop <= objBottom;
-    // }
-
-
-
-    // isColliding(mo) {
-    //     return this.x + this.width - this.offsetRight > mo.x + this.offsetLeft &&
-    //     this.y + this.height - this.offsetBottom > mo.y + this.offsetTop &&
-    //     this.x + this.offsetLeft < mo.x + mo.width - this.offsetRight &&
-    //     this.y + this.offsetTop < mo.y + mo.height - this.offsetBottom;
-    // }
-
-
-    // isColliding(mo) {
-    //     return (this.x + this.width) >= mo.x && 
-    //         this.x <= (mo.x + mo.width) && 
-    //         (this.y + this.offsetY + this.height) >= mo.y &&
-    //         (this.y + this.offsetY) <= (mo.y + mo.height);
-    //         // mo.onCollisionCourse;
-    // }
+        // Kollisionserkennung unter Berücksichtigung der Offsets
+        return thisRight >= objLeft &&
+               thisLeft <= objRight &&
+               thisBottom >= objTop &&
+               thisTop <= objBottom;
+    }
 
 
     hit() {
@@ -108,13 +88,3 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 }
-
-
-
-// isColliding(mo) {
-//     return (this.x + this.width) >= mo.x && 
-//         this.x <= (mo.x + mo.width) && 
-//         (this.y + this.offsetY + this.height) >= mo.y &&
-//         (this.y + this.offsetY) <= (mo.y + mo.height);
-//         // mo.onCollisionCourse;
-// }

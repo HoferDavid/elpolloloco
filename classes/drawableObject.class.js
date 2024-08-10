@@ -63,7 +63,7 @@ class DrawableObject {
 
 
     drawFrameInstances() {
-        const classes = [Character, Chicken, Chick, Coin];
+        const classes = [Character, Chicken, Chick, Coin, Bottle];
         return classes.some(cls => this instanceof cls);
     }
 }
