@@ -6,6 +6,13 @@ class Character extends MovableObject {
     speed = 10;
     world;
     runningSound = new Audio('audio/running.mp3');
+    offset = {
+        x: 0,
+        y: 0,
+        h: 0,
+        w: -20
+    };
+
     IMAGES_ANIMATION = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -93,13 +100,15 @@ class Character extends MovableObject {
     };
 
 
-    drawFrameHitbox(ctx) {
-        if (this.drawFrameInstances()) {
-            ctx.beginPath();
-            ctx.lineWidth = '2';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.width -10, this.height -10);
-            ctx.stroke();
-        }
-    }
+    // drawFrameHitbox(ctx) {
+    //     if (this.drawFrameInstances()) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '2';
+    //         ctx.strokeStyle = 'red';
+    //         ctx.rect(this.thisRight, this.thisLeft, this.thisBottom, this.thisTop);
+    //         ctx.stroke();
+    //     }
+    // }
 }
+
+

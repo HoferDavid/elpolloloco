@@ -43,7 +43,7 @@ class DrawableObject {
         if (this.drawFrameInstances()) {
             ctx.beginPath();
             ctx.lineWidth = '2';
-            ctx.strokeStyle = 'blue';
+            ctx.strokeStyle = 'red';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
