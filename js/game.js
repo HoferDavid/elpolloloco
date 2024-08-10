@@ -11,6 +11,7 @@ function init() {
     console.log('My character is', world.character);
 
     // this.soundtrack.play();
+    soundtrack.volume = 0.8;
 }
 
 
@@ -20,7 +21,8 @@ function handleKey(event) {
         'ArrowLeft': 'LEFT',
         'ArrowUp': 'UP',
         'ArrowDown': 'DOWN',
-        ' ': 'SPACE'
+        ' ': 'SPACE',
+        'd': 'D'
     }
     if (keyMap[event.key]) {
         keyboard[keyMap[event.key]] = (event.type === 'keydown');

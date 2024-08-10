@@ -8,6 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoin = new StatusbarCoin();
     statusbarBottle = new StatusbarBottle();
+    throwableObjects = [];
 
 
     constructor(canvas, keyboard) {
@@ -16,7 +17,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.checkInterval();
     }
 
 
@@ -35,6 +36,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.cameraX, 0);
         // Insert Fixed Objects here
@@ -83,21 +85,38 @@ class World {
     }
 
 
-    checkCollisions() {
+    checkInterval() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusbarHealth.setPercentage(this.character.energy);
-                }
-            });
-            this.level.bottles.forEach((bottle) => {
-                if (this.character.isColliding(bottle)) {
-                    console.log('bottle collision');
-                    this.character.bottlePickup();
-                    this.statusbarBottle.setPercentage(this.character.bottles);
-                }
-            });
+            this.checkCollisions();
+            this.checkBottlePickup();
+            this.checkThrowObjects();
         }, 200);
+    }
+
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusbarHealth.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+
+    checkBottlePickup() {
+        this.level.bottles.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                this.character.bottlePickup();
+                this.statusbarBottle.setPercentage(this.character.bottles);
+            }
+        });
+    }
+
+    checkThrowObjects() {
+        if (this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x, this.character.y)
+            this.throwableObjects.push(bottle);
+        }
     }
 }
