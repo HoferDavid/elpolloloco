@@ -3,7 +3,7 @@ class Character extends MovableObject {
     y = 90;
     height = 260;
     width = 120;
-    speed = 10;
+    speed = 10; // 10
     world;
     runningSound = new Audio('audio/running.mp3');
     offset = {
@@ -13,7 +13,19 @@ class Character extends MovableObject {
         w: -40
     };
 
-    IMAGES_ANIMATION = [
+    IMAGES_STANDING = [
+        'img/2_character_pepe/1_idle/idle/I-1.png',
+        'img/2_character_pepe/1_idle/idle/I-2.png',
+        'img/2_character_pepe/1_idle/idle/I-3.png',
+        'img/2_character_pepe/1_idle/idle/I-4.png',
+        'img/2_character_pepe/1_idle/idle/I-5.png',
+        'img/2_character_pepe/1_idle/idle/I-6.png',
+        'img/2_character_pepe/1_idle/idle/I-7.png',
+        'img/2_character_pepe/1_idle/idle/I-8.png',
+        'img/2_character_pepe/1_idle/idle/I-9.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png'
+    ];
+    IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
         'img/2_character_pepe/2_walk/W-23.png',
@@ -50,7 +62,8 @@ class Character extends MovableObject {
 
     constructor() {
         super().loadImg('img/2_character_pepe/2_walk/W-21.png');
-        this.loadImages(this.IMAGES_ANIMATION);
+        this.loadImages(this.IMAGES_STANDING);
+        this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
@@ -91,12 +104,13 @@ class Character extends MovableObject {
                 this.animateObject(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.animateObject(this.IMAGES_JUMPING);
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.animateObject(this.IMAGES_WALKING);
             } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.animateObject(this.IMAGES_ANIMATION);
-                }
+                this.animateObject(this.IMAGES_STANDING);
             }
-        }, 40);
+
+        }, 40); // 40
     };
 
 }

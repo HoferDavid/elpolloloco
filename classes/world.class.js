@@ -25,22 +25,6 @@ class World {
     }
 
 
-    checkCollisions() {
-        setInterval(() => {
-            this.level.enemies.forEach((enemy, bottle) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusbarHealth.setPercentage(this.character.energy);
-
-                    this.statusbarCoin.setPercentage(this.character.energy);
-                } else if (this.character.isColliding(bottle)) {
-                    console.log('bottle collision');
-                }
-            });
-        }, 200);
-    }
-
-
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -96,5 +80,24 @@ class World {
     mirrorImageBack(mo) {
         this.ctx.restore();
         mo.x = mo.x * -1;
+    }
+
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.hit();
+                    this.statusbarHealth.setPercentage(this.character.energy);
+                }
+            });
+            this.level.bottles.forEach((bottle) => {
+                if (this.character.isColliding(bottle)) {
+                    console.log('bottle collision');
+                    this.character.bottlePickup();
+                    this.statusbarBottle.setPercentage(this.character.bottles);
+                }
+            });
+        }, 200);
     }
 }

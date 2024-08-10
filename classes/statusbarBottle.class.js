@@ -5,7 +5,7 @@ class StatusbarBottle extends MovableObject {
     height = 40;
     width = 160;
 
-    percentage = 100;
+    percentage = 0;
 
     IMAGES = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
@@ -20,8 +20,7 @@ class StatusbarBottle extends MovableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-
-        this.setPercentage(100);
+        this.setPercentage(0);
     }
 
 
@@ -29,22 +28,23 @@ class StatusbarBottle extends MovableObject {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imgCache[path];
+        
     }
 
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
-            return 5;
-        } else if (this.percentage > 80) {
-            return 4;
-        } else if (this.percentage > 60) {
-            return 3;
-        } else if (this.percentage > 40) {
-            return 2;
-        } else if (this.percentage > 20) {
-            return 1;
-        } else {
+        if (this.percentage == 0) {
             return 0;
+        } else if (this.percentage < 20) {
+            return 1;
+        } else if (this.percentage < 40) {
+            return 2;
+        } else if (this.percentage < 60) {
+            return 3;
+        } else if (this.percentage < 80) {
+            return 4;
+        } else {
+            return 5;
         }
     }
 }

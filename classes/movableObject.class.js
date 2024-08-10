@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    bottles = 0
     lastHit = 0;
 
     
@@ -53,7 +54,7 @@ class MovableObject extends DrawableObject {
         const thisBottom = thisTop + this.height + this.offset.h;
     
         // Berechnung der tatsächlichen Grenzen des anderen Objekts
-        const objLeft = obj.x;
+        const objLeft = obj.x + obj.offset.x;
         const objRight = objLeft + obj.width;
         const objTop = obj.y;
         const objBottom = objTop + obj.height;
@@ -67,12 +68,20 @@ class MovableObject extends DrawableObject {
 
 
     hit() {
-        this.energy -= 1;
+        this.energy -= 1; // 5
         // this.setPercentage(this.energy);
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+
+    bottlePickup() {
+        this.bottles += 5;
+        if (this.bottles > 100) {
+            this.bottles = 100;
         }
     }
 
