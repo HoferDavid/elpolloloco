@@ -4,14 +4,14 @@ class Chick extends MovableObject {
     height = 56;
     width = 40;
     IMAGES_ANIMATION = [
-        '../assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
-        '../assets/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
-        '../assets/img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
+        './assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
+        './assets/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
+        './assets/img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
     ];
 
 
     constructor() {
-        super().loadImg('../assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
+        super().loadImg('./assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_ANIMATION);
 
         this.x = 600 + Math.random() * 500;

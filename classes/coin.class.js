@@ -10,13 +10,13 @@ class Coin extends MovableObject {
         w: -80
     };
     IMAGES = [
-        '../assets/img/8_coin/coin_1.png',
-        '../assets/img/8_coin/coin_2.png'
+        './assets/img/8_coin/coin_1.png',
+        './assets/img/8_coin/coin_2.png'
     ];
 
 
     constructor() {
-        super().loadImg('../assets/img/8_coin/coin_1.png');
+        super().loadImg('./assets/img/8_coin/coin_1.png');
         this.loadImages(this.IMAGES);
 
         this.x = 600 + Math.random() * 2000; // 600 + Math.random() * 2000;
