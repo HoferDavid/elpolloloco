@@ -5,15 +5,15 @@ class ThrowableObject extends MovableObject {
     height = 72;
     width = 56;
     IMAGES = [
-        'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
-        'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
-        'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
-        'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
+        '../assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
+        '../assets/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
+        '../assets/img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
+        '../assets/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ];
 
 
     constructor(x, y) {
-        super().loadImg('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
+        super().loadImg('../assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES);
 
         this.throwObject(100, 150);
