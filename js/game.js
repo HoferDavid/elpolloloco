@@ -12,7 +12,7 @@ function init() { // add start game button with onclick function to start game
     console.log('My character is', world.character);
 
     // this.soundtrack.play();
-    soundtrack.volume = 0.1;
+    soundtrack.volume = 0.2;
 }
 
 

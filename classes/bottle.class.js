@@ -1,6 +1,5 @@
 class Bottle extends MovableObject {
 
-    y = 360;
     height = 72;
     width = 56;
     offset = {
@@ -20,6 +19,7 @@ class Bottle extends MovableObject {
         this.loadImages(this.IMAGES);
 
         this.x = 200 + Math.random() * 1000;
+        this.y = 350 + Math.random() * 20;
         this.animate();
     }
 

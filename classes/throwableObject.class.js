@@ -48,17 +48,3 @@ class ThrowableObject extends MovableObject {
         }, 100);
     };
 }
-
-
-
-
-
-
-// setInterval(() => {
-//     if (!this.isAboveGround()) {
-//         console.log(this.y);
-//         this.animateObject(this.IMAGES_SPLASH);
-//     } else {
-//         this.animateObject(this.IMAGES);
-//     }
-// }, 100);

@@ -59,9 +59,9 @@ class MovableObject extends DrawableObject {
     
         // Berechnung der tatsächlichen Grenzen des anderen Objekts
         const objLeft = obj.x + obj.offset.x;
-        const objRight = objLeft + obj.width;
-        const objTop = obj.y;
-        const objBottom = objTop + obj.height;
+        const objRight = objLeft + obj.width + obj.offset.w;
+        const objTop = obj.y + obj.offset.y;
+        const objBottom = objTop + obj.height + obj.offset.h;
     
         // Kollisionserkennung unter Berücksichtigung der Offsets
         return thisRight >= objLeft &&
@@ -73,7 +73,6 @@ class MovableObject extends DrawableObject {
 
     hit(damage) {
         this.energy -= damage;
-        // this.setPercentage(this.energy);
         if (this.energy < 0) {
             this.energy = 0;
         } else {

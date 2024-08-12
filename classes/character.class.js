@@ -9,11 +9,14 @@ class Character extends MovableObject {
     coins = 0;
     runningSound = new Audio('./assets/audio/running.mp3');
     coinPickupSound = new Audio('./assets/audio/coinPickup.mp3');
+    bottlePickupSound = new Audio('./assets/audio/bottlePickup.mp3');
+    jumpSound = new Audio('./assets/audio/jump.mp3');
+    snoringSound = new Audio('./assets/audio/snoring.mp3');
     offset = {
-        x: 20,
-        y: 100,
-        h: -110,
-        w: -40
+        x: 30,
+        y: 120,
+        h: -130,
+        w: -70
     };
 
     IMAGES_STANDING = [
@@ -80,7 +83,14 @@ class Character extends MovableObject {
         this.currentState = null;
         this.animationInterval = null;
         this.idleTime = 0;
-        this.idleTimeout = 5000; 
+        this.idleTimeout = 2000; 
+
+        this.runningSound.volume = 0.4;
+        this.runningSound.playbackRate = 1.8;
+        this.coinPickupSound.volume = 0.4;
+        this.bottlePickupSound.volume = 0.4;
+        this.jumpSound.volume = 0.2;
+        this.snoringSound.volume = 0.4;
 
         this.loadImages(this.IMAGES_STANDING);
         this.loadImages(this.IMAGES_SLEEPING);
@@ -107,6 +117,7 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+            this.runningSound.pause();
             let hasMoved = false;
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
@@ -186,18 +197,23 @@ class Character extends MovableObject {
                 this.animateObject(this.IMAGES_JUMPING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_JUMPING);
+                    // this.jumpSound.play();
+                    this.snoringSound.pause();
                 }, 80);
                 break;
             case 'walking':
                 this.animateObject(this.IMAGES_WALKING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_WALKING);
+                    // this.runningSound.play();
+                    this.snoringSound.pause();
                 }, 40);
                 break;
             case 'sleeping':
                 this.animateObject(this.IMAGES_SLEEPING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_SLEEPING);
+                    // this.snoringSound.play();
                 }, 500);
                 break;
             default:
@@ -209,15 +225,14 @@ class Character extends MovableObject {
         }
     }
 
-    collectCoin(i) {
+    collectCoin() {
         // this.coinPickupSound.play();
-        this.coinPickupSound.volume = 0.08;
         this.coins++;
     }
 
 
     collectBottle() {
+        // this.bottlePickupSound.play();
         this.bottles++;
-        console.log('bottle collected. Total bottles: ' + this.bottles);
     }
 }
