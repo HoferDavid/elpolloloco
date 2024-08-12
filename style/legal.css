@@ -28,10 +28,6 @@ footer {
   color: white;
 }
 
-footer {
-    justify-content: center;
-}
-
 main {
   padding-left: 160px;
   padding-right: 160px;
@@ -63,7 +59,8 @@ a {
 }
 
 .homeLink:hover,
-.madeByDavid:hover {
+.madeByDavid:hover,
+.arrowPageUp:hover {
   transform: scale(1.02);
 }
 
@@ -81,6 +78,12 @@ a {
 #heartIcon {
   height: 16px;
   padding: 0px 4px 0px 4px;
+}
+
+.arrowPageUp {display: flex;
+  height: 40px;
+  width: 40px;
+  transition: 0.2s;
 }
 
 /* media queries */

@@ -89,9 +89,9 @@ class World {
     checkInterval() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkBottlePickup();
-            this.checkThrowObjects();
             this.checkCoinCollision();
+            this.checkBottleCollision();
+            this.checkThrowObjects();
         }, 100);
     }
 
@@ -121,14 +121,22 @@ class World {
     }
 
 
-    checkBottlePickup() {
+    checkCoinCollision() {
+        this.level.coins.forEach((coin, i) => {
+            if (this.character.isColliding(coin)) {
+                this.character.collectCoin(i);
+                this.level.coins.splice(i, 1);
+                this.statusbarCoin.setPercentage(this.character.coins);
+            }
+        });
+    }
+
+
+    checkBottleCollision() {
         this.level.bottles.forEach((bottle, i) => {
             if (this.character.isColliding(bottle)) {
-                this.throwableObjects.push(bottle);
-                this.level.bottles.splice(i, 1);
-                // console.log('to pickup', this.level.bottles); 
-                // console.log('with character', this.throwableObjects); 
-                this.character.bottles++;
+                this.character.collectBottle();
+                this.level.bottles.splice(i, 1);                
                 this.statusbarBottle.setPercentage(this.character.bottles);
             }
         });
@@ -136,26 +144,11 @@ class World {
 
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.character.bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 44, this.character.y + 100)
             this.throwableObjects.push(bottle);
+            this.character.bottles--;
+            this.statusbarBottle.setPercentage(this.character.bottles);
         }
     }
-
-
-    checkCoinCollision() {
-        this.level.coins.forEach((coin, i) => {
-            if (this.character.isColliding(coin)) {
-                this.character.collectCoin(i);
-                this.level.coins.splice(i, 1);
-
-                console.log(this.character.coins * 10);
-                
-                this.statusbarCoin.setPercentage(this.character.coins * 10);
-            }
-        });
-    }
-
-
-
 }

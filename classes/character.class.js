@@ -213,7 +213,11 @@ class Character extends MovableObject {
         // this.coinPickupSound.play();
         this.coinPickupSound.volume = 0.08;
         this.coins++;
-        console.log(`coin collision ${i}`);
-        console.log('Coin collected. Total coins: ' + this.coins);
+    }
+
+
+    collectBottle() {
+        this.bottles++;
+        console.log('bottle collected. Total bottles: ' + this.bottles);
     }
 }
