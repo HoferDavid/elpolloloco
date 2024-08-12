@@ -3,6 +3,10 @@
   scroll-behavior: smooth;
 }
 
+.dNone {
+  display: none;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -30,10 +34,6 @@ canvas,
   background-color: black;
   border: 20px groove #70312D;
   box-shadow: 4px 4px 8px 0px #000000;
-}
-
-canvas {
-  display: none;
 }
 
 #startScreen {

@@ -2,22 +2,22 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 soundtrack = new Audio('./assets/audio/background.mp3');
+soundtrack.volume = 0.2;
 
 
-function init() { // add start game button with onclick function to start game
-    initLevel();
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+function init() {
 
-    console.log('My character is', world.character);
-
-    // this.soundtrack.play();
-    soundtrack.volume = 0.2;
 }
 
 
 function startGame() {
-    
+    toggleClasses('startScreen', 'canvas');
+    initLevel();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    this.soundtrack.play();
+
+    console.log('My character is', world.character);
 }
 
 
@@ -33,6 +33,12 @@ function handleKey(event) {
     if (keyMap[event.key]) {
         keyboard[keyMap[event.key]] = (event.type === 'keydown');
     }
+}
+
+
+function toggleClasses(a, b) {
+    document.getElementById(a).style.display = 'none';
+    document.getElementById(b).style.display = 'block';
 }
 
 
