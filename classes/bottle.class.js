@@ -15,8 +15,8 @@ class Bottle extends MovableObject {
 
 
     constructor() {
-        super().loadImg('./assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
-        this.loadImages(this.IMAGES);
+        super();
+        this.setRandomImage();
 
         this.x = 200 + Math.random() * 1000;
         this.y = 350 + Math.random() * 20;
@@ -26,7 +26,7 @@ class Bottle extends MovableObject {
     
     animate() {
         setInterval(() => {
-            this.animateObject(this.IMAGES);
+            this.nextImage();
         }, 500);
     };
 }

@@ -33,12 +33,17 @@
 
 <body onload="init()">
 
-    <main id="fullscreen">
+    <main>
         <h1>El pollo loco</h1>
+
+        <div id="startScreen">
+            <!-- <img src="./assets/img/9_intro_outro_screens/start/startscreen_2.png" alt="Start Screen"> -->
+             <button class="startGameBtn">Start Game</button>
+        </div>
 
         <canvas id="canvas" width="720" height="480"></canvas>
 
-        <div class="howtoContainer">
+        <section class="howtoSection">
             <div class="arrowContainer">
                 <img src="./assets/img/icons//d.png" alt="D Key">
                 <div>Throw</div>
@@ -54,9 +59,9 @@
                 <div>Move</div>
                 <img src="./assets/img/icons/right.png" alt="Right Arrow Key">
             </div>
-        </div>
+        </section>
 
-        <div class="infoContainer">
+        <section class="infoSection">
             <a href="./html/imprint.html">Impressum</a>
             <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
             <a href="./html/privacy.html">Datenschutz</a>
@@ -64,7 +69,7 @@
             <a href="https://linkedin.com/in/davidhofer-dev">LinkedIn</a>
             <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
             <a href="https://github.com/HoferDavid">Github</a>
-        </div>
+        </section>
     </main>
 
 

@@ -17,7 +17,7 @@ body {
   font-family: 'mexico', Arial, Helvetica, sans-serif;
 }
 
-#fullscreen {
+main {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -25,10 +25,40 @@ body {
   flex-direction: column;
 }
 
-canvas {
+canvas,
+#startScreen {
   background-color: black;
   border: 20px groove #70312D;
   box-shadow: 4px 4px 8px 0px #000000;
+}
+
+canvas {
+  display: none;
+}
+
+#startScreen {
+  background-image: url('../assets/img/9_intro_outro_screens/start/startscreen_2.png');
+  height: 480px;
+  width: 720px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.startGameBtn {
+  display: flex;
+  margin-top: 16px;
+  padding: 8px 16px;
+  background-color: rgb(247, 194, 115);
+  border: 4px groove #70312D;
+  box-shadow: 1px 1px 2px 0px #000000;
+  font-family: 'mexico', Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 h1 {
@@ -38,7 +68,7 @@ h1 {
   margin: 0;
 }
 
-.howtoContainer {
+.howtoSection {
   width: 720px;
   height: 80px;
   display: flex;
@@ -63,7 +93,7 @@ h1 {
   background-color: #70312D;
 }
 
-.infoContainer {
+.infoSection {
   width: 720px;
   display: flex;
   justify-content: space-evenly;
@@ -74,13 +104,13 @@ h1 {
   box-shadow: 1px 1px 2px 0px #000000;
 }
 
-.infoContainer a {
+.infoSection a {
   cursor: pointer;
   text-decoration: none;
   color: rgb(69, 28, 37);
 }
 
-.infoContainer img {
+.infoSection img {
   height: 40px;
   width: 40px;
 }
@@ -108,6 +138,7 @@ footer {
   text-decoration: none;
 }
 
+.startGameBtn:hover,
 .homeLink:hover,
 .madeByDavid:hover {
   transform: scale(1.02);

@@ -6,6 +6,7 @@ class DrawableObject {
     img;
     imgCache = {};
     currentImage = 0;
+    currentImageIndex = 0;
     offset = {
         x: 0,
         y: 0,
@@ -29,13 +30,25 @@ class DrawableObject {
     }
 
 
+    setRandomImage() {
+        this.currentImageIndex = Math.floor(Math.random() * this.IMAGES.length);
+        this.loadImg(this.IMAGES[this.currentImageIndex]);
+    }
+
+
+    nextImage() {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.IMAGES.length;
+        this.loadImg(this.IMAGES[this.currentImageIndex]);
+    }
+
+
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
 
     drawFrame(ctx) {
-        if (this.drawFrameInstances()) {
+        if (this.drawFrameHitboxInstances()) {
             ctx.beginPath();
             ctx.lineWidth = '1';
             ctx.strokeStyle = 'blue';
@@ -51,7 +64,7 @@ class DrawableObject {
         const hitboxWidth = this.width + this.offset.w;
         const hitboxHeight = this.height + this.offset.h;
     
-        if (this.drawFrameInstances()) {
+        if (this.drawFrameHitboxInstances()) {
             ctx.beginPath();
             ctx.lineWidth = '2';
             ctx.strokeStyle = 'red';
@@ -61,7 +74,7 @@ class DrawableObject {
     }
 
 
-    drawFrameInstances() {
+    drawFrameHitboxInstances() {
         const classes = [Character, Endboss, Chicken, Chick, Coin, Bottle];
         return classes.some(cls => this instanceof cls);
     }

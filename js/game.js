@@ -16,6 +16,11 @@ function init() { // add start game button with onclick function to start game
 }
 
 
+function startGame() {
+    
+}
+
+
 function handleKey(event) {
     const keyMap = {
         'ArrowRight': 'RIGHT',
