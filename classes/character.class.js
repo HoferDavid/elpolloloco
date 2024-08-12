@@ -3,7 +3,7 @@ class Character extends MovableObject {
     y = 90;
     height = 260;
     width = 120;
-    speed = 1; // 10
+    speed = 10; // 10
     world;
     runningSound = new Audio('./assets/audio/running.mp3');
     offset = {
@@ -74,11 +74,10 @@ class Character extends MovableObject {
 
     constructor() {
         super().loadImg(this.IMAGES_STANDING[0]);
-        // super().loadImg('./assets/img/2_character_pepe/1_idle/idle/I-1.png');
         this.currentState = null;
         this.animationInterval = null;
         this.idleTime = 0;
-        this.idleTimeout = 3000; 
+        this.idleTimeout = 5000; 
 
         this.loadImages(this.IMAGES_STANDING);
         this.loadImages(this.IMAGES_SLEEPING);
@@ -95,36 +94,43 @@ class Character extends MovableObject {
     setState(newState) {
         if (this.currentState !== newState) {
             this.currentState = newState;
-            this.updateAnimation(); // Animation sofort aktualisieren, wenn sich der Zustand ändert
+            this.updateAnimation();
         }
     }
 
     resetIdleTimer() {
-        this.idleTime = 0; // Timer zurücksetzen
+        this.idleTime = 0;
     }
 
     animate() {
         setInterval(() => {
             let hasMoved = false;
 
-            // Bewegungserkennung
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.moveRight();
                 this.mirrorObject = false;
-                this.setState('walking');
+                if (!this.isAboveGround()) {
+                    this.setState('walking');
+                }
                 hasMoved = true;
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.mirrorObject = true;
-                this.setState('walking');
+                if (!this.isAboveGround()) {
+                    this.setState('walking');
+                }
                 hasMoved = true;
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
                 this.setState('jumping');
+                hasMoved = true;
+            }
+
+            if (this.world.keyboard.D) {
                 hasMoved = true;
             }
 
@@ -157,7 +163,7 @@ class Character extends MovableObject {
 
     updateAnimation() {
         if (this.animationInterval) {
-            clearInterval(this.animationInterval); // Beendet das vorherige Animations-Intervall
+            clearInterval(this.animationInterval);
         }
 
         switch (this.currentState) {
@@ -177,7 +183,7 @@ class Character extends MovableObject {
                 this.animateObject(this.IMAGES_JUMPING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_JUMPING);
-                }, 200);
+                }, 80);
                 break;
             case 'walking':
                 this.animateObject(this.IMAGES_WALKING);
@@ -189,7 +195,7 @@ class Character extends MovableObject {
                 this.animateObject(this.IMAGES_SLEEPING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_SLEEPING);
-                }, 500); // Langsameres Intervall für "Sleeping"
+                }, 500);
                 break;
             default:
                 this.animateObject(this.IMAGES_STANDING);

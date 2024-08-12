@@ -72,8 +72,6 @@ class MovableObject extends DrawableObject {
 
 
     hit(damage) {
-        console.log(damage);
-        
         this.energy -= damage;
         // this.setPercentage(this.energy);
         if (this.energy < 0) {
@@ -81,6 +79,15 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+
+    hitEnemy() {
+        console.log('chicken energy');
+        
+        this.energy -= 100;
+
+        console.log('chicken energy');
     }
 
 

@@ -97,27 +97,51 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             let damage = 0;
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                console.log('above');
+                this.character.hitEnemy();
+            } else if (this.character.isColliding(enemy)) {
                 if (enemy instanceof Endboss) {
                     damage = 8;
                     this.character.hit(damage);
                     this.statusbarHealth.setPercentage(this.character.energy);
-                    console.log('Endboss');
                 } else if (enemy instanceof Chicken) {
                     damage = 2;
                     this.character.hit(damage);
                     this.statusbarHealth.setPercentage(this.character.energy);
-                    console.log('chicken');
                 } else {
                     damage = 1;
                     this.character.hit(damage);
                     this.statusbarHealth.setPercentage(this.character.energy);
-                    console.log('chick');
                 }
-
             }
         });
     }
+
+
+    // checkCollisions() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         let damage = 0;
+    //         if (this.character.isColliding(enemy)) {
+    //             if (enemy instanceof Endboss) {
+    //                 damage = 8;
+    //                 this.character.hit(damage);
+    //                 this.statusbarHealth.setPercentage(this.character.energy);
+    //             } else if (enemy instanceof Chicken) {
+    //                 damage = 2;
+    //                 this.character.hit(damage);
+    //                 this.statusbarHealth.setPercentage(this.character.energy);
+    //             } else {
+    //                 damage = 1;
+    //                 this.character.hit(damage);
+    //                 this.statusbarHealth.setPercentage(this.character.energy);
+    //             }
+    //         } else if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+    //             console.log('above');
+                
+    //         }
+    //     });
+    // }
 
 
     checkBottlePickup() {

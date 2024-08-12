@@ -3,7 +3,7 @@ class ThrowableObject extends MovableObject {
 
     height = 72;
     width = 56;
-    
+
     IMAGES = [
         './assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         './assets/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -22,7 +22,6 @@ class ThrowableObject extends MovableObject {
 
     constructor(x, y) {
         super().loadImg(this.IMAGES[0]);
-        // super().loadImg('./assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES);
         this.loadImages(this.IMAGES_SPLASH);
 
