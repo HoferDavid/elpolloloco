@@ -4,7 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
-    bottles = 0
+    bottles = 0;
     lastHit = 0;
 
     
@@ -71,8 +71,10 @@ class MovableObject extends DrawableObject {
     }
 
 
-    hit() {
-        this.energy -= 1; // 5
+    hit(damage) {
+        console.log(damage);
+        
+        this.energy -= damage;
         // this.setPercentage(this.energy);
         if (this.energy < 0) {
             this.energy = 0;

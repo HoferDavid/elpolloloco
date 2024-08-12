@@ -4,7 +4,8 @@ let keyboard = new Keyboard();
 soundtrack = new Audio('./assets/audio/background.mp3');
 
 
-function init() {
+function init() { // add start game button with onclick function to start game
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 

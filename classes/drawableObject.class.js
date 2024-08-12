@@ -6,7 +6,6 @@ class DrawableObject {
     img;
     imgCache = {};
     currentImage = 0;
-
     offset = {
         x: 0,
         y: 0,
@@ -63,7 +62,7 @@ class DrawableObject {
 
 
     drawFrameInstances() {
-        const classes = [Character, Chicken, Chick, Coin, Bottle];
+        const classes = [Character, Endboss, Chicken, Chick, Coin, Bottle];
         return classes.some(cls => this instanceof cls);
     }
 }

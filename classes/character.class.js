@@ -3,7 +3,7 @@ class Character extends MovableObject {
     y = 90;
     height = 260;
     width = 120;
-    speed = 10; // 10
+    speed = 1; // 10
     world;
     runningSound = new Audio('./assets/audio/running.mp3');
     offset = {
@@ -73,7 +73,8 @@ class Character extends MovableObject {
 
 
     constructor() {
-        super().loadImg('./assets/img/2_character_pepe/1_idle/idle/I-1.png');
+        super().loadImg(this.IMAGES_STANDING[0]);
+        // super().loadImg('./assets/img/2_character_pepe/1_idle/idle/I-1.png');
         this.currentState = null;
         this.animationInterval = null;
         this.idleTime = 0;
