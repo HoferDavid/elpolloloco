@@ -90,7 +90,7 @@ class World {
             this.checkCollisions();
             this.checkBottlePickup();
             this.checkThrowObjects();
-        }, 200);
+        }, 100);
     }
 
 
@@ -115,7 +115,7 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x, this.character.y)
+            let bottle = new ThrowableObject(this.character.x + 44, this.character.y + 100)
             this.throwableObjects.push(bottle);
         }
     }
