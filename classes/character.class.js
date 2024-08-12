@@ -5,7 +5,10 @@ class Character extends MovableObject {
     width = 120;
     speed = 10; // 10
     world;
+    bottles = 0;
+    coins = 0;
     runningSound = new Audio('./assets/audio/running.mp3');
+    coinPickupSound = new Audio('./assets/audio/coinPickup.mp3');
     offset = {
         x: 20,
         y: 100,
@@ -204,5 +207,13 @@ class Character extends MovableObject {
                 }, 400);
                 break;
         }
+    }
+
+    collectCoin(i) {
+        // this.coinPickupSound.play();
+        this.coinPickupSound.volume = 0.08;
+        this.coins++;
+        console.log(`coin collision ${i}`);
+        console.log('Coin collected. Total coins: ' + this.coins);
     }
 }
