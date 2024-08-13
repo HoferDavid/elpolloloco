@@ -36,12 +36,24 @@
     <main>
         <h1>El pollo loco</h1>
 
-        <div id="startScreen">
-            <!-- <img src="./assets/img/9_intro_outro_screens/start/startscreen_2.png" alt="Start Screen"> -->
-             <button class="startGameBtn" onclick="startGame()">Start Game</button>
+        <section id="menu">
+            <img class="audioBtn" id="audioBtn" onclick="toggleAudio()" src="../assets/img/icons/audio.png" alt="Audio Icon">
+        </section>
+
+        <div id="startScreen" class="overlayBtnContainer">
+            <button class="startGameBtn" onclick="startGame()">Start Game</button>
+        </div>
+
+        <div id="gameOverlay">
         </div>
 
         <canvas id="canvas" class="dNone" width="720" height="480"></canvas>
+
+        <div id="endScreen" class="dNone">
+            <button class="startGameBtn" onclick="startGame()">Play again</button>
+        </div>
+
+
 
         <section class="howtoSection">
             <div class="arrowContainer">
