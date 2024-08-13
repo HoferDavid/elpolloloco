@@ -92,6 +92,7 @@ class World {
             this.checkCoinCollision();
             this.checkBottleCollision();
             this.checkThrowObjects();
+            this.checkIfCharacterIsDead();
         }, 100);
     }
 
@@ -100,7 +101,6 @@ class World {
         this.level.enemies.forEach((enemy) => {
             let damage = 0;
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                console.log('above');
                 this.character.hitEnemy();
             } else if (this.character.isColliding(enemy)) {
                 if (enemy instanceof Endboss) {
@@ -149,6 +149,15 @@ class World {
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.statusbarBottle.setPercentage(this.character.bottles);
+        }
+    }
+
+
+    checkIfCharacterIsDead() {
+        if (this.statusbarHealth.percentage == 0) {
+            gameOverScreen();
+        } else {
+            console.log('pepe alive');
         }
     }
 }

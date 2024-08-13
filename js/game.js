@@ -62,6 +62,12 @@ function startGameToggleClasses() {
 }
 
 
+function gameOverScreen() {
+    console.log('gameover');
+    
+}
+
+
 window.addEventListener('keydown', handleKey);
 window.addEventListener('keyup', handleKey);
 

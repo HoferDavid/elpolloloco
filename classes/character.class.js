@@ -12,6 +12,7 @@ class Character extends MovableObject {
     bottlePickupSound = new Audio('./assets/audio/bottlePickup.mp3');
     jumpSound = new Audio('./assets/audio/jump.mp3');
     snoringSound = new Audio('./assets/audio/snoring.mp3');
+    hurtSound = new Audio('./assets/audio/hurt.mp3');
     offset = {
         x: 30,
         y: 120,
@@ -91,6 +92,8 @@ class Character extends MovableObject {
         this.bottlePickupSound.volume = 0.4;
         this.jumpSound.volume = 0.2;
         this.snoringSound.volume = 0.4;
+        this.hurtSound.volume = 0.4;
+        this.hurtSound.playbackRate = 2;
 
         this.loadImages(this.IMAGES_STANDING);
         this.loadImages(this.IMAGES_SLEEPING);
@@ -170,7 +173,6 @@ class Character extends MovableObject {
             } else if (!hasMoved && this.idleTime < this.idleTimeout) {
                 this.setState('standing');
             }
-
             this.world.cameraX = -this.x + 100;
         }, 1000 / 60);
     }
@@ -179,7 +181,6 @@ class Character extends MovableObject {
         if (this.animationInterval) {
             clearInterval(this.animationInterval);
         }
-
         switch (this.currentState) {
             case 'dead':
                 this.animateObject(this.IMAGES_DEAD);
@@ -191,6 +192,7 @@ class Character extends MovableObject {
                 this.animateObject(this.IMAGES_HURT);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_HURT);
+                    // this.hurtSound.play();
                 }, 40);
                 break;
             case 'jumping':

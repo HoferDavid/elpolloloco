@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     bottles = 0;
     lastHit = 0;
+    dead = false;
 
     
     moveRight() {
