@@ -11,13 +11,11 @@ function init() {
 
 
 function startGame() {
-    // toggleClasses('startScreen', 'canvas');
-    // toggleClasses('endScreen', 'canvas');
-    startGameToggleClasses();
+    toggleClasses('startScreen', 'canvas');
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    // this.soundtrack.play();
+    this.soundtrack.play();
 
     console.log('My character is', world.character);
 }
@@ -41,30 +39,28 @@ function handleKey(event) {
 function toggleAudio() {
     let audioBtn = document.getElementById('audioBtn');
     let currentSrc = audioBtn.src.split('/').pop();
-    if (currentSrc === "audio.png") {
+    let mute = currentSrc === 'audio.png';
+    if (mute) {
         audioBtn.src = "../assets/img/icons/audioMuted.png";
+        console.log('audio mute');
     } else {
         audioBtn.src = "../assets/img/icons/audio.png";
+        console.log('audio unmute');
     }
+
+    let audioArray = [
+        soundtrack
+    ]
+    
+    audioArray.forEach((audio) => { audio.muted = mute });
 }
+
+
 
 
 function toggleClasses(a, b) {
     document.getElementById(a).style.display = 'none';
-    document.getElementById(b).style.display = 'block';
-}
-
-
-function startGameToggleClasses() {
-    document.getElementById('startScreen').style.display = 'none';
-    document.getElementById('canvas').style.display = 'block';
-    // document.getElementById('endScreen').style.display = 'block';
-}
-
-
-function gameOverScreen() {
-    console.log('gameover');
-    
+    document.getElementById(b).style.display = 'flex';
 }
 
 

@@ -155,7 +155,7 @@ class World {
 
     checkIfCharacterIsDead() {
         if (this.statusbarHealth.percentage == 0) {
-            gameOverScreen();
+            toggleClasses('canvas', 'endScreen');
         } else {
             console.log('pepe alive');
         }
