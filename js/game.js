@@ -1,12 +1,9 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-soundtrack = new Audio('./assets/audio/background.mp3');
-soundtrack.volume = 0.2;
 
 
 function init() {
-
 }
 
 
@@ -15,7 +12,6 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    this.soundtrack.play();
 
     console.log('My character is', world.character);
 }
@@ -47,14 +43,8 @@ function toggleAudio() {
         audioBtn.src = "../assets/img/icons/audio.png";
         console.log('audio unmute');
     }
-
-    let audioArray = [
-        soundtrack
-    ]
-    
-    audioArray.forEach((audio) => { audio.muted = mute });
+    world.audio.muteAudio(mute);
 }
-
 
 
 

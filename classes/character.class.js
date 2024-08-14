@@ -7,12 +7,6 @@ class Character extends MovableObject {
     world;
     bottles = 0;
     coins = 0;
-    runningSound = new Audio('./assets/audio/running.mp3');
-    coinPickupSound = new Audio('./assets/audio/coinPickup.mp3');
-    bottlePickupSound = new Audio('./assets/audio/bottlePickup.mp3');
-    jumpSound = new Audio('./assets/audio/jump.mp3');
-    snoringSound = new Audio('./assets/audio/snoring.mp3');
-    hurtSound = new Audio('./assets/audio/hurt.mp3');
     offset = {
         x: 30,
         y: 120,
@@ -86,15 +80,6 @@ class Character extends MovableObject {
         this.idleTime = 0;
         this.idleTimeout = 2000; 
 
-        this.runningSound.volume = 0.4;
-        this.runningSound.playbackRate = 1.8;
-        this.coinPickupSound.volume = 0.4;
-        this.bottlePickupSound.volume = 0.4;
-        this.jumpSound.volume = 0.2;
-        this.snoringSound.volume = 0.4;
-        this.hurtSound.volume = 0.4;
-        this.hurtSound.playbackRate = 2;
-
         this.loadImages(this.IMAGES_STANDING);
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_WALKING);
@@ -120,7 +105,7 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.runningSound.pause();
+            this.world.audio.runningSound.pause();
             let hasMoved = false;
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
@@ -192,30 +177,30 @@ class Character extends MovableObject {
                 this.animateObject(this.IMAGES_HURT);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_HURT);
-                    // this.hurtSound.play();
+                    this.world.audio.hurtSound.play();
                 }, 40);
                 break;
             case 'jumping':
                 this.animateObject(this.IMAGES_JUMPING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_JUMPING);
-                    // this.jumpSound.play();
-                    this.snoringSound.pause();
+                    this.world.audio.jumpSound.play();
+                    this.world.audio.snoringSound.pause();
                 }, 80);
                 break;
             case 'walking':
                 this.animateObject(this.IMAGES_WALKING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_WALKING);
-                    // this.runningSound.play();
-                    this.snoringSound.pause();
+                    this.world.audio.runningSound.play();
+                    this.world.audio.snoringSound.pause();
                 }, 40);
                 break;
             case 'sleeping':
                 this.animateObject(this.IMAGES_SLEEPING);
                 this.animationInterval = setInterval(() => {
                     this.animateObject(this.IMAGES_SLEEPING);
-                    // this.snoringSound.play();
+                    this.world.audio.snoringSound.play();
                 }, 500);
                 break;
             default:
@@ -228,13 +213,13 @@ class Character extends MovableObject {
     }
 
     collectCoin() {
-        // this.coinPickupSound.play();
+        this.world.audio.coinPickupSound.play();
         this.coins++;
     }
 
 
     collectBottle() {
-        // this.bottlePickupSound.play();
+        this.world.audio.bottlePickupSound.play();
         this.bottles++;
     }
 }

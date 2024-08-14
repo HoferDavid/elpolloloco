@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    audio = new GameAudio();
     canvas;
     keyboard;
     ctx;
@@ -19,6 +20,7 @@ class World {
         this.setWorld();
         this.checkInterval();
         this.throwableObjects = [];
+        this.audio.soundtrack.play();
     }
 
 
