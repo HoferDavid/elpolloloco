@@ -26,8 +26,8 @@ level1 = new Level(
     ],                                               
     [
         new Coin(),
-        // new Coin(),
-        // new Coin(),
+        new Coin(),
+        new Coin(),
         // new Coin(),
         // new Coin(),
         // new Coin(),
@@ -40,13 +40,13 @@ level1 = new Level(
         new Bottle(),
         new Bottle(),
         new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle()
+        // new Bottle(),
+        // new Bottle(),
+        // new Bottle(),
+        // new Bottle(),
+        // new Bottle(),
+        // new Bottle(),
+        // new Bottle()
     ],
     [
         new BackgroundObject('./assets/img/5_background/layers/air.png', -719),

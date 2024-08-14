@@ -10,6 +10,7 @@ class World {
     statusbarCoin = new StatusbarCoin();
     statusbarBottle = new StatusbarBottle();
     throwableObjects = [];
+    percentage = 0;
 
 
     constructor(canvas, keyboard) {
@@ -105,25 +106,26 @@ class World {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 this.character.hitEnemy(i);
                 console.log('jump on enemy');
-                
             } else if (this.character.isColliding(enemy)) {
                 if (enemy instanceof Endboss) {
                     damage = 8;
-                    this.character.hit(damage);
-                    this.statusbarHealth.setPercentage(this.character.energy);
                 } else if (enemy instanceof Chicken) {
                     damage = 2;
-                    this.character.hit(damage);
-                    this.statusbarHealth.setPercentage(this.character.energy);
-                    console.log('hit chicken nr:', i);
-                    
                 } else {
                     damage = 1;
-                    this.character.hit(damage);
-                    this.statusbarHealth.setPercentage(this.character.energy);
                 }
+                this.character.hit(damage);
+                this.setPercentage(this.statusbarHealth, this.character.energy);
             }
         });
+    }
+
+
+    setPercentage(statusbar, percentage) {
+        statusbar.percentage = percentage;
+        let path = statusbar.IMAGES[statusbar.resolveImageIndex()];
+        statusbar.img = statusbar.imgCache[path];
+
     }
 
 
@@ -132,7 +134,7 @@ class World {
             if (this.character.isColliding(coin)) {
                 this.character.collectCoin();
                 this.level.coins.splice(i, 1);
-                this.statusbarCoin.setPercentage(this.character.coins);
+                this.setPercentage(this.statusbarCoin, this.character.coins);
             }
         });
     }
@@ -143,7 +145,7 @@ class World {
             if (this.character.isColliding(bottle)) {
                 this.character.collectBottle();
                 this.level.bottles.splice(i, 1);                
-                this.statusbarBottle.setPercentage(this.character.bottles);
+                this.setPercentage(this.statusbarBottle, this.character.bottles);
             }
         });
     }
@@ -154,7 +156,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 44, this.character.y + 100)
             this.throwableObjects.push(bottle);
             this.character.bottles--;
-            this.statusbarBottle.setPercentage(this.character.bottles);
+            this.setPercentage(this.statusbarBottle, this.character.bottles);
         }
     }
 
@@ -169,6 +171,5 @@ class World {
 
 
     checkIfEnemyIsDead() {
-
     }
 }

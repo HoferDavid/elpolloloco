@@ -1,5 +1,4 @@
 class Character extends MovableObject {
-
     y = 90;
     height = 260;
     width = 120;
@@ -75,17 +74,18 @@ class Character extends MovableObject {
 
     constructor() {
         super().loadImg(this.IMAGES_STANDING[0]);
-        this.currentState = null;
-        this.animationInterval = null;
-        this.idleTime = 0;
-        this.idleTimeout = 2000; 
-
         this.loadImages(this.IMAGES_STANDING);
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
+
+        this.currentState = null;
+        this.animationInterval = null;
+        this.idleTime = 0;
+        this.idleTimeout = 2000; 
+
         this.applyGravity();      
         
         this.animate();

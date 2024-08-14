@@ -3,6 +3,7 @@ class StatusbarHealth extends DrawableObject {
     y = 20;
     height = 40;
     width = 160;
+    percentage = 100;
 
     IMAGES = [
         './assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
@@ -15,19 +16,11 @@ class StatusbarHealth extends DrawableObject {
 
 
     constructor() {
-        super();
+        super().loadImg(this.IMAGES[5]);
         this.loadImages(this.IMAGES);
-        this.setPercentage(100);
     }
 
-
-    setPercentage(percentage) {
-        this.percentage = percentage;
-        let path = this.IMAGES[this.resolveImageIndex()];
-        this.img = this.imgCache[path];
-    }
-
-
+    
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
