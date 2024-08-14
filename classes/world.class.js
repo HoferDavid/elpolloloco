@@ -11,6 +11,7 @@ class World {
     statusbarBottle = new StatusbarBottle();
     throwableObjects = [];
     percentage = 0;
+    damage = 0;
 
 
     constructor(canvas, keyboard) {
@@ -32,29 +33,32 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.cameraX, 0);
+        this.drawObjects();
+        this.drawFixedObjects();
+        this.addToMap(this.character);
+        this.ctx.translate(-this.cameraX, 0);
+        let self = this;
+        requestAnimationFrame(function() { self.draw() });
+    }
 
+
+    drawObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
+    }
 
+
+    drawFixedObjects() {
         this.ctx.translate(-this.cameraX, 0);
-        // Insert Fixed Objects here
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoin);
         this.addToMap(this.statusbarBottle);
         this.ctx.translate(this.cameraX, 0);
-
-        this.addToMap(this.character);
-
-        this.ctx.translate(-this.cameraX, 0);
-
-        let self = this;
-        requestAnimationFrame(function() { self.draw() });
     }
 
 
@@ -62,16 +66,11 @@ class World {
 
 
     addToMap(mo) {
-        if (mo.mirrorObject) {
-            this.mirrorImage(mo);
-        }
+        if (mo.mirrorObject) this.mirrorImage(mo);
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
         mo.drawFrameHitbox(this.ctx);
-
-        if (mo.mirrorObject) {
-            this.mirrorImageBack(mo);
-        }
+        if (mo.mirrorObject) this.mirrorImageBack(mo);
     };
 
 
@@ -102,19 +101,18 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy, i) => {
-            let damage = 0;
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 this.character.hitEnemy(i);
                 console.log('jump on enemy');
             } else if (this.character.isColliding(enemy)) {
                 if (enemy instanceof Endboss) {
-                    damage = 8;
+                    this.damage = 8;
                 } else if (enemy instanceof Chicken) {
-                    damage = 2;
+                    this.damage = 2;
                 } else {
-                    damage = 1;
+                    this.damage = 1;
                 }
-                this.character.hit(damage);
+                this.character.hit(this.damage);
                 this.setPercentage(this.statusbarHealth, this.character.energy);
             }
         });
@@ -125,7 +123,6 @@ class World {
         statusbar.percentage = percentage;
         let path = statusbar.IMAGES[statusbar.resolveImageIndex()];
         statusbar.img = statusbar.imgCache[path];
-
     }
 
 
@@ -163,7 +160,7 @@ class World {
 
     checkIfCharacterIsDead() {
         if (this.statusbarHealth.percentage == 0) {
-            toggleClasses('canvas', 'endScreen');
+            // toggleClasses('canvas', 'endScreen');
         } else {
             console.log('pepe alive');
         }

@@ -1,5 +1,4 @@
 class ThrowableObject extends MovableObject {
-
     height = 72;
     width = 56;
 

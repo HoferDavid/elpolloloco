@@ -49,20 +49,17 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(obj) {
-        // Berechnung der tatsächlichen Grenzen des aktuellen Objekts
-        const thisLeft = this.x + this.offset.x;
+        const thisLeft = this.x + this.offset.x; // Berechnung der tatsächlichen Grenzen des aktuellen Objekts
         const thisRight = thisLeft + this.width + this.offset.w;
         const thisTop = this.y + this.offset.y;
         const thisBottom = thisTop + this.height + this.offset.h;
     
-        // Berechnung der tatsächlichen Grenzen des anderen Objekts
-        const objLeft = obj.x + obj.offset.x;
+        const objLeft = obj.x + obj.offset.x; // Berechnung der tatsächlichen Grenzen des anderen Objekts
         const objRight = objLeft + obj.width + obj.offset.w;
         const objTop = obj.y + obj.offset.y;
         const objBottom = objTop + obj.height + obj.offset.h;
-    
-        // Kollisionserkennung unter Berücksichtigung der Offsets
-        return thisRight >= objLeft &&
+
+        return thisRight >= objLeft && // Kollisionserkennung unter Berücksichtigung der Offsets
                thisLeft <= objRight &&
                thisBottom >= objTop &&
                thisTop <= objBottom;

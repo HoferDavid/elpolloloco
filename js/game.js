@@ -21,14 +21,10 @@ function handleKey(event) {
     const keyMap = {
         'ArrowRight': 'RIGHT',
         'ArrowLeft': 'LEFT',
-        'ArrowUp': 'UP',
-        'ArrowDown': 'DOWN',
         ' ': 'SPACE',
         'd': 'D'
     }
-    if (keyMap[event.key]) {
-        keyboard[keyMap[event.key]] = (event.type === 'keydown');
-    }
+    if (keyMap[event.key]) keyboard[keyMap[event.key]] = (event.type === 'keydown');
 }
 
 
