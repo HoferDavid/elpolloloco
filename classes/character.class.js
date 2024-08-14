@@ -85,6 +85,32 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  animate() {
+    setInterval(() => {
+      this.hasMoved = false;
+      if (this.canMoveRight()) this.moveRight();
+      if (this.canMoveLeft()) this.moveLeft();
+      if (this.canJump()) this.jump();
+      if (this.world.keyboard.D) this.hasMoved = true;
+      this.setSleepingSettings();
+      this.setOtherStates();
+      this.world.cameraX = -this.x + 100;
+    }, 1000 / 60);
+  }
+
+  updateAnimation() {
+    if (this.animationInterval) clearInterval(this.animationInterval);
+    const animations = {
+      dead: () => this.deadAnimation(),
+      hurt: () => this.hurtAnimation(),
+      jumping: () => this.jumpingAnimation(),
+      walking: () => this.walkingAnimation(),
+      sleeping: () => this.sleepingAnimation(),
+      default: () => this.defaultAnimation(),
+    };
+    (animations[this.currentState] || animations.default)();
+  }
+
   setState(newState) {
     if (this.currentState !== newState) {
       this.currentState = newState;
@@ -96,58 +122,9 @@ class Character extends MovableObject {
     this.idleTime = 0;
   }
 
-
-
-  animate() {
-    setInterval(() => {
-      let hasMoved = false;
-      if (this.canMoveRight()) {
-        this.moveRight();
-        hasMoved = true;
-      }
-      if (this.canMoveLeft()) {
-        this.moveLeft();
-        hasMoved = true;
-      }
-      if (this.canJump()) {
-        this.jump();
-        hasMoved = true;
-      }
-      if (this.world.keyboard.D) {
-        hasMoved = true;
-      }
-
-      // Überprüfung auf Bewegung oder Untätigkeit
-      if (hasMoved) {
-        this.resetIdleTimer(); // Timer zurücksetzen bei Bewegung
-      } else {
-        this.idleTime += 1000 / 60; // Idle-Zeit erhöhen
-      }
-
-      // Einschlafen nach Timeout
-      if (this.idleTime >= this.idleTimeout) {
-        this.setState("sleeping");
-      }
-
-      // Zustandsverwaltung
-      if (this.isDead()) {
-        this.setState("dead");
-      } else if (this.isHurt()) {
-        this.setState("hurt");
-      } else if (this.isAboveGround()) {
-        this.setState("jumping");
-      } else if (!hasMoved && this.idleTime < this.idleTimeout) {
-        this.setState("standing");
-      }
-      this.world.cameraX = -this.x + 100;
-    }, 1000 / 60);
-  }
-
-
   canMoveRight() {
     return this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX;
   }
-
 
   moveRight() {
     super.moveRight();
@@ -155,13 +132,12 @@ class Character extends MovableObject {
     if (!this.isAboveGround()) {
       this.setState("walking");
     }
+    this.hasMoved = true;
   }
-
 
   canMoveLeft() {
     return this.world.keyboard.LEFT && this.x > 0;
   }
-
 
   moveLeft() {
     super.moveLeft();
@@ -169,67 +145,37 @@ class Character extends MovableObject {
     if (!this.isAboveGround()) {
       this.setState("walking");
     }
+    this.hasMoved = true;
   }
-
 
   canJump() {
     return this.world.keyboard.SPACE && !this.isAboveGround();
   }
 
-
   jump() {
     this.speedY = 30;
     this.setState("jumping");
-}
+    this.hasMoved = true;
+  }
 
-
-  updateAnimation() {
-    if (this.animationInterval) {
-      clearInterval(this.animationInterval);
+  setSleepingSettings() {
+    if (this.hasMoved) {
+      this.resetIdleTimer();
+    } else {
+      this.idleTime += 1000 / 60;
     }
-    switch (this.currentState) {
-      case "dead":
-        this.animateObject(this.IMAGES_DEAD);
-        this.animationInterval = setInterval(() => {
-          this.animateObject(this.IMAGES_DEAD);
-        }, 100);
-        break;
-      case "hurt":
-        this.animateObject(this.IMAGES_HURT);
-        this.animationInterval = setInterval(() => {
-          this.animateObject(this.IMAGES_HURT);
-          this.world.audio.hurtSound.play();
-        }, 40);
-        break;
-      case "jumping":
-        this.animateObject(this.IMAGES_JUMPING);
-        this.animationInterval = setInterval(() => {
-          this.animateObject(this.IMAGES_JUMPING);
-          this.world.audio.jumpSound.play();
-          this.world.audio.snoringSound.pause();
-        }, 80);
-        break;
-      case "walking":
-        this.animateObject(this.IMAGES_WALKING);
-        this.animationInterval = setInterval(() => {
-          this.animateObject(this.IMAGES_WALKING);
-          this.world.audio.runningSound.play();
-          this.world.audio.snoringSound.pause();
-        }, 40);
-        break;
-      case "sleeping":
-        this.animateObject(this.IMAGES_SLEEPING);
-        this.animationInterval = setInterval(() => {
-          this.animateObject(this.IMAGES_SLEEPING);
-          this.world.audio.snoringSound.play();
-        }, 500);
-        break;
-      default:
-        this.animateObject(this.IMAGES_STANDING);
-        this.animationInterval = setInterval(() => {
-          this.animateObject(this.IMAGES_STANDING);
-        }, 400);
-        break;
+    if (this.idleTime >= this.idleTimeout) this.setState("sleeping");
+  }
+
+  setOtherStates() {
+    if (this.isDead()) {
+      this.setState("dead");
+    } else if (this.isHurt()) {
+      this.setState("hurt");
+    } else if (this.isAboveGround()) {
+      this.setState("jumping");
+    } else if (!this.hasMoved && this.idleTime < this.idleTimeout) {
+      this.setState("standing");
     }
   }
 
@@ -241,5 +187,53 @@ class Character extends MovableObject {
   collectBottle() {
     this.world.audio.bottlePickupSound.play();
     this.bottles++;
+  }
+
+  deadAnimation() {
+    this.animateObject(this.IMAGES_DEAD);
+    this.animationInterval = setInterval(() => {
+      this.animateObject(this.IMAGES_DEAD);
+    }, 100);
+  }
+
+  hurtAnimation() {
+    this.animateObject(this.IMAGES_HURT);
+    this.animationInterval = setInterval(() => {
+      this.animateObject(this.IMAGES_HURT);
+      this.world.audio.hurtSound.play();
+    }, 40);
+  }
+
+  jumpingAnimation() {
+    this.animateObject(this.IMAGES_JUMPING);
+    this.animationInterval = setInterval(() => {
+      this.animateObject(this.IMAGES_JUMPING);
+      this.world.audio.jumpSound.play();
+      this.world.audio.snoringSound.pause();
+    }, 80);
+  }
+
+  walkingAnimation() {
+    this.animateObject(this.IMAGES_WALKING);
+    this.animationInterval = setInterval(() => {
+      this.animateObject(this.IMAGES_WALKING);
+      this.world.audio.runningSound.play();
+      this.world.audio.snoringSound.pause();
+    }, 40);
+  }
+
+  sleepingAnimation() {
+    this.animateObject(this.IMAGES_SLEEPING);
+    this.animationInterval = setInterval(() => {
+      this.animateObject(this.IMAGES_SLEEPING);
+      this.world.audio.snoringSound.play();
+    }, 500);
+  }
+
+  defaultAnimation() {
+    this.animateObject(this.IMAGES_STANDING);
+    this.animationInterval = setInterval(() => {
+      this.animateObject(this.IMAGES_STANDING);
+    }, 400);
   }
 }

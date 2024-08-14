@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     dead = false;
     currentState = null;
     animationInterval = null;
+    hasMoved = false;
 
     
     moveRight() {
