@@ -1,5 +1,4 @@
 class StatusbarBottle extends MovableObject {
-
     x = 400; 
     y = 20;
     height = 40;
@@ -26,7 +25,6 @@ class StatusbarBottle extends MovableObject {
         this.percentage = percentage * 10;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imgCache[path];
-        
     }
 
 

@@ -1,11 +1,8 @@
 class StatusbarHealth extends DrawableObject {
-
     x = 40; 
     y = 20;
     height = 40;
     width = 160;
-
-    percentage = 100;
 
     IMAGES = [
         './assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',

@@ -1,5 +1,4 @@
 class StatusbarCoin extends DrawableObject {
-
     x = 220; 
     y = 20;
     height = 40;

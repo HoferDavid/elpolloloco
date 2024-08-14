@@ -105,7 +105,6 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.world.audio.runningSound.pause();
             let hasMoved = false;
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
@@ -211,6 +210,7 @@ class Character extends MovableObject {
                 break;
         }
     }
+    
 
     collectCoin() {
         this.world.audio.coinPickupSound.play();

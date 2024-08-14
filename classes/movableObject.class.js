@@ -82,20 +82,8 @@ class MovableObject extends DrawableObject {
     }
 
 
-    hitEnemy() {
-        console.log('chicken energy');
-        
-        this.energy -= 100;
-
-        console.log('chicken energy');
-    }
-
-
-    bottlePickup() {
-        this.bottles += 5;
-        if (this.bottles > 100) {
-            this.bottles = 100;
-        }
+    hitEnemy(i) {
+        console.log(i);
     }
 
 
@@ -107,6 +95,14 @@ class MovableObject extends DrawableObject {
 
 
     isDead() {
-        return this.energy == 0;
+        // this.animateObject(this.IMAGES_DEAD);
+    }
+
+
+    bottlePickup() {
+        this.bottles += 5;
+        if (this.bottles > 100) {
+            this.bottles = 100;
+        }
     }
 }

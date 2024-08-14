@@ -100,10 +100,12 @@ class World {
 
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy, i) => {
             let damage = 0;
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                this.character.hitEnemy();
+                this.character.hitEnemy(i);
+                console.log('jump on enemy');
+                
             } else if (this.character.isColliding(enemy)) {
                 if (enemy instanceof Endboss) {
                     damage = 8;
@@ -113,6 +115,8 @@ class World {
                     damage = 2;
                     this.character.hit(damage);
                     this.statusbarHealth.setPercentage(this.character.energy);
+                    console.log('hit chicken nr:', i);
+                    
                 } else {
                     damage = 1;
                     this.character.hit(damage);
@@ -161,5 +165,10 @@ class World {
         } else {
             console.log('pepe alive');
         }
+    }
+
+
+    checkIfEnemyIsDead() {
+
     }
 }
