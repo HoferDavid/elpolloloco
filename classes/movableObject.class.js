@@ -6,6 +6,8 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     dead = false;
+    currentState = null;
+    animationInterval = null;
 
     
     moveRight() {
@@ -42,11 +44,6 @@ class MovableObject extends DrawableObject {
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
-    }
-
-
-    jump() {
-        this.speedY = 30;
     }
 
 
