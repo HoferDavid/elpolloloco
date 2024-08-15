@@ -93,16 +93,18 @@ class World {
             this.checkCollisions();
             this.checkCoinPickup();
             this.checkBottlePickup();
-            this.throwObjects();
             this.checkIfCharacterIsDead();
+        }, 20);
+        setInterval(() => {
+            this.throwObjects();
         }, 100);
     }
 
 
     checkCollisions() {
+        console.log('speedY', this.character.speedY);
         this.level.enemies.forEach((enemy, i) => {
-            if (this.character.isColliding(enemy)) {
-            console.log('speedY', this.character.speedY);
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0) {
                 this.character.jumpOnEnemy();
                 enemy.isDead();
                 setTimeout(() => {

@@ -28,7 +28,18 @@ class Chick extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            this.animateObject(this.IMAGES);
-        }, 160);
+            if (this.energy > 0) {
+                this.animateObject(this.IMAGES);
+            } else {
+                console.log('dead');
+            }
+          }, 160);
     };
+
+
+    isDead() {
+        setInterval(() => {
+            this.loadImg(this.IMAGES_DEAD);
+        }, 1000 / 5);
+    }
 }
