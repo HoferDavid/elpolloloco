@@ -91,9 +91,9 @@ class World {
     checkInterval() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkCoinCollision();
-            this.checkBottleCollision();
-            this.checkThrowObjects();
+            this.checkCoinPickup();
+            this.checkBottlePickup();
+            this.throwObjects();
             this.checkIfCharacterIsDead();
         }, 100);
     }
@@ -101,9 +101,13 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy, i) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                this.character.hitEnemy(i);
-                console.log('jump on enemy');
+            if (this.character.isColliding(enemy)) {
+            console.log('speedY', this.character.speedY);
+                this.character.jumpOnEnemy();
+                enemy.isDead();
+                setTimeout(() => {
+                    this.level.enemies.splice(i, 1);
+                }, 1000);
             } else if (this.character.isColliding(enemy)) {
                 if (enemy instanceof Endboss) {
                     this.damage = 8;
@@ -126,7 +130,7 @@ class World {
     }
 
 
-    checkCoinCollision() {
+    checkCoinPickup() {
         this.level.coins.forEach((coin, i) => {
             if (this.character.isColliding(coin)) {
                 this.character.collectCoin();
@@ -137,7 +141,7 @@ class World {
     }
 
 
-    checkBottleCollision() {
+    checkBottlePickup() {
         this.level.bottles.forEach((bottle, i) => {
             if (this.character.isColliding(bottle)) {
                 this.character.collectBottle();
@@ -148,7 +152,7 @@ class World {
     }
 
 
-    checkThrowObjects() {
+    throwObjects() {
         if (this.keyboard.D && this.character.bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 44, this.character.y + 100)
             this.throwableObjects.push(bottle);

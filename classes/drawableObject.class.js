@@ -7,6 +7,8 @@ class DrawableObject {
     imgCache = {};
     currentImage = 0;
     currentImageIndex = 0;
+    bottles = 0;
+    coins = 0;
     offset = {
         x: 0,
         y: 0,

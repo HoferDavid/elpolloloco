@@ -1,11 +1,9 @@
 class Character extends MovableObject {
-  y = 90;
+  y = 110;
   height = 260;
   width = 120;
   speed = 10; // 10
   world;
-  bottles = 0;
-  coins = 0;
   idleTime = 0;
   idleTimeout = 2000;
   offset = {
@@ -102,6 +100,10 @@ class Character extends MovableObject {
     this.hasMoved = true;
   }
 
+  jumpOnEnemy() {
+    this.speedY = 20;
+  }
+
   setSleepingSettings() {
     if (this.hasMoved) {
       this.resetIdleTimer();
@@ -127,6 +129,7 @@ class Character extends MovableObject {
   collectCoin() {
     this.world.audio.coinPickupSound.play();
     this.coins++;
+    
   }
 
   collectBottle() {

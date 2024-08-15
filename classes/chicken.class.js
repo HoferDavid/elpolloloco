@@ -36,6 +36,13 @@ class Chicken extends MovableObject {
             }
           }, 160);
     };
+
+
+    isDead() {
+        setInterval(() => {
+            this.loadImg(this.IMAGES_DEAD);
+        }, 1000 / 5);
+    }
 }
 
 
