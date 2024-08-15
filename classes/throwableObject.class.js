@@ -31,6 +31,13 @@ class ThrowableObject extends MovableObject {
     }
 
 
+    animate() {
+        setInterval(() => {
+            this.animateObject(this.IMAGES);
+        }, 100);
+    };
+
+
     throwObject() {
         setInterval(() => {
             this.x += 16;
@@ -38,9 +45,9 @@ class ThrowableObject extends MovableObject {
     }
 
 
-    animate() {
+    splashAnimation() {
         setInterval(() => {
-            this.animateObject(this.IMAGES);
-        }, 100);
-    };
+            this.loadImages(this.IMAGES_SPLASH);
+        }, 1000 / 60);
+    }
 }

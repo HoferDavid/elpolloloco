@@ -12,6 +12,7 @@ class World {
     throwableObjects = [];
     percentage = 0;
     damage = 0;
+    dead = false;
 
 
     constructor(canvas, keyboard) {
@@ -102,22 +103,22 @@ class World {
 
 
     checkCollisions() {
-        console.log('speedY', this.character.speedY);
         this.level.enemies.forEach((enemy, i) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0) {
                 this.character.jumpOnEnemy();
                 enemy.isDead();
+                enemy.dead = true;
                 setTimeout(() => {
                     this.level.enemies.splice(i, 1);
                 }, 1000);
-            } else if (this.character.isColliding(enemy)) {
-                if (enemy instanceof Endboss) {
-                    this.damage = 8;
-                } else if (enemy instanceof Chicken) {
-                    this.damage = 2;
-                } else {
-                    this.damage = 1;
-                }
+                console.log('jump on enemy');
+                
+            } else if (this.character.isColliding(enemy) && !enemy.dead) {
+                console.log('got hit');
+                if (enemy instanceof Endboss) this.damage = 8;
+                else if (enemy instanceof Chicken) this.damage = 2;
+                else this.damage = 1;
+
                 this.character.hit(this.damage);
                 this.setPercentage(this.statusbarHealth, this.character.energy);
             }
