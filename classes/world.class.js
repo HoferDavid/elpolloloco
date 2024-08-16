@@ -98,7 +98,7 @@ class World {
         }, 20);
         setInterval(() => {
             this.throwObjects();
-        }, 100);
+        }, 500);
     }
 
 
@@ -110,7 +110,7 @@ class World {
                 enemy.dead = true;
                 setTimeout(() => {
                     this.level.enemies.splice(i, 1);
-                }, 1000);
+                }, 100);
                 console.log('jump on enemy');
                 
             } else if (this.character.isColliding(enemy) && !enemy.dead) {

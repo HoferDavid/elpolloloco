@@ -30,19 +30,19 @@ main {
 }
 
 canvas,
-#startScreen,
+#gameOverlay,
 #endScreen {
   background-color: black;
   border: 20px groove #70312D;
   box-shadow: 4px 4px 8px 0px #000000;
 }
 
-#startScreen {
+#gameOverlay {
   display: flex;
   background-image: url('../assets/img/9_intro_outro_screens/start/startscreen_2.png');
 }
 
-#startScreen,
+#gameOverlay,
 #endScreen {
   height: 520px;
   width: 760px;

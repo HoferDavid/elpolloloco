@@ -40,6 +40,6 @@ class Chick extends MovableObject {
     isDead() {
         setInterval(() => {
             this.loadImg(this.IMAGES_DEAD);
-        }, 1000 / 5);
+        }, 10);
     }
 }
