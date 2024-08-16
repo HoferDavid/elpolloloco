@@ -124,7 +124,8 @@ a {
 }
 
 @media (min-width: 1920px) {
-  header {
+  header,
+  footer {
     justify-content: center;
     gap: 1000px;
   }

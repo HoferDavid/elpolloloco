@@ -33,10 +33,10 @@ function toggleAudio() {
     let currentSrc = audioBtn.src.split('/').pop();
     let mute = currentSrc === 'audio.png';
     if (mute) {
-        audioBtn.src = "../assets/img/icons/audioMuted.png";
+        audioBtn.src = "assets/img/icons/audioMuted.png";
         console.log('audio mute');
     } else {
-        audioBtn.src = "../assets/img/icons/audio.png";
+        audioBtn.src = "assets/img/icons/audio.png";
         console.log('audio unmute');
     }
     world.audio.muteAudio(mute);

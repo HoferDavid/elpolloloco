@@ -23,7 +23,7 @@ body {
 
 main {
   display: flex;
-  /* justify-content: space-evenly; */
+  justify-content: space-evenly;
   align-items: center;
   height: 100dvh;
   flex-direction: column;
@@ -82,11 +82,12 @@ h1 {
   font-size: 96px;
   letter-spacing: 2px;
   text-shadow: 2px 2px 0 rgb(225, 210, 189), 4px 4px 0 rgb(160, 35, 9);
-  margin: 40px 0px 48px 20px;
+  /* margin: 40px 0px 20px 20px; */
+  margin: 0;
 }
 
 #menu {
-  margin-bottom: 20px;
+  /* margin-bottom: 8px; */
 }
 
 .howtoSection {
@@ -101,7 +102,7 @@ h1 {
   box-shadow: 2px 2px 4px 0px #000000;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 700;
-  margin: 20px 0px 56px 0px;
+  /* margin: 8px 0px 16px 0px; */
 }
 
 .arrowContainer {
