@@ -106,12 +106,15 @@ class World {
         enemy.dead = true;
         setTimeout(() => { this.level.enemies.splice(i, 1); }, 50);
       } else if (this.character.isColliding(enemy) && this.character.speedY < 0) {
-        if (enemy instanceof Endboss) this.damage = 8;
-        else if (enemy instanceof Chicken) this.damage = 2;
-        else this.damage = 1;
+        if (enemy instanceof Endboss) { this.damage = 8; }
+        else if (enemy instanceof Chicken) { this.damage = 2; }
+        else { this.damage = 1; }
         this.character.hit(this.damage);
+        this.character.hasMoved = true;
         this.setPercentage(this.statusbarHealth, this.character.energy);
       }
+      console.log(this.damage);
+      
     });
   }
 

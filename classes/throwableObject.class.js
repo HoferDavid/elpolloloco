@@ -37,7 +37,7 @@ class ThrowableObject extends MovableObject {
         }, 100);
 
         this.splashInterval = setInterval(() => {
-            // this.checkGroundCollision();
+            this.checkGroundCollision();
         }, 20);
     };
 
@@ -49,28 +49,20 @@ class ThrowableObject extends MovableObject {
     }
 
 
-    // checkGroundCollision() {
-    //     if (this.y > 300) {
-    //         this.splashAnimation();
-    //         // clearInterval(this.rotationInterval);
-    //         clearInterval(this.splashInterval);
-    //         // clearInterval(this.throwInterval);
-    //         setTimeout(() => {
-    //             this.isRemoved = true;
-    //         }, 500);
-    //     }
-    //     console.log('ground collision');
-    // }
+    checkGroundCollision() {
+        if (this.y > 300 && this.isAboveGround()) {
+            this.splashAnimation();
+            clearInterval(this.splashInterval);
+            setTimeout(() => {
+                this.isRemoved = true;
+            }, 500);
+        }
+    }
 
 
     splashAnimation() {
-        let splashIndex = 0;
-        let animationInterval = setInterval(() => {
-            this.loadImg(this.IMAGES_SPLASH[splashIndex]);
-            splashIndex++;
-            if (splashIndex >= this.IMAGES_SPLASH.length) {
-                clearInterval(animationInterval);
-            }
-        }, 100); 
+        this.animationInterval = setInterval(() => {
+            this.animateObject(this.IMAGES_SPLASH);
+        }, 20);
     }
 }
