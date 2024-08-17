@@ -2,18 +2,14 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-
-function init() {
-}
-
-
+  
 function startGame() {
     toggleClasses('startScreen', 'canvas');
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
-    // toggleAudio(); // Delete it
+    toggleAudio(); // Delete it
 
     console.log('My character is', world.character);
 }

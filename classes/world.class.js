@@ -95,23 +95,17 @@ class World {
     }, 20);
     setInterval(() => {
       this.throwObjects();
-    }, 500);
+    }, 200);
   }
 
   checkCollisions() {
     this.level.enemies.forEach((enemy, i) => {
-      if (
-        this.character.isColliding(enemy) &&
-        this.character.isAboveGround() &&
-        this.character.speedY <= 0
-      ) {
+      if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0) {
         this.character.jumpOnEnemy();
         enemy.isDead();
         enemy.dead = true;
-        setTimeout(() => {
-          this.level.enemies.splice(i, 1);
-        }, 100);
-      } else if (this.character.isColliding(enemy)) {
+        setTimeout(() => { this.level.enemies.splice(i, 1); }, 50);
+      } else if (this.character.isColliding(enemy) && this.character.speedY < 0) {
         if (enemy instanceof Endboss) this.damage = 8;
         else if (enemy instanceof Chicken) this.damage = 2;
         else this.damage = 1;
@@ -159,33 +153,49 @@ class World {
     }
   }
 
+
   throwObjectCollision() {
-    this.throwableObjects.forEach((bottle, bottleIndex) => {
-      this.level.enemies.forEach((enemy, enemyIndex) => {
-        if (bottle.isColliding(enemy) && !enemy.isDead) {
-          console.log("bottle hit enemy", enemyIndex);
-
-          bottle.splashAnimation();
-          enemy.isDead();
-          enemy.dead = true;
-
-          setTimeout(() => {
-            this.throwableObjects.splice(bottleIndex, 1);
-          }, 100);
-
-          setTimeout(() => {
-            this.level.enemies.splice(enemyIndex, 1);
-          }, 200);
-        }
-      });
+    this.throwableObjects.forEach((bottle, i) => {
+        this.level.enemies.forEach((enemy, j) => {
+            if (bottle.isColliding(enemy)) {
+                console.log('foreach collision');
+                bottle.splashAnimation();
+                enemy.isDead();
+            }
+        });
     });
   }
 
+
+//   throwObjectCollision() {
+//     for (let bottleIndex = 0; bottleIndex < this.throwableObjects.length; bottleIndex++) {
+//       let bottle = this.throwableObjects[bottleIndex];
+
+//       for (let enemyIndex = 0; enemyIndex < this.level.enemies.length; enemyIndex++) {
+//         let enemy = this.level.enemies[enemyIndex];
+
+//         if (bottle.isColliding(enemy)) {
+//           console.log("bootle hit enemy", enemyIndex);
+
+//           bottle.splashAnimation();
+//           enemy.isDead();
+//           this.throwableObjects.splice(bottleIndex, 1);
+//           this.level.enemies.splice(enemyIndex, 1);
+//           break;
+//         } else if (bottle.y > 320) {            
+//             bottle.splashAnimation();
+//             clearInterval(this.splashInterval);
+//         }
+//       }
+//     }
+//   }
+  
+
   checkIfCharacterIsDead() {
     if (this.statusbarHealth.percentage == 0) {
-      toggleClasses('canvas', 'endScreen');
+      toggleClasses("canvas", "endScreen");
     } else {
-    //   console.log("pepe alive");
+      //   console.log("pepe alive");
     }
   }
 }

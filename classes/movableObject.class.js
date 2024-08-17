@@ -79,9 +79,9 @@ class MovableObject extends DrawableObject {
     }
 
 
-    hitEnemy(i) {
-        console.log(i);
-    }
+    // hitEnemy(i) {
+    //     console.log(i);
+    // }
 
 
     isHurt() {
