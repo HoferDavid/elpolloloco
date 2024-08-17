@@ -91,30 +91,41 @@ class World {
       this.checkCoinPickup();
       this.checkBottlePickup();
       this.checkIfCharacterIsDead();
-      this.throwObjectCollision();
     }, 20);
     setInterval(() => {
       this.throwObjects();
+      this.throwObjectCollision();
     }, 200);
   }
 
   checkCollisions() {
     this.level.enemies.forEach((enemy, i) => {
-      if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0) {
+      if (
+        this.character.isColliding(enemy) &&
+        this.character.isAboveGround() &&
+        this.character.speedY <= 0
+      ) {
         this.character.jumpOnEnemy();
         enemy.isDead();
         enemy.dead = true;
-        setTimeout(() => { this.level.enemies.splice(i, 1); }, 50);
-      } else if (this.character.isColliding(enemy) && this.character.speedY < 0) {
-        if (enemy instanceof Endboss) { this.damage = 8; }
-        else if (enemy instanceof Chicken) { this.damage = 2; }
-        else { this.damage = 1; }
+        setTimeout(() => {
+          this.level.enemies.splice(i, 1);
+        }, 50);
+      } else if (
+        this.character.isColliding(enemy) &&
+        this.character.speedY < 0
+      ) {
+        if (enemy instanceof Endboss) {
+          this.damage = 8;
+        } else if (enemy instanceof Chicken) {
+          this.damage = 2;
+        } else {
+          this.damage = 1;
+        }
         this.character.hit(this.damage);
         this.character.hasMoved = true;
         this.setPercentage(this.statusbarHealth, this.character.energy);
       }
-      console.log(this.damage);
-      
     });
   }
 
@@ -144,6 +155,7 @@ class World {
     });
   }
 
+
   throwObjects() {
     if (this.keyboard.D && this.character.bottles > 0) {
       let bottle = new ThrowableObject(
@@ -158,41 +170,21 @@ class World {
 
 
   throwObjectCollision() {
-    this.throwableObjects.forEach((bottle, i) => {
-        this.level.enemies.forEach((enemy, j) => {
-            if (bottle.isColliding(enemy)) {
-                console.log('foreach collision');
-                bottle.splashAnimation();
-                enemy.isDead();
-            }
-        });
-    });
+    outerLoop: for (let i = 0; i < this.throwableObjects.length; i++) {
+      let bottle = this.throwableObjects[i];
+      for (let j = 0; j < this.level.enemies.length; j++) {
+        let enemy = this.level.enemies[j];
+        if (bottle.isColliding(enemy)) {
+          bottle.splashAnimation();
+          enemy.isDead();
+          setTimeout(() => {
+            this.level.enemies.splice(j, 1);
+          }, 1000);
+          break outerLoop;
+        }
+      }
+    }
   }
-
-
-//   throwObjectCollision() {
-//     for (let bottleIndex = 0; bottleIndex < this.throwableObjects.length; bottleIndex++) {
-//       let bottle = this.throwableObjects[bottleIndex];
-
-//       for (let enemyIndex = 0; enemyIndex < this.level.enemies.length; enemyIndex++) {
-//         let enemy = this.level.enemies[enemyIndex];
-
-//         if (bottle.isColliding(enemy)) {
-//           console.log("bootle hit enemy", enemyIndex);
-
-//           bottle.splashAnimation();
-//           enemy.isDead();
-//           this.throwableObjects.splice(bottleIndex, 1);
-//           this.level.enemies.splice(enemyIndex, 1);
-//           break;
-//         } else if (bottle.y > 320) {            
-//             bottle.splashAnimation();
-//             clearInterval(this.splashInterval);
-//         }
-//       }
-//     }
-//   }
-  
 
   checkIfCharacterIsDead() {
     if (this.statusbarHealth.percentage == 0) {

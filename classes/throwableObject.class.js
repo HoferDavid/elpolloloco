@@ -63,6 +63,6 @@ class ThrowableObject extends MovableObject {
     splashAnimation() {
         this.animationInterval = setInterval(() => {
             this.animateObject(this.IMAGES_SPLASH);
-        }, 20);
+        }, 100);
     }
 }

@@ -82,6 +82,7 @@ class Character extends MovableObject {
       this.setState("walking");
     }
     this.hasMoved = true;
+    this.direction = 'right';
   }
 
   canMoveLeft() {
@@ -95,6 +96,7 @@ class Character extends MovableObject {
       this.setState("walking");
     }
     this.hasMoved = true;
+    this.direction = 'left';
   }
 
   canJump() {
