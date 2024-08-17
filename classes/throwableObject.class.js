@@ -35,6 +35,10 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             this.animateObject(this.IMAGES);
         }, 100);
+
+        this.splashInterval = setInterval(() => {
+            this.checkGroundCollision();
+        }, 20);
     };
 
 
@@ -45,9 +49,22 @@ class ThrowableObject extends MovableObject {
     }
 
 
+    checkGroundCollision() {
+        if (this.y > 300) {
+            // this.splashAnimation();
+            clearInterval(this.splashInterval);
+            setTimeout(() => {
+                this.isRemoved = true;
+            }, 1000);
+        }
+        console.log('ground collision');
+        
+    }
+
+
     splashAnimation() {
-        setInterval(() => {
-            this.loadImages(this.IMAGES_SPLASH);
-        }, 1000 / 60);
+        let animationInterval = setInterval(() => {
+            this.animateObject(this.IMAGES_SPLASH);
+        }, 20);
     }
 }

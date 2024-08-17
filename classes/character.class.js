@@ -189,4 +189,11 @@ class Character extends MovableObject {
       this.animateObject(this.characterImages.IMAGES_STANDING);
     }, 400);
   }
+
+
+  gameOver() {
+    if (this.energy === 0) {
+      clearAllIntervals();
+    }
+  }
 }

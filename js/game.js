@@ -13,9 +13,17 @@ function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
-    toggleAudio(); // Delete it
+    // toggleAudio(); // Delete it
 
     console.log('My character is', world.character);
+}
+
+
+function reStartGame() {
+    document.getElementById('endScreen').style.display = 'none';
+    initLevel();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
 }
 
 
@@ -51,6 +59,10 @@ function toggleClasses(a, b) {
     document.getElementById(b).style.display = 'flex';
 }
 
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) { window.clearInterval(i); }
+}
 
 window.addEventListener('keydown', handleKey);
 window.addEventListener('keyup', handleKey);
