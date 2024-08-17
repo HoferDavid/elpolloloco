@@ -19,6 +19,7 @@ class Chick extends MovableObject {
         super().loadImg(this.IMAGES[0]);
         this.loadImages(this.IMAGES);
         this.animate();
+        this.applyGravity();
     }
 
 
@@ -28,11 +29,11 @@ class Chick extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.energy > 0) {
-                this.animateObject(this.IMAGES);
-            } else {
-                console.log('dead');
-            }
+            this.enemyJump();
+        },  1000 + Math.random() * 3000);
+
+        setInterval(() => {
+            this.animateObject(this.IMAGES);
           }, 160);
     };
 
@@ -41,5 +42,10 @@ class Chick extends MovableObject {
         setInterval(() => {
             this.loadImg(this.IMAGES_DEAD);
         }, 10);
+    }
+
+
+    enemyJump() {
+        this.speedY = 20 + Math.random() * 1;
     }
 }

@@ -13,6 +13,8 @@ function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
+    toggleAudio(); // Delete it
+
     console.log('My character is', world.character);
 }
 

@@ -14,7 +14,6 @@ class Character extends MovableObject {
   };
   characterImages = new CharacterImages();
 
-
   constructor() {
     super().loadImg(this.characterImages.IMAGES_STANDING[0]);
     this.loadImages(this.characterImages.IMAGES_STANDING);
@@ -30,10 +29,18 @@ class Character extends MovableObject {
   animate() {
     setInterval(() => {
       this.hasMoved = false;
-      if (this.canMoveRight()) this.moveRight();
-      if (this.canMoveLeft()) this.moveLeft();
-      if (this.canJump()) this.jump();
-      if (this.world.keyboard.D) this.hasMoved = true;
+      if (this.canMoveRight()) {
+        this.moveRight();
+      }
+      if (this.canMoveLeft()) {
+        this.moveLeft();
+      }
+      if (this.canJump()) {
+        this.jump();
+      }
+      if (this.world.keyboard.D) {
+        this.hasMoved = true;
+      }
       this.setSleepingSettings();
       this.setOtherStates();
       this.world.cameraX = -this.x + 100;
@@ -125,11 +132,9 @@ class Character extends MovableObject {
     }
   }
 
-
   collectCoin() {
     this.world.audio.coinPickupSound.play();
     this.coins++;
-    
   }
 
   collectBottle() {

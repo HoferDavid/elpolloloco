@@ -31,14 +31,6 @@ class Chicken extends MovableObject {
         setInterval(() => {
             this.animateObject(this.IMAGES);
           }, 160);
-
-        // setInterval(() => {
-        //     if (this.energy > 0) {
-        //         this.animateObject(this.IMAGES);
-        //     } else {
-        //         console.log('dead');
-        //     }
-        //   }, 160);
     };
 
 

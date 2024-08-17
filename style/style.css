@@ -14,11 +14,11 @@ body {
   align-items: center;
   justify-content: center;
   height: 100dvh;
-  background-image: url('../assets/img/images/bg.png');
+  background-image: url("../assets/img/images/bg.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  font-family: 'mexico', Arial, Helvetica, sans-serif;
+  font-family: "mexico", Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -29,43 +29,50 @@ main {
   flex-direction: column;
 }
 
-canvas,
-#gameOverlay,
-#endScreen {
+#game {
+  height: 520px;
+  width: 760px;
   background-color: black;
-  border: 20px groove #70312D;
+  border: 20px groove #70312d;
   box-shadow: 4px 4px 8px 0px #000000;
 }
 
 #gameOverlay {
-  display: flex;
-  background-image: url('../assets/img/9_intro_outro_screens/start/startscreen_2.png');
+  position: relative;
+  display: inline-block;
 }
 
-#gameOverlay,
-#endScreen {
-  height: 520px;
-  width: 760px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-#endScreen {
-  background-image: url('../assets/img/9_intro_outro_screens/start/startscreen_1.png');
+.bgImages {
+  width: 720px;
+  height: 480px;
 }
 
 .startGameBtn {
   display: flex;
   padding: 8px 16px;
   background-color: rgb(247, 194, 115);
-  border: 4px groove #70312D;
+  border: 4px groove #70312d;
   box-shadow: 1px 1px 2px 0px #000000;
-  font-family: 'mexico', Arial, Helvetica, sans-serif;
+  font-family: "mexico", Arial, Helvetica, sans-serif;
   font-size: 24px;
-  margin-top: 16px;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+.startGameBtn:hover {
+  transform: translate(-50%, -50%) scale(1.01);
+}
+
+h1 {
+  font-size: 96px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 rgb(225, 210, 189), 4px 4px 0 rgb(160, 35, 9);
+  margin: 0;
 }
 
 .audioBtn {
@@ -74,20 +81,8 @@ canvas,
   background-color: rgb(247, 194, 115);
   height: 48px;
   width: 48px;
-  border: 4px groove #70312D;
+  border: 4px groove #70312d;
   box-shadow: 1px 1px 2px 0px #000000;
-}
-
-h1 {
-  font-size: 96px;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 0 rgb(225, 210, 189), 4px 4px 0 rgb(160, 35, 9);
-  /* margin: 40px 0px 20px 20px; */
-  margin: 0;
-}
-
-#menu {
-  /* margin-bottom: 8px; */
 }
 
 .howtoSection {
@@ -98,11 +93,10 @@ h1 {
   align-items: center;
   letter-spacing: 1px;
   background-color: rgb(247, 194, 115);
-  border: 8px groove #70312D;
+  border: 8px groove #70312d;
   box-shadow: 2px 2px 4px 0px #000000;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-weight: 700;
-  /* margin: 8px 0px 16px 0px; */
 }
 
 .arrowContainer {
@@ -113,7 +107,7 @@ h1 {
 .seperator {
   width: 1px;
   height: 20px;
-  background-color: #70312D;
+  background-color: #70312d;
 }
 
 .infoSection {
@@ -123,7 +117,7 @@ h1 {
   align-items: center;
   letter-spacing: 1px;
   background-color: rgb(247, 194, 115);
-  border: 4px groove #70312D;
+  border: 4px groove #70312d;
   box-shadow: 1px 1px 2px 0px #000000;
 }
 
@@ -143,26 +137,26 @@ h1 {
   width: 40px;
 }
 
-.startGameBtn,
 .audioBtn,
 .madeByDavid {
   transition: 0.2s;
   cursor: pointer;
 }
 
-
-.startGameBtn:hover,
 .audioBtn:hover,
 .infoSection a:hover,
 .madeByDavid:hover {
   transform: scale(1.02);
 }
 
-
 /* Footer */
 footer {
-  background: rgb(71,45,46);
-  background: linear-gradient(90deg, rgba(71,45,46,1) 0%, rgba(93,89,89,0.05) 50%);
+  background: rgb(71, 45, 46);
+  background: linear-gradient(
+    90deg,
+    rgba(71, 45, 46, 1) 0%,
+    rgba(93, 89, 89, 0.05) 50%
+  );
   width: 100%;
   height: 60px;
   display: flex;
@@ -186,7 +180,7 @@ footer {
 #davidText {
   display: flex;
   align-items: center;
-  color: rgb(71,45,46);
+  color: rgb(71, 45, 46);
   font-size: 12px;
 }
 
@@ -194,7 +188,6 @@ footer {
   height: 16px;
   padding: 0px 1px;
 }
-
 
 @media only screen and (max-width: 720px) {
   canvas {

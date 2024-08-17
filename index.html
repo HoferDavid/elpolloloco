@@ -43,29 +43,25 @@
         </section>
 
 
-        <div id="gameOverlay">
-        </div>
+        <section id="game">
+            <canvas id="canvas" style="display: none;" width="720" height="480"></canvas>
 
 
-        <canvas id="canvas" style="display: none;" width="720" height="480"></canvas>
+            <div id="gameOverlay">
 
-        
-
-        <div id="startScreen" class="overlayBtnContainer">
-            <button class="startGameBtn" onclick="startGame()">Start Game</button>
-        </div>
-
+                <div id="startScreen" class="overlayBtnContainer">
+                    <img class="bgImages" src="../assets/img/9_intro_outro_screens/start/startscreen_2.png" alt="Startscreen Image">
+                    <button class="startGameBtn" onclick="startGame()">Start Game</button>
+                </div>
 
 
+                <div id="endScreen" style="display: none;">
+                    <img class="bgImages" src="../assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="Endscreen Image">
+                    <button class="startGameBtn" onclick="startGame()">Play again</button>
+                </div>
 
-
-
-
-
-        <div id="endScreen" style="display: none;">
-            <button class="startGameBtn" onclick="startGame()">Play again</button>
-        </div>
-
+            </div>
+        </section>
 
 
         <section class="howtoSection">
@@ -85,6 +81,7 @@
                 <img src="./assets/img/icons/right.png" alt="Right Arrow Key">
             </div>
         </section>
+
 
         <section class="infoSection">
             <a href="./html/imprint.html">Imprint</a>
