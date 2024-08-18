@@ -56,21 +56,49 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
 
-        this.x = 500; // change to end of world
+        this.x = 1000; // change to end of world
 
-        this.speed = 0.15 + Math.random() * 0.25;
+        this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
     }
 
 
     animate() {
         setInterval(() => {
-            // this.moveLeft();
+            this.moveLeft();
         }, 1000 / 120);
 
         setInterval(() => {
             this.animateObject(this.IMAGES_WALK);
         }, 160);
+    }
+
+
+    isAlert() {
+        setInterval(() => {
+            this.loadImg(this.IMAGES_ALERT);
+        }, 100);
+    }
+
+
+    isAttack() {
+        setInterval(() => {
+            this.loadImg(this.IMAGES_ATTACK);
+        }, 100);
+    }
+
+
+    isHurt() {
+        setInterval(() => {
+            this.loadImg(this.IMAGES_HURT);
+        }, 100);
+    }
+
+
+    isDead() {
+        setInterval(() => {
+            this.loadImg(this.IMAGES_DEAD);
+        }, 10);
     }
 
 }

@@ -9,6 +9,7 @@ class World {
   statusbarHealth = new StatusbarHealth();
   statusbarCoin = new StatusbarCoin();
   statusbarBottle = new StatusbarBottle();
+  statusbarEndboss = new StatusbarEndboss();
   throwableObjects = [];
   percentage = 0;
   damage = 0;
@@ -56,6 +57,7 @@ class World {
     this.addToMap(this.statusbarHealth);
     this.addToMap(this.statusbarCoin);
     this.addToMap(this.statusbarBottle);
+    this.addToMap(this.statusbarEndboss);
     this.ctx.translate(this.cameraX, 0);
   }
 
@@ -90,7 +92,7 @@ class World {
       this.checkCollisions();
       this.checkCoinPickup();
       this.checkBottlePickup();
-      this.checkIfCharacterIsDead();
+      this.gameOver();
     }, 20);
     setInterval(() => {
       this.throwObjects();
@@ -186,11 +188,16 @@ class World {
     }
   }
 
-  checkIfCharacterIsDead() {
-    if (this.statusbarHealth.percentage == 0) {
-      toggleClasses("canvas", "endScreen");
-    } else {
-      //   console.log("pepe alive");
+
+  gameOver() {
+    if (this.statusbarHealth.percentage === 0) {
+      clearAllIntervals();
+
+      // Add Random Endscreen Animation + Audio
+
+      setTimeout(() => {
+        toggleClasses("canvas", "endScreen");
+      }, 2000);
     }
   }
 }

@@ -3,17 +3,17 @@ function initLevel() {
 
 level1 = new Level(
     [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        // new Endboss()
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        new Endboss()
     ],
     [
         new Cloud('./assets/img/5_background/layers/4_clouds/1.png', 100 + Math.random() * 100),

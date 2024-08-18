@@ -1,8 +1,8 @@
 class StatusbarBottle extends MovableObject {
-    x = 400; 
-    y = 20;
+    x = 300; 
+    y = 16;
     height = 40;
-    width = 160;
+    width = 120;
 
     IMAGES = [
         './assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
