@@ -1,14 +1,16 @@
 class Endboss extends MovableObject {
-
     y = 50;
     height = 400;
     width = 240;
     offset = {
-        x: 20,
+        x: 40,
         y: 72,
-        h: -100,
-        w: -30
+        h: -140,
+        w: -80
     };
+    isWalkingFlag = false;
+    isAlertFlag = false;
+    isAttackingFlag = false;
 
     IMAGES_WALK = [
         './assets/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -58,6 +60,8 @@ class Endboss extends MovableObject {
 
         this.x = 1000; // change to end of world
 
+        this.animationInterval = null;
+
         this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
     }
@@ -65,40 +69,71 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            // this.moveLeft();
         }, 1000 / 120);
 
+
         setInterval(() => {
-            this.animateObject(this.IMAGES_WALK);
+            if (this.x > 900) {
+                this.animateObject(this.IMAGES_WALK);
+            } 
+            else if (this.x > 800) {
+                this.animateObject(this.IMAGES_ALERT);
+                this.speed = 0;
+            }
         }, 160);
     }
 
 
-    isAlert() {
+    isWalking() {
         setInterval(() => {
-            this.loadImg(this.IMAGES_ALERT);
-        }, 100);
+            // console.log("isWalking called");
+            this.animateObject(this.IMAGES_WALK);
+        }, 1000 / 120);
     }
 
 
+    isInAlert() {
+        this.animateObject(this.IMAGES_ALERT);
+    }
+
+
+
     isAttack() {
-        setInterval(() => {
-            this.loadImg(this.IMAGES_ATTACK);
-        }, 100);
+        this.animateObject(this.IMAGES_ATTACK);
     }
 
 
     isHurt() {
-        setInterval(() => {
-            this.loadImg(this.IMAGES_HURT);
-        }, 100);
+
+            this.animateObject(this.IMAGES_HURT);
+
     }
 
 
     isDead() {
         setInterval(() => {
-            this.loadImg(this.IMAGES_DEAD);
-        }, 10);
+            this.animateObject(this.IMAGES_DEAD);
+        }, 500);
     }
+
+
+    clearAnimation() {
+        if (this.animationInterval) {
+            clearInterval(this.animationInterval);
+            this.animationInterval = null;
+        }
+        this.isWalkingFlag = false;
+        this.isAlertFlag = false;
+        this.isAttackingFlag = false;
+    }
+
+
+    splashAnimation() {
+        this.animationInterval = setInterval(() => {
+            this.animateObject(this.IMAGES_SPLASH);
+        }, 50);
+    }
+    
 
 }

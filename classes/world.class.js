@@ -1,5 +1,6 @@
 class World {
   character = new Character();
+  endboss = new Endboss();
   audio = new GameAudio();
   canvas;
   keyboard;
@@ -93,6 +94,7 @@ class World {
       this.checkCoinPickup();
       this.checkBottlePickup();
       this.gameOver();
+      this.endbossAnimations();
     }, 20);
     setInterval(() => {
       this.throwObjects();
@@ -174,9 +176,28 @@ class World {
   throwObjectCollision() {
     outerLoop: for (let i = 0; i < this.throwableObjects.length; i++) {
       let bottle = this.throwableObjects[i];
+
       for (let j = 0; j < this.level.enemies.length; j++) {
         let enemy = this.level.enemies[j];
-        if (bottle.isColliding(enemy)) {
+
+        if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
+          console.log('bottle hit endboss');
+          setTimeout(() => {
+            bottle.splashAnimation();
+          }, 200);
+
+          enemy.health -= 20;
+          if(enemy.health <= 0) {
+            enemy.isDead();
+          } else {
+            enemy.isHurt();
+          }
+
+          this.setPercentage(this.statusbarEndboss, enemy.health)
+          setTimeout(() => {
+            this.throwableObjects.splice(j, 1);
+          }, 1000);
+        } else if (bottle.isColliding(enemy)) {
           bottle.splashAnimation();
           enemy.isDead();
           setTimeout(() => {
@@ -185,6 +206,24 @@ class World {
           break outerLoop;
         }
       }
+    }
+  }
+
+
+
+
+  endbossAnimations() {
+    const distance = this.endboss.x - this.character.x;    
+
+    if (distance > 500) {
+      this.endboss.isWalking();
+
+      // console.log('>500, should walk');      
+    }
+    if (distance < 500) {
+      this.endboss.isInAlert();
+
+      // console.log('<200, should alert');      
     }
   }
 

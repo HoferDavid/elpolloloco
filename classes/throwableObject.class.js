@@ -53,9 +53,6 @@ class ThrowableObject extends MovableObject {
         if (this.y > 300 && this.isAboveGround()) {
             this.splashAnimation();
             clearInterval(this.splashInterval);
-            setTimeout(() => {
-                this.isRemoved = true;
-            }, 500);
         }
     }
 
