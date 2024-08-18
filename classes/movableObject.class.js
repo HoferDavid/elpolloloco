@@ -79,11 +79,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-    // hitEnemy(i) {
-    //     console.log(i);
-    // }
-
-
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;

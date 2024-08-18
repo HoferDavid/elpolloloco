@@ -8,9 +8,6 @@ class Endboss extends MovableObject {
         h: -140,
         w: -80
     };
-    isWalkingFlag = false;
-    isAlertFlag = false;
-    isAttackingFlag = false;
 
     IMAGES_WALK = [
         './assets/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -69,71 +66,47 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            // this.moveLeft();
+            this.moveLeft();
         }, 1000 / 120);
 
 
         setInterval(() => {
-            if (this.x > 900) {
-                this.animateObject(this.IMAGES_WALK);
-            } 
-            else if (this.x > 800) {
+            const distance = this.x - world.character.x;
+            console.log(distance);
+
+            if (distance < 300) {
+                this.animateObject(this.IMAGES_ATTACK);
+            } else if (distance < 500) {
                 this.animateObject(this.IMAGES_ALERT);
                 this.speed = 0;
+            } else if (distance >= 500) {
+                this.animateObject(this.IMAGES_WALK);
+                this.speed = 0.15 + Math.random() * 0.2;
             }
         }, 160);
     }
 
 
-    isWalking() {
-        setInterval(() => {
-            // console.log("isWalking called");
-            this.animateObject(this.IMAGES_WALK);
-        }, 1000 / 120);
-    }
+    endbossHit() {
+        this.energy -= 20;
 
-
-    isInAlert() {
-        this.animateObject(this.IMAGES_ALERT);
-    }
-
-
-
-    isAttack() {
-        this.animateObject(this.IMAGES_ATTACK);
-    }
-
-
-    isHurt() {
-
+        if (this.energy > 0) {
             this.animateObject(this.IMAGES_HURT);
+        } else {
+            let deadAnimationCount = 0;
+            const maxDeadAnimations = 5;
+            const deadAnimationInterval = setInterval(() => {
+                this.animateObject(this.IMAGES_DEAD);
+                deadAnimationCount++;
 
-    }
+                if (deadAnimationCount >= maxDeadAnimations) {
+                    clearInterval(deadAnimationInterval);
 
-
-    isDead() {
-        setInterval(() => {
-            this.animateObject(this.IMAGES_DEAD);
-        }, 500);
-    }
-
-
-    clearAnimation() {
-        if (this.animationInterval) {
-            clearInterval(this.animationInterval);
-            this.animationInterval = null;
+                    setTimeout(() => {
+                        showWinScreen();
+                    }, 1000);
+                }
+            }, 300);
         }
-        this.isWalkingFlag = false;
-        this.isAlertFlag = false;
-        this.isAttackingFlag = false;
     }
-
-
-    splashAnimation() {
-        this.animationInterval = setInterval(() => {
-            this.animateObject(this.IMAGES_SPLASH);
-        }, 50);
-    }
-    
-
 }

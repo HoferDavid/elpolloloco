@@ -23,6 +23,16 @@ function reStartGame() {
 }
 
 
+function showWinScreen() {
+    clearAllIntervals();
+
+    setTimeout(() => {
+        toggleClasses('canvas', 'endScreen')
+    }, 3000);
+    // document.getElementById('canvas').style.display = 'none';
+}
+
+
 function handleKey(event) {
     const keyMap = {
         'ArrowRight': 'RIGHT',
@@ -32,6 +42,9 @@ function handleKey(event) {
     }
     if (keyMap[event.key]) keyboard[keyMap[event.key]] = (event.type === 'keydown');
 }
+
+
+
 
 
 function toggleAudio() {

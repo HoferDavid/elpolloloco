@@ -32,8 +32,8 @@ class DrawableObject {
     }
 
 
-    setRandomImage() {
-        this.currentImageIndex = Math.floor(Math.random() * this.IMAGES.length);
+    setRandomImage(imageArray) {
+        this.currentImageIndex = Math.floor(Math.random() * imageArray.length);
         this.loadImg(this.IMAGES[this.currentImageIndex]);
     }
 
