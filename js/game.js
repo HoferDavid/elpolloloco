@@ -23,6 +23,8 @@ function reStartGame() {
 }
 
 
+
+
 // function showWinScreen() {
 //     clearAllIntervals();
 
@@ -30,6 +32,20 @@ function reStartGame() {
 //         toggleClasses('canvas', 'endScreen')
 //     }, 3000);
 // }
+
+
+
+  function gameOver() {
+    if (this.character.statusbarHealth.percentage === 0) {
+      clearAllIntervals();
+
+      setTimeout(() => {
+        toggleClasses("canvas", "endScreen");
+      }, 2000);
+    }
+  }
+
+
 
 
 function handleKey(event) {
@@ -41,9 +57,6 @@ function handleKey(event) {
     }
     if (keyMap[event.key]) keyboard[keyMap[event.key]] = (event.type === 'keydown');
 }
-
-
-
 
 
 function toggleAudio() {

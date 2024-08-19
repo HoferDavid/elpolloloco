@@ -99,8 +99,8 @@ class World {
     }, 20);
     setInterval(() => {
       this.throwObjects();
-      this.throwObjectCollision();
-      // this.throwObjectCollisionWithEndboss();
+      this.throwObjectCollisionEnemy();
+      this.throwObjectCollisionEndboss();
     }, 100);
   }
 
@@ -172,29 +172,16 @@ class World {
   }
 
 
-  throwObjectCollision() {
+  throwObjectCollisionEnemy() {
     outerLoop: for (let i = 0; i < this.throwableObjects.length; i++) {
       let bottle = this.throwableObjects[i];
-  
+
       for (let j = 0; j < this.level.enemies.length; j++) {
         let enemy = this.level.enemies[j];
-  
-        if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
-          this.throwableObjects.splice(i, 1);
+
+        if (bottle.isColliding(enemy)) {
           bottle.splashAnimation();
-
-          enemy.endbossHit();
-
-          this.setPercentage(this.statusbarEndboss, enemy.energy);
-
-          console.log('endboss energy', enemy.energy);
-          
-
-          break outerLoop;
-        } else if (bottle.isColliding(enemy)) {
-          bottle.splashAnimation();
-
-          // enemy.isDead();
+          enemy.isDead();
           setTimeout(() => {
             this.level.enemies.splice(j, 1);
           }, 1000);
@@ -204,15 +191,20 @@ class World {
     }
   }
 
-  // gameOver() {
-  //   if (this.statusbarHealth.percentage === 0) {
-  //     clearAllIntervals();
 
-  //     // Add Random Endscreen Animation + Audio
-
-  //     setTimeout(() => {
-  //       toggleClasses("canvas", "endScreen");
-  //     }, 2000);
-  //   }
-  // }
+  throwObjectCollisionEndboss() {
+    outerLoop: for (let i = 0; i < this.throwableObjects.length; i++) {
+        let bottle = this.throwableObjects[i];
+        for (let j = 0; j < this.level.endboss.length; j++) {
+            let endboss = this.level.endboss[j];
+            if (bottle.isColliding(endboss)) {
+                this.throwableObjects.splice(i, 1);
+                bottle.splashAnimation();
+                endboss.endbossHit();
+                this.setPercentage(this.statusbarEndboss, endboss.energy);
+                break outerLoop;
+            }
+        }
+    }
+}
 }

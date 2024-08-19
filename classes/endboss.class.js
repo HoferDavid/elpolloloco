@@ -72,8 +72,6 @@ class Endboss extends MovableObject {
 
         setInterval(() => {
             const distance = this.x - world.character.x;
-            console.log(distance);
-
             if (distance < 300) {
                 this.animateObject(this.IMAGES_ATTACK);
             } else if (distance < 500) {
