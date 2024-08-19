@@ -95,7 +95,7 @@ class World {
       this.checkCollisionsWithEndboss();
       this.checkCoinPickup();
       this.checkBottlePickup();
-      this.gameOver();
+      // this.gameOver();
     }, 20);
     setInterval(() => {
       this.throwObjects();

@@ -42,9 +42,35 @@ class ThrowableObject extends MovableObject {
     };
 
 
+    // throwObject() {
+    //     this.throwInterval = setInterval(() => {
+    //         this.x += 16;
+    //     }, 25);
+    // }
+
+
     throwObject() {
-        this.throwInterval = setInterval(() => {
+        console.log(world.character.direction);
+        
+        if (world.character.direction == 'left') {
+            this.x -= 40;
+            this.throwObjectLeft();
+        } else {
+            this.throwObjectRight();
+        }
+    }
+
+
+    throwObjectRight() {
+        setInterval(() => {
             this.x += 16;
+        }, 25);
+    }
+
+
+    throwObjectLeft() {
+        setInterval(() => {
+            this.x -= 16;
         }, 25);
     }
 

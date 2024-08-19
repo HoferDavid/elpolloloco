@@ -9,6 +9,7 @@ class DrawableObject {
     currentImageIndex = 0;
     bottles = 0;
     coins = 0;
+    direction;
     offset = {
         x: 0,
         y: 0,

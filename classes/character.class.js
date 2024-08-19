@@ -13,6 +13,7 @@ class Character extends MovableObject {
     w: -70,
   };
   characterImages = new CharacterImages();
+  direction = 'right';
 
   constructor() {
     super().loadImg(this.characterImages.IMAGES_STANDING[0]);
