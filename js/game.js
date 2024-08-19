@@ -27,11 +27,12 @@ function gameWin() {
 
   setTimeout(() => {
     toggleClasses("canvas", "winScreen");
+    world.audio.gameWinSound.play();
   }, 1000);
 
   setTimeout(() => {
     toggleClasses("winScreen", "restartGameScreen");
-  }, 3000);
+  }, world.audio.gameWinSound.duration * 1000);
 }
 
 
@@ -40,11 +41,12 @@ function gameOver() {
 
   setTimeout(() => {
     toggleClasses("canvas", "loseScreen");
+    world.audio.gameOverSound.play();
   }, 1000);
 
   setTimeout(() => {
     toggleClasses("loseScreen", "restartGameScreen");
-  }, 3000);
+  }, world.audio.gameOverSound.duration * 1000);
 }
 
 

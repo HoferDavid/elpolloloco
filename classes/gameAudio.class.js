@@ -34,6 +34,11 @@ class GameAudio {
         this.endbossHitSound = new Audio('./assets/audio/endbossHit.mp3');
         this.endbossHitSound.volume = 0.6;
         this.endbossHitSound.playbackRate = 2;
+
+        this.gameOverSound = new Audio('./assets/audio/gameOver.mp3');
+
+        this.gameWinSound = new Audio('./assets/audio/gameWin.mp3');
+
         
         this.audioArray = [
             this.soundtrack,
