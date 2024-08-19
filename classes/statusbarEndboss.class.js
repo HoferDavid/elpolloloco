@@ -33,6 +33,7 @@ class StatusbarEndboss extends DrawableObject {
         } else if (this.percentage >= 20) {
             return 1;
         } else {
+            gameWin();
             return 0;
         }
     }

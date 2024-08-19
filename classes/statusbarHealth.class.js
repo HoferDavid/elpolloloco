@@ -1,5 +1,5 @@
 class StatusbarHealth extends DrawableObject {
-    x = 20; 
+    x = 20;
     y = 16;
     height = 40;
     width = 120;
@@ -33,6 +33,7 @@ class StatusbarHealth extends DrawableObject {
         } else if (this.percentage > 20) {
             return 1;
         } else {
+            gameOver();
             return 0;
         }
     }

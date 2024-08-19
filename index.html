@@ -24,7 +24,6 @@
     <script src="./classes/character.class.js"></script>
     <script src="./classes/cloud.class.js"></script>
     <script src="./classes/bottle.class.js"></script>
-    <script src="./classes/result.class.js"></script>
     <script src="./classes/backgroundObject.class.js"></script>
     <script src="./classes/coin.class.js"></script>
     <script src="./classes/world.class.js"></script>
@@ -51,15 +50,25 @@
 
             <div id="gameOverlay">
 
-                <div id="startScreen" class="overlayBtnContainer">
+                <div id="startGameScreen" class="overlayBtnContainer">
                     <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_2.png" alt="Startscreen Image">
                     <button class="startGameBtn" onclick="startGame()">Start Game</button>
                 </div>
 
 
-                <div id="endScreen" style="display: none;">
+                <div id="restartGameScreen" style="display: none;">
                     <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="Endscreen Image">
                     <button class="startGameBtn" onclick="reStartGame()">Play again</button>
+                </div>
+
+
+                <div id="winScreen" style="display: none;">
+                    <img class="bgImages" src="./assets/img/9_intro_outro_screens/win/win_2.png" alt="Losescreen Image">
+                </div>
+
+
+                <div id="loseScreen" style="display: none;">
+                    <img class="bgImages" src="./assets/img/9_intro_outro_screens/game_over/game over!.png" alt="Losescreen Image">
                 </div>
 
             </div>

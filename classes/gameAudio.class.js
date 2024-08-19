@@ -35,7 +35,16 @@ class GameAudio {
         ];
     }
 
+
     muteAudio(mute) {
         this.audioArray.forEach((audio) => { audio.muted = mute });
+    }
+
+
+    stopAllAudio() {
+        this.audioArray.forEach((audio) => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
     }
 }

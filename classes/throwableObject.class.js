@@ -42,13 +42,6 @@ class ThrowableObject extends MovableObject {
     };
 
 
-    // throwObject() {
-    //     this.throwInterval = setInterval(() => {
-    //         this.x += 16;
-    //     }, 25);
-    // }
-
-
     throwObject() {
         console.log(world.character.direction);
         
