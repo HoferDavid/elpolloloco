@@ -74,6 +74,7 @@ class Endboss extends MovableObject {
             const distance = this.x - world.character.x;
             if (distance < 300) {
                 this.animateObject(this.IMAGES_ATTACK);
+                world.audio.endbossAttackSound.play();
             } else if (distance < 500) {
                 this.animateObject(this.IMAGES_ALERT);
                 this.speed = 0;

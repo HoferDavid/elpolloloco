@@ -24,7 +24,7 @@ class World {
     this.setWorld();
     this.checkInterval();
     this.throwableObjects = [];
-    this.audio.soundtrack.play();
+    // this.audio.soundtrack.play(); // Unmute it
   }
 
   setWorld() {
@@ -107,6 +107,7 @@ class World {
     this.level.enemies.forEach((enemy, i) => {
       if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0) {
         this.character.jumpOnEnemy();
+        this.audio.chickenDeadSound.play();
         enemy.isDead();
         enemy.dead = true;
         setTimeout(() => { this.level.enemies.splice(i, 1); }, 50);
@@ -179,6 +180,7 @@ class World {
         let enemy = this.level.enemies[j];
 
         if (bottle.isColliding(enemy)) {
+          this.audio.chickenDeadSound.play();
           bottle.splashAnimation();
           enemy.isDead();
           setTimeout(() => {
@@ -197,6 +199,7 @@ class World {
         for (let j = 0; j < this.level.endboss.length; j++) {
             let endboss = this.level.endboss[j];
             if (bottle.isColliding(endboss)) {
+              this.audio.endbossHitSound.play();
                 this.throwableObjects.splice(i, 1);
                 bottle.splashAnimation();
                 endboss.endbossHit();

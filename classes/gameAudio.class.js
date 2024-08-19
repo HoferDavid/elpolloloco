@@ -23,6 +23,17 @@ class GameAudio {
         this.hurtSound = new Audio('./assets/audio/hurt.mp3');
         this.hurtSound.volume = 0.4;
         this.hurtSound.playbackRate = 2;
+
+        this.chickenDeadSound = new Audio('./assets/audio/chickenDead.mp3');
+        this.chickenDeadSound.volume = 0.6;
+        this.chickenDeadSound.playbackRate = 2.5;
+
+        this.endbossAttackSound = new Audio('./assets/audio/endbossAttack.mp3');
+        this.endbossAttackSound.volume = 0.6;
+
+        this.endbossHitSound = new Audio('./assets/audio/endbossHit.mp3');
+        this.endbossHitSound.volume = 0.6;
+        this.endbossHitSound.playbackRate = 2;
         
         this.audioArray = [
             this.soundtrack,
@@ -31,7 +42,10 @@ class GameAudio {
             this.bottlePickupSound,
             this.jumpSound,
             this.snoringSound,
-            this.hurtSound
+            this.hurtSound,
+            this.chickenDeadSound,
+            this.endbossAttackSound,
+            this.endbossHitSound,
         ];
     }
 

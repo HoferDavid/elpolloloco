@@ -153,7 +153,6 @@ class Character extends MovableObject {
   }
 
   hurtAnimation() {
-    this.animateObject(this.characterImages.IMAGES_HURT);
     this.animationInterval = setInterval(() => {
       this.animateObject(this.characterImages.IMAGES_HURT);
       this.world.audio.hurtSound.play();
@@ -161,16 +160,17 @@ class Character extends MovableObject {
   }
 
   jumpingAnimation() {
-    this.animateObject(this.characterImages.IMAGES_JUMPING);
+    if (this.world.audio.jumpSound.paused) {
+        this.world.audio.jumpSound.play();
+    }
+    this.world.audio.snoringSound.pause();
+
     this.animationInterval = setInterval(() => {
-      this.animateObject(this.characterImages.IMAGES_JUMPING);
-      this.world.audio.jumpSound.play();
-      this.world.audio.snoringSound.pause();
+        this.animateObject(this.characterImages.IMAGES_JUMPING);
     }, 80);
-  }
+}
 
   walkingAnimation() {
-    this.animateObject(this.characterImages.IMAGES_WALKING);
     this.animationInterval = setInterval(() => {
       this.animateObject(this.characterImages.IMAGES_WALKING);
       this.world.audio.runningSound.play();
@@ -179,13 +179,12 @@ class Character extends MovableObject {
   }
 
   sleepingAnimation() {
-    this.animateObject(this.characterImages.IMAGES_SLEEPING);
     this.animationInterval = setInterval(() => {
       this.animateObject(this.characterImages.IMAGES_SLEEPING);
       this.world.audio.snoringSound.play();
     }, 500);
   }
-
+  
   defaultAnimation() {
     this.animateObject(this.characterImages.IMAGES_STANDING);
     this.animationInterval = setInterval(() => {

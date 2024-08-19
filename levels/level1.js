@@ -13,8 +13,8 @@ level1 = new Level(
         new Chicken(),
         new Chicken(),
         new Chicken(),
-        // new Chick(),
-        // new Chick(),
+        new Chick(),
+        new Chick(),
         // new Chick(),
         // new Chick(),
         // new Chick(),
@@ -37,9 +37,9 @@ level1 = new Level(
         new Cloud('./assets/img/5_background/layers/4_clouds/1.png', 4300 + Math.random() * 100)
     ],                                               
     [
-        // new Coin(),
-        // new Coin(),
-        // new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
         // new Coin(),
         // new Coin(),
         // new Coin(),

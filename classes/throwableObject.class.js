@@ -43,8 +43,6 @@ class ThrowableObject extends MovableObject {
 
 
     throwObject() {
-        console.log(world.character.direction);
-        
         if (world.character.direction == 'left') {
             this.x -= 40;
             this.throwObjectLeft();
