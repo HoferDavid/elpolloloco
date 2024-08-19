@@ -105,21 +105,35 @@ class World {
 
   checkCollisionsWithEnemies() {
     this.level.enemies.forEach((enemy, i) => {
-      if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0) {
-        this.character.jumpOnEnemy();
-        this.audio.chickenDeadSound.play();
-        enemy.isDead();
-        enemy.dead = true;
-        setTimeout(() => { this.level.enemies.splice(i, 1); }, 50);
-      } else if (this.character.isColliding(enemy) && this.character.speedY < 0) {
-        if (enemy instanceof Chicken) { this.damage = 2;} 
-        else { this.damage = 1; }
-        this.character.hit(this.damage);
-        this.character.hasMoved = true;
-        this.setPercentage(this.statusbarHealth, this.character.energy);
-      }
+      if (this.isJumpingOnEnemy(enemy)) { this.jumpingOnEnemy(enemy, i); } 
+      else if (this.isCollidingWithEnemy(enemy)) { this.collidingWithEnemy(enemy); }
     });
   }
+
+  isJumpingOnEnemy(enemy) {
+    return this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0;
+  }
+
+  jumpingOnEnemy(enemy, i) {
+    this.character.jumpOnEnemy();
+    this.audio.chickenDeadSound.play();
+    enemy.isDead();
+    enemy.dead = true;
+    setTimeout(() => { this.level.enemies.splice(i, 1); }, 50);
+  }
+
+  isCollidingWithEnemy(enemy) {
+    return this.character.isColliding(enemy) && this.character.speedY < 0;
+  }
+
+  collidingWithEnemy(enemy) {
+    if (enemy instanceof Chicken) { this.damage = 2; } 
+    else { this.damage = 1; }
+    this.character.hit(this.damage);
+    this.character.hasMoved = true;
+    this.setPercentage(this.statusbarHealth, this.character.energy);
+  }
+  
 
   checkCollisionsWithEndboss() {
     this.level.endboss.forEach((endboss) => {

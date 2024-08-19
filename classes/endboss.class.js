@@ -58,20 +58,26 @@ class Endboss extends MovableObject {
         this.x = 1000; // change to end of world
 
         this.animationInterval = null;
-
         this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
     }
 
 
     animate() {
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 120);
-
 
         setInterval(() => {
             const distance = this.x - world.character.x;
+
+            if (distance < 0) {
+                setInterval(() => {
+                    this.moveRight();
+                }, 1000 / 120);
+            } else {
+                setInterval(() => {
+                    this.moveLeft();
+                }, 1000 / 120);
+            }
+
             if (distance < 300) {
                 this.animateObject(this.IMAGES_ATTACK);
                 world.audio.endbossAttackSound.play();
@@ -84,6 +90,28 @@ class Endboss extends MovableObject {
             }
         }, 160);
     }
+
+
+    // animate() {
+    //     setInterval(() => {
+    //         this.moveLeft();
+    //     }, 1000 / 120);
+
+
+    //     setInterval(() => {
+    //         const distance = this.x - world.character.x;
+    //         if (distance < 300) {
+    //             this.animateObject(this.IMAGES_ATTACK);
+    //             world.audio.endbossAttackSound.play();
+    //         } else if (distance < 500) {
+    //             this.animateObject(this.IMAGES_ALERT);
+    //             this.speed = 0;
+    //         } else if (distance >= 500) {
+    //             this.animateObject(this.IMAGES_WALK);
+    //             this.speed = 0.15 + Math.random() * 0.2;
+    //         }
+    //     }, 160);
+    // }
 
 
     endbossHit() {
@@ -105,7 +133,7 @@ class Endboss extends MovableObject {
                         showWinScreen();
                     }, 1000);
                 }
-            }, 300);
+            }, 3000);
         }
     }
 }

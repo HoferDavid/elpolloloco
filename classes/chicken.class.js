@@ -35,9 +35,10 @@ class Chicken extends MovableObject {
 
 
     isDead() {
-        setInterval(() => {
-            this.loadImg(this.IMAGES_DEAD);
-        }, 100);
+        this.loadImg(this.IMAGES_DEAD);
+        // setInterval(() => {
+        //     this.loadImg(this.IMAGES_DEAD);
+        // }, 100);
     }
 }
 

@@ -15,7 +15,6 @@ function startGame() {
 
 function reStartGame() {
   toggleClasses("restartGameScreen", "canvas");
-  clearAllAudioIntervals();
   initLevel();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
@@ -24,6 +23,7 @@ function reStartGame() {
 
 function gameWin() {
   clearAllIntervals();
+  clearAllAudioIntervals();
 
   setTimeout(() => {
     toggleClasses("canvas", "winScreen");
@@ -38,11 +38,12 @@ function gameWin() {
 
 function gameOver() {
   clearAllIntervals();
+  clearAllAudioIntervals();
 
   setTimeout(() => {
     toggleClasses("canvas", "loseScreen");
     world.audio.gameOverSound.play();
-  }, 1000);
+  }, 500);
 
   setTimeout(() => {
     toggleClasses("loseScreen", "restartGameScreen");
@@ -91,8 +92,16 @@ function toggleAudio() {
 
 
 function toggleClasses(a, b) {
-  document.getElementById(a).style.display = "none";
-  document.getElementById(b).style.display = "flex";
+  const elementA = document.getElementById(a);
+  const elementB = document.getElementById(b);
+
+  elementA.classList.remove('visible');
+  
+  setTimeout(() => {
+    elementA.style.display = 'none';
+    elementB.style.display = 'flex';
+    elementB.classList.add('visible');
+  }, 500);
 }
 
 

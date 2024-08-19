@@ -7,6 +7,17 @@
   display: none;
 }
 
+.screen {
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  display: none;
+}
+
+.screen.visible {
+  opacity: 1;
+  display: flex;
+}
+
 body {
   margin: 0;
   display: flex;

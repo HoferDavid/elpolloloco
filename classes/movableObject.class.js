@@ -86,11 +86,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-    isDead() {
-        // this.animateObject(this.IMAGES_DEAD);
-    }
-
-
     bottlePickup() {
         this.bottles += 5;
         if (this.bottles > 100) {

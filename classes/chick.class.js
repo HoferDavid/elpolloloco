@@ -39,9 +39,7 @@ class Chick extends MovableObject {
 
 
     isDead() {
-        setInterval(() => {
-            this.loadImg(this.IMAGES_DEAD);
-        }, 10);
+        this.loadImg(this.IMAGES_DEAD);
     }
 
 

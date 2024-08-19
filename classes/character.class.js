@@ -191,4 +191,8 @@ class Character extends MovableObject {
       this.animateObject(this.characterImages.IMAGES_STANDING);
     }, 400);
   }
+
+  isDead() {
+    // this.animateObject(this.IMAGES_DEAD);
+  }
 }
