@@ -15,10 +15,11 @@ class World {
   damage = 0;
   dead = false;
 
-  constructor(canvas, keyboard) {
+  constructor(canvas, keyboard, endboss) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.endboss = endboss;
     this.draw();
     this.setWorld();
     this.checkInterval();
@@ -49,6 +50,7 @@ class World {
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.throwableObjects);
   }
 
@@ -89,7 +91,8 @@ class World {
 
   checkInterval() {
     setInterval(() => {
-      this.checkCollisions();
+      this.checkCollisionsWithEnemies();
+      this.checkCollisionsWithEndboss();
       this.checkCoinPickup();
       this.checkBottlePickup();
       this.gameOver();
@@ -97,38 +100,37 @@ class World {
     setInterval(() => {
       this.throwObjects();
       this.throwObjectCollision();
+      // this.throwObjectCollisionWithEndboss();
     }, 100);
   }
 
-  checkCollisions() {
+  checkCollisionsWithEnemies() {
     this.level.enemies.forEach((enemy, i) => {
-      if (
-        this.character.isColliding(enemy) &&
-        this.character.isAboveGround() &&
-        this.character.speedY <= 0
-      ) {
+      if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY <= 0) {
         this.character.jumpOnEnemy();
         enemy.isDead();
         enemy.dead = true;
-        setTimeout(() => {
-          this.level.enemies.splice(i, 1);
-        }, 50);
-      } else if (
-        this.character.isColliding(enemy) &&
-        this.character.speedY < 0
-      ) {
-        if (enemy instanceof Endboss) {
-          this.damage = 8;
-        } else if (enemy instanceof Chicken) {
-          this.damage = 2;
-        } else {
-          this.damage = 1;
-        }
+        setTimeout(() => { this.level.enemies.splice(i, 1); }, 50);
+      } else if (this.character.isColliding(enemy) && this.character.speedY < 0) {
+        if (enemy instanceof Chicken) { this.damage = 2;} 
+        else { this.damage = 1; }
         this.character.hit(this.damage);
         this.character.hasMoved = true;
         this.setPercentage(this.statusbarHealth, this.character.energy);
       }
     });
+  }
+
+  checkCollisionsWithEndboss() {
+    this.level.endboss.forEach((endboss) => {
+      if (this.character.isColliding(endboss)) {
+        this.damage = 4;
+        this.character.hit(this.damage);
+        this.character.hasMoved = true;
+        this.setPercentage(this.statusbarHealth, this.character.energy);
+      }
+    });
+
   }
 
   setPercentage(statusbar, percentage) {
@@ -173,10 +175,10 @@ class World {
   throwObjectCollision() {
     outerLoop: for (let i = 0; i < this.throwableObjects.length; i++) {
       let bottle = this.throwableObjects[i];
-
+  
       for (let j = 0; j < this.level.enemies.length; j++) {
         let enemy = this.level.enemies[j];
-
+  
         if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
           this.throwableObjects.splice(i, 1);
           bottle.splashAnimation();
@@ -202,15 +204,15 @@ class World {
     }
   }
 
-  gameOver() {
-    if (this.statusbarHealth.percentage === 0) {
-      clearAllIntervals();
+  // gameOver() {
+  //   if (this.statusbarHealth.percentage === 0) {
+  //     clearAllIntervals();
 
-      // Add Random Endscreen Animation + Audio
+  //     // Add Random Endscreen Animation + Audio
 
-      setTimeout(() => {
-        toggleClasses("canvas", "endScreen");
-      }, 2000);
-    }
-  }
+  //     setTimeout(() => {
+  //       toggleClasses("canvas", "endScreen");
+  //     }, 2000);
+  //   }
+  // }
 }

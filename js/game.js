@@ -23,14 +23,13 @@ function reStartGame() {
 }
 
 
-function showWinScreen() {
-    clearAllIntervals();
+// function showWinScreen() {
+//     clearAllIntervals();
 
-    setTimeout(() => {
-        toggleClasses('canvas', 'endScreen')
-    }, 3000);
-    // document.getElementById('canvas').style.display = 'none';
-}
+//     setTimeout(() => {
+//         toggleClasses('canvas', 'endScreen')
+//     }, 3000);
+// }
 
 
 function handleKey(event) {
