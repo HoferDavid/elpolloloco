@@ -62,20 +62,19 @@ class Endboss extends MovableObject {
   }
 
   animate() {
-    if (this.isDead) return;
     setInterval(() => {
       this.moveLeft();
     }, 1000 / 120);
 
     setInterval(() => {
       const distance = this.x - world.character.x;
-      if (distance < 400 && !this.isDead) {
+      if (distance < 400) {
         this.animateObject(this.IMAGES_ATTACK);
         world.audio.endbossAttackSound.play();
-      } else if (distance < 500 && !this.isDead) {
+      } else if (distance < 500) {
         this.animateObject(this.IMAGES_ALERT);
         this.speed = 0;
-      } else if (distance >= 500 && !this.isDead) {
+      } else if (distance >= 500) {
         this.animateObject(this.IMAGES_WALK);
         this.speed = 0.15 + Math.random() * 0.2;
       }
@@ -83,49 +82,19 @@ class Endboss extends MovableObject {
   }
 
 
-
-
   endbossHit() {
     this.energy -= 20;
 
-    if (this.energy <= 0) {
-        let deadAnimationCount = 0;
-        const deadAnimationInterval = setInterval(() => {
-            this.animateObject(this.IMAGES_DEAD);
-            deadAnimationCount++;
-
-            if (deadAnimationCount >= this.IMAGES_DEAD.length) {
-                clearInterval(deadAnimationInterval);
-            }
-        }, 200);
-    } else {
-        this.animateObject(this.IMAGES_HURT);
+    if (this.energy > 0) {
+      this.animateObject(this.IMAGES_HURT);
+    } else if (!this.isDead) {
+      setInterval(() => {
+        world.audio.chickenDeadSound.play();
+        this.animateObject(this.IMAGES_DEAD);
+        setTimeout(() => {
+          gameWin();
+        }, 600);
+      }, 200);
     }
   }
-
-
-
-//   endbossHit() {
-//     this.energy -= 20;
-
-//     if (this.energy > 0) {
-//       this.animateObject(this.IMAGES_HURT);
-//     } else if (!this.isDead) {
-//       this.isDead = true;
-//       let deadAnimationCount = 0;
-//       const maxDeadAnimations = this.IMAGES_DEAD.length;
-//       const deadAnimationInterval = setInterval(() => {
-//         this.animateObject(this.IMAGES_DEAD);
-//         deadAnimationCount++;
-
-//         // if (deadAnimationCount >= maxDeadAnimations) {
-//         //   clearInterval(deadAnimationInterval);
-
-//         //   setTimeout(() => {
-//         //     showWinScreen();
-//         //   }, 1000);
-//         // }
-//       }, 200);
-//     }
-//   }
 }
