@@ -55,7 +55,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
 
-    this.x = 1000; // change to end of world
+    this.x = 2900;
 
     this.animationInterval = null;
     this.animate();
@@ -68,7 +68,7 @@ class Endboss extends MovableObject {
 
     setInterval(() => {
       const distance = this.x - world.character.x;
-      if (distance < 400) {
+      if (distance < 400 && distance > 0) {
         this.animateObject(this.IMAGES_ATTACK);
         world.audio.endbossAttackSound.play();
       } else if (distance < 500) {

@@ -9,6 +9,7 @@ class ThrowableObject extends MovableObject {
         './assets/img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
         './assets/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ];
+
     IMAGES_SPLASH = [
         './assets/img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
         './assets/img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
@@ -32,11 +33,11 @@ class ThrowableObject extends MovableObject {
 
 
     animate() {
-        this.rotationInterval = setInterval(() => {
+        setInterval(() => {
             this.animateObject(this.IMAGES);
         }, 100);
 
-        this.splashInterval = setInterval(() => {
+        setInterval(() => {
             this.checkGroundCollision();
         }, 20);
     };
@@ -69,14 +70,13 @@ class ThrowableObject extends MovableObject {
     checkGroundCollision() {
         if (this.y > 300 && this.isAboveGround()) {
             this.splashAnimation();
-            clearInterval(this.splashInterval);
         }
     }
 
 
     splashAnimation() {
-        this.animationInterval = setInterval(() => {
+        setInterval(() => {
             this.animateObject(this.IMAGES_SPLASH);
-        }, 100);
+        }, 20);
     }
 }

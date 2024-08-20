@@ -1,6 +1,6 @@
 class Chick extends MovableObject {
     y = 380;
-    x = 600 + Math.random() * 500;
+    x = 600 + Math.random() * 3000;
     height = 56;
     width = 40;
     speed = 0.2 + Math.random() * 0.3;

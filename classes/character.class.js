@@ -1,8 +1,9 @@
 class Character extends MovableObject {
   y = 110;
+  x = 200;
   height = 260;
   width = 120;
-  speed = 10; // 10
+  speed = 10;
   world;
   idleTime = 0;
   idleTimeout = 5000;
@@ -15,6 +16,7 @@ class Character extends MovableObject {
   characterImages = new CharacterImages();
   direction = 'right';
 
+
   constructor() {
     super().loadImg(this.characterImages.IMAGES_STANDING[0]);
     this.loadImages(this.characterImages.IMAGES_STANDING);
@@ -26,6 +28,7 @@ class Character extends MovableObject {
     this.applyGravity();
     this.animate();
   }
+
 
   animate() {
     setInterval(() => {
@@ -65,6 +68,8 @@ class Character extends MovableObject {
     if (this.currentState !== newState) {
       this.currentState = newState;
       this.updateAnimation();
+      console.log(this.currentState);
+      
     }
   }
 
@@ -192,7 +197,13 @@ class Character extends MovableObject {
     }, 400);
   }
 
+
+
   isDead() {
-    // this.animateObject(this.IMAGES_DEAD);
+    console.log('is dead');
+    // setTimeout(() => {
+    //   deadAnimation();
+    // }, 300);
+    // gameOver();
   }
 }

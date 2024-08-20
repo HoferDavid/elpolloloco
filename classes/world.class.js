@@ -24,7 +24,7 @@ class World {
     this.setWorld();
     this.checkInterval();
     this.throwableObjects = [];
-    // this.audio.soundtrack.play(); // Unmute it
+    this.audio.soundtrack.play(); // Unmute it
   }
 
   setWorld() {
@@ -99,8 +99,10 @@ class World {
     setInterval(() => {
       this.throwObjects();
       this.throwObjectCollisionEnemy();
-      this.throwObjectCollisionEndboss();
     }, 100);
+    setInterval(() => {
+      this.throwObjectCollisionEndboss();
+    }, 200);
   }
 
   checkCollisionsWithEnemies() {
@@ -195,11 +197,14 @@ class World {
 
         if (bottle.isColliding(enemy)) {
           this.audio.chickenDeadSound.play();
-          bottle.splashAnimation();
+          setTimeout(() => {
+            bottle.splashAnimation();
+          }, 1000);
+
           enemy.isDead();
           setTimeout(() => {
             this.level.enemies.splice(j, 1);
-          }, 1000);
+          }, 200);
           break outerLoop;
         }
       }
@@ -208,17 +213,31 @@ class World {
 
 
   throwObjectCollisionEndboss() {
-    outerLoop: for (let i = 0; i < this.throwableObjects.length; i++) {
+    for (let i = 0; i < this.throwableObjects.length; i++) {
         let bottle = this.throwableObjects[i];
+        let bottleAlreadyHit = false;
+
+        let throwedbottles = 0;
+
         for (let j = 0; j < this.level.endboss.length; j++) {
             let endboss = this.level.endboss[j];
-            if (bottle.isColliding(endboss)) {
+
+            if (bottle.isColliding(endboss) && !bottleAlreadyHit) {
+              throwedbottles++;
+              console.log('endboss got hit');
+              console.log('throwedbottles', throwedbottles);
+              
+              bottleAlreadyHit = true;
+
               this.audio.endbossHitSound.play();
-                this.throwableObjects.splice(i, 1);
+
                 bottle.splashAnimation();
                 endboss.endbossHit();
+                setTimeout(() => {
+                  this.throwableObjects.splice(i, 1);   
+                }, 100);
+
                 this.setPercentage(this.statusbarEndboss, endboss.energy);
-                break outerLoop;
             }
         }
     }
