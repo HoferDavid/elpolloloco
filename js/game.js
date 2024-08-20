@@ -5,11 +5,11 @@ let keyboard = new Keyboard();
 
 function startGame() {
   toggleClasses("startGameScreen", "canvas");
+  document.getElementById('controlsOverlay').style.display = 'flex';
+  document.getElementById('controlsOverlay').classList.add('visible');
   initLevel();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
-
-  toggleAudio(); // Delete it
 }
 
 
@@ -73,6 +73,12 @@ function clearAllAudioIntervals() {
   if (world && world.audio) {
     world.audio.stopAllAudio();
   }
+}
+
+
+function togglePause() {
+  console.log('pause');
+  clearAllIntervals();
 }
 
 

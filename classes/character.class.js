@@ -6,7 +6,7 @@ class Character extends MovableObject {
   speed = 10;
   world;
   idleTime = 0;
-  idleTimeout = 5000;
+  idleTimeout = 1000; // 5000
   offset = {
     x: 30,
     y: 120,
@@ -68,8 +68,6 @@ class Character extends MovableObject {
     if (this.currentState !== newState) {
       this.currentState = newState;
       this.updateAnimation();
-      console.log(this.currentState);
-      
     }
   }
 
@@ -129,9 +127,7 @@ class Character extends MovableObject {
   }
 
   setOtherStates() {
-    if (this.isDead()) {
-      this.setState("dead");
-    } else if (this.isHurt()) {
+    if (this.isHurt()) {
       this.setState("hurt");
     } else if (this.isAboveGround()) {
       this.setState("jumping");
@@ -148,13 +144,6 @@ class Character extends MovableObject {
   collectBottle() {
     this.world.audio.bottlePickupSound.play();
     this.bottles++;
-  }
-
-  deadAnimation() {
-    this.animateObject(this.characterImages.IMAGES_DEAD);
-    this.animationInterval = setInterval(() => {
-      this.animateObject(this.characterImages.IMAGES_DEAD);
-    }, 100);
   }
 
   hurtAnimation() {
@@ -197,13 +186,10 @@ class Character extends MovableObject {
     }, 400);
   }
 
-
-
   isDead() {
-    console.log('is dead');
-    // setTimeout(() => {
-    //   deadAnimation();
-    // }, 300);
-    // gameOver();
+    this.animateObject(this.characterImages.IMAGES_DEAD);
+    setTimeout(() => {
+      gameOver();
+    }, 500);
   }
 }

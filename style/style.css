@@ -86,7 +86,25 @@ h1 {
   margin: 0;
 }
 
-.audioBtn {
+#controlsOverlay {
+  display: flex;
+  min-height: 100%;
+  position: relative;
+}
+
+#menu {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: flex-end;
+  padding-right: 8px;
+  /* position: absolute;
+  top: 10%;
+  left: 84%;
+  transform: translate(-50%, -50%);*/
+} 
+
+.menuBtn {
   display: flex;
   padding: 4px;
   background-color: rgb(247, 194, 115);
@@ -94,6 +112,12 @@ h1 {
   width: 48px;
   border: 4px groove #70312d;
   box-shadow: 1px 1px 2px 0px #000000;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menuBtn:hover {
+  transform: scale(1.02);
 }
 
 .howtoSection {

@@ -72,8 +72,8 @@ class World {
   addToMap(mo) {
     if (mo.mirrorObject) this.mirrorImage(mo);
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
-    mo.drawFrameHitbox(this.ctx);
+    // mo.drawFrame(this.ctx); // To delete
+    // mo.drawFrameHitbox(this.ctx); // To delete
     if (mo.mirrorObject) this.mirrorImageBack(mo);
   }
 
@@ -108,7 +108,13 @@ class World {
   checkCollisionsWithEnemies() {
     this.level.enemies.forEach((enemy, i) => {
       if (this.isJumpingOnEnemy(enemy)) { this.jumpingOnEnemy(enemy, i); } 
-      else if (this.isCollidingWithEnemy(enemy)) { this.collidingWithEnemy(enemy); }
+      else if (this.isCollidingWithEnemy(enemy)) { 
+        if (this.character.currentState === 'sleeping') {
+          this.character.isDead();
+        } else {
+          this.collidingWithEnemy(enemy);
+        }
+      }
     });
   }
 
@@ -131,9 +137,7 @@ class World {
   collidingWithEnemy(enemy) {
     if (enemy instanceof Chicken) { this.damage = 2; } 
     else { this.damage = 1; }
-    this.character.hit(this.damage);
-    this.character.hasMoved = true;
-    this.setPercentage(this.statusbarHealth, this.character.energy);
+    this.updateCharacterHealth(this.damage);
   }
   
 
@@ -141,12 +145,19 @@ class World {
     this.level.endboss.forEach((endboss) => {
       if (this.character.isColliding(endboss)) {
         this.damage = 4;
-        this.character.hit(this.damage);
-        this.character.hasMoved = true;
-        this.setPercentage(this.statusbarHealth, this.character.energy);
+        this.updateCharacterHealth(this.damage);
       }
     });
+  }
 
+
+  updateCharacterHealth(damage) {
+    this.character.hit(damage);
+    this.character.hasMoved = true;
+    this.setPercentage(this.statusbarHealth, this.character.energy);
+    if (this.character.energy == 0) {
+      this.character.isDead();
+    }
   }
 
   setPercentage(statusbar, percentage) {
@@ -154,6 +165,7 @@ class World {
     let path = statusbar.IMAGES[statusbar.resolveImageIndex()];
     statusbar.img = statusbar.imgCache[path];
   }
+
 
   checkCoinPickup() {
     this.level.coins.forEach((coin, i) => {
@@ -196,6 +208,8 @@ class World {
         let enemy = this.level.enemies[j];
 
         if (bottle.isColliding(enemy)) {
+
+          world.audio.bottleBroken.play();
           this.audio.chickenDeadSound.play();
           setTimeout(() => {
             bottle.splashAnimation();
@@ -217,17 +231,14 @@ class World {
         let bottle = this.throwableObjects[i];
         let bottleAlreadyHit = false;
 
-        let throwedbottles = 0;
-
         for (let j = 0; j < this.level.endboss.length; j++) {
             let endboss = this.level.endboss[j];
 
             if (bottle.isColliding(endboss) && !bottleAlreadyHit) {
-              throwedbottles++;
-              console.log('endboss got hit');
-              console.log('throwedbottles', throwedbottles);
               
               bottleAlreadyHit = true;
+
+              world.audio.bottleBroken.play();
 
               this.audio.endbossHitSound.play();
 

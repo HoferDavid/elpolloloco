@@ -39,6 +39,9 @@ class GameAudio {
 
         this.gameWinSound = new Audio('./assets/audio/gameWin.mp3');
 
+        this.bottleBroken = new Audio('./assets/audio/bottleBroken.mp3');
+        this.bottleBroken.playbackRate = 2;
+
         
         this.audioArray = [
             this.soundtrack,
@@ -52,7 +55,8 @@ class GameAudio {
             this.endbossAttackSound,
             this.endbossHitSound,
             this.gameOverSound,
-            this.gameWinSound
+            this.gameWinSound,
+            this.bottleBroken
         ];
     }
 
