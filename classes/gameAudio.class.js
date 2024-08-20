@@ -51,12 +51,9 @@ class GameAudio {
             this.chickenDeadSound,
             this.endbossAttackSound,
             this.endbossHitSound,
-        ];
-
-        this.gameResult = [
             this.gameOverSound,
             this.gameWinSound
-        ]
+        ];
     }
 
 

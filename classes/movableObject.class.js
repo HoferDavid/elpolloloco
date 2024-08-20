@@ -88,8 +88,5 @@ class MovableObject extends DrawableObject {
 
     bottlePickup() {
         this.bottles += 5;
-        if (this.bottles > 100) {
-            this.bottles = 100;
-        }
     }
 }

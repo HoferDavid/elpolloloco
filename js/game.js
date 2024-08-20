@@ -9,7 +9,7 @@ function startGame() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
 
-  // toggleAudio(); // Delete it
+  toggleAudio(); // Delete it
 }
 
 
