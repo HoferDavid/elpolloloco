@@ -40,6 +40,27 @@ main {
   flex-direction: column;
 }
 
+#rotateOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.80);
+  gap: 32px;
+}
+
+#rotateOverlay img {
+  height: 80px;
+  width: 80px;
+}
+
 #game {
   position: relative;
   height: 520px;
@@ -58,9 +79,28 @@ main {
   height: 100%;
 }
 
+#gameOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
 .bgImages {
   width: 720px;
   height: 480px;
+}
+
+#winScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#winScreen img {
+  height: 100%;
+  width: 64%;
 }
 
 .startGameBtn {
@@ -91,9 +131,18 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  font-size: 48px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 rgb(225, 210, 189), 4px 4px 0 rgb(160, 35, 9);
+  margin: 30% 10% 0 10%;
+  text-align: center;
+}
+
 #controlsOverlay {
   position: absolute;
-  top: 0;
+  top: 0%;
+  bottom: 20%;
   left: 0;
   z-index: 2;
   height: 100%;
@@ -103,7 +152,7 @@ h1 {
   justify-content: space-between;
   align-items: center;
   pointer-events: none;
-  padding: 12px 0px;
+  padding: 2% 2%;
 }
 
 #controlsOverlay .menuBtn {
@@ -135,7 +184,6 @@ h1 {
 
 #touchControls {
   display: flex;
-  padding: 0px 16px;
   width: 100%;
   justify-content: space-between;
 }
@@ -147,7 +195,7 @@ h1 {
 }
 
 
-.howtoSection {
+#howtoSection {
   width: 720px;
   height: 80px;
   display: flex;
@@ -172,7 +220,7 @@ h1 {
   background-color: #70312d;
 }
 
-.infoSection {
+#infoSection {
   width: 720px;
   display: flex;
   justify-content: space-evenly;
@@ -183,18 +231,18 @@ h1 {
   box-shadow: 1px 1px 2px 0px #000000;
 }
 
-.infoSection a {
+#infoSection a {
   cursor: pointer;
   text-decoration: none;
   color: rgb(69, 28, 37);
 }
 
 .startGameBtn:hover,
-.infoSection a:hover {
+#infoSection a:hover {
   color: rgb(188, 78, 46);
 }
 
-.infoSection img {
+#infoSection img {
   height: 40px;
   width: 40px;
 }
@@ -206,7 +254,7 @@ h1 {
 }
 
 .audioBtn:hover,
-.infoSection a:hover,
+#infoSection a:hover,
 .madeByDavid:hover {
   transform: scale(1.02);
 }

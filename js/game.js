@@ -16,6 +16,7 @@ function startGame() {
 
 function reStartGame() {
   toggleClasses('restartGameScreen', 'canvas');
+  document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
@@ -25,6 +26,8 @@ function reStartGame() {
 function gameWin() {
   clearAllIntervals();
   clearAllAudioIntervals();
+
+  document.getElementById('controlsOverlay').style.display = 'none';
 
   setTimeout(() => {
     toggleClasses('canvas', 'winScreen');
@@ -40,6 +43,8 @@ function gameWin() {
 function gameOver() {
   clearAllIntervals();
   clearAllAudioIntervals();
+
+  document.getElementById('controlsOverlay').style.display = 'none';
 
   setTimeout(() => {
     toggleClasses('canvas', 'loseScreen');
@@ -92,11 +97,6 @@ function toggleFullscreen() {
 }
 
 
-// function togglePause() {
-//   console.log('pause');
-// }
-
-
 function toggleAudio() {
   let audioBtn = document.getElementById('audioBtn');
   let currentSrc = audioBtn.src.split("/").pop();
@@ -118,15 +118,27 @@ function toggleClasses(a, b) {
 }
 
 
+window.addEventListener('load', checkScreenSize);
+window.addEventListener('resize', checkScreenSize);
 window.addEventListener('keydown', handleKey);
 window.addEventListener('keyup', handleKey);
 
-window.addEventListener('resize', function(event) {
-  console.log(window.innerWidth);
 
+function checkScreenSize() {
   if (window.innerWidth <= 800) {
     document.getElementById('touchControls').style.display = 'flex';
+    document.getElementById('rotateOverlay').style.display = 'flex';
+    document.getElementById('game').style.display = 'none';
+    document.getElementById('howtoSection').style.display = 'none';
+    document.getElementById('infoSection').style.display = 'none';
   } else {
     document.getElementById('touchControls').style.display = 'none';
+    document.getElementById('rotateOverlay').style.display = 'none';
+    document.getElementById('game').style.display = 'flex';
+    document.getElementById('howtoSection').style.display = 'flex';
+    document.getElementById('infoSection').style.display = 'flex';
   }
-});
+}
+
+
+

@@ -39,8 +39,14 @@
     <main>
         <h1>El pollo loco</h1>
 
+        <div id="rotateOverlay" style="display: none;">
+            <h2>Please Rotate Your Device!</h2>
+            <img src="./assets/img/icons/rotateScreenWhite.png" alt="Rotate Device">
+        </div>
+
 
         <section id="game">
+
             <canvas id="canvas" style="display: none;" width="720" height="480"></canvas>
 
 
@@ -51,11 +57,9 @@
                     <button class="startGameBtn" onclick="startGame()">Start Game</button>
                 </div>
 
-
                 <div id="controlsOverlay" style="display: none;">
 
                     <div id="menu">
-                        <!-- <img class="menuBtn" id="pauseBtn" onclick="togglePause()" src="./assets/img/icons/pause.png" alt="Pause Icon"> -->
                         <img class="menuBtn" id="audioBtn" onclick="toggleAudio()" src="./assets/img/icons/audio.png" alt="Audio Icon">
                         <img class="menuBtn" id="fullscreenBtn" onclick="toggleFullscreen()" src="./assets/img/icons/fullscreenOpen.svg" alt="Fullscreen Icon">
                     </div>
@@ -72,14 +76,13 @@
                     </div>
                 </div>
 
-
                 <div id="restartGameScreen" style="display: none;">
                     <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="End screen Image">
                     <button class="startGameBtn" onclick="reStartGame()">Play again</button>
                 </div>
 
                 <div id="winScreen" style="display: none;">
-                    <img class="bgImages" src="./assets/img/9_intro_outro_screens/win/won_2.png" alt="Win screen Image">
+                    <img src="./assets/img/9_intro_outro_screens/win/won_1.png" alt="Win screen Image">
                 </div>
 
                 <div id="loseScreen" style="display: none;">
@@ -87,10 +90,11 @@
                 </div>
 
             </div>
+            
         </section>
 
 
-        <section class="howtoSection">
+        <section id="howtoSection">
             <div class="arrowContainer">
                 <img src="./assets/img/icons//d.png" alt="D Key">
                 <div>Throw</div>
@@ -109,7 +113,7 @@
         </section>
 
 
-        <section class="infoSection">
+        <section id="infoSection">
             <a href="https://linkedin.com/in/davidhofer-dev">LinkedIn</a>
             <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
             <a href="https://github.com/HoferDavid">Github</a>
