@@ -10,7 +10,7 @@ function startGame() {
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
 
-  // toggleAudio(); // to delete
+  toggleAudio(); // to delete
 }
 
 
@@ -47,6 +47,8 @@ function handleKey(event) {
     "d": "D",
   };
   if (keyMap[event.key]) keyboard[keyMap[event.key]] = event.type === 'keydown';
+
+  console.log('key pressed: ', keyMap[event.key]);
 }
 
 

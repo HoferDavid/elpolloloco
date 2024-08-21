@@ -2,6 +2,7 @@ class ThrowableObject extends MovableObject {
     height = 72;
     width = 56;
     speedY = 20;
+    world;
 
     IMAGES = [
         './assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -28,18 +29,20 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.throwObject();
         this.applyGravity(); 
+        // this.throwObjects();
         this.animate();
     }
 
 
     animate() {
         setInterval(() => {
-            this.animateObject(this.IMAGES);
-        }, 100);
-
-        setInterval(() => {
             this.checkGroundCollision();
         }, 20);
+
+        setInterval(() => {
+            this.animateObject(this.IMAGES);
+            // this.throwObjects();
+        }, 100);
     };
 
 
@@ -81,4 +84,19 @@ class ThrowableObject extends MovableObject {
             this.animateObject(this.IMAGES_SPLASH);
         }, 20);
     }
+
+
+    // throwObjects() {
+    //     if (this.world.keyboard.D && this.world.character.bottles > 0) {
+    //         console.log('throw');
+            
+    //       let bottle = new ThrowableObject(
+    //         this.world.character.x + 44,
+    //         this.world.character.y + 100
+    //       );
+    //       this.world.throwableObjects.push(bottle);
+    //       this.world.character.bottles--;
+    //       this.world.setPercentage(this.world.statusbarBottle, this.world.character.bottles);
+    //     }
+    //   }
 }

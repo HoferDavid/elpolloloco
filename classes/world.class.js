@@ -187,6 +187,8 @@ class World {
     });
   }
 
+
+
   throwObjects() {
     if (this.keyboard.D && this.character.bottles > 0) {
       let bottle = new ThrowableObject(

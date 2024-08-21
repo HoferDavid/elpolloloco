@@ -9,7 +9,7 @@ class Endboss extends MovableObject {
     h: -140,
     w: -80,
   };
-  speed = 0.15 + Math.random() * 0.2;
+  speed = 0.16 + Math.random() * 0.2;
 
   IMAGES_WALK = [
     "./assets/img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -59,34 +59,52 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_ATTACK);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
-    // this.animationInterval = null;
     this.animate();
   }
 
+
   animate() {
     setInterval(() => {
-      this.moveLeft();
-    }, 1000 / 120);
-
-    setInterval(() => {
       const distance = this.x - world.character.x;
-      if (distance < 400 && distance > 0) {
-        this.animateObject(this.IMAGES_ATTACK);
-        world.audio.endbossAttackSound.play();
-      } else if (distance < 500) {
-        this.animateObject(this.IMAGES_ALERT);
-        this.speed = 0;
-      } else if (distance >= 500) {
-        this.animateObject(this.IMAGES_WALK);
-        this.speed = 0.15 + Math.random() * 0.2;
+      if (distance >= 0) {
+        this.animationLeft(distance);
+      } else {
+        this.animationRight(distance);
       }
     }, 160);
   }
 
 
+  animationLeft(distance) {
+    if (distance < 400 && distance > 0) {
+      this.animateObject(this.IMAGES_ATTACK);
+      world.audio.endbossAttackSound.play();
+    } else if (distance < 500) {
+      this.animateObject(this.IMAGES_ALERT);
+      this.speed = 0;
+    } else if (distance >= 500) {
+    setInterval(() => {
+      this.moveLeft();
+    }, 300);
+      this.animateObject(this.IMAGES_WALK);
+      this.speed = 0.2 + Math.random() * 0.2;
+    }
+  }
+
+
+  animationRight(distance) {
+    if (distance > -300) {
+      this.mirrorObject = true;
+      this.animateObject(this.IMAGES_ATTACK);
+      world.audio.endbossAttackSound.play();
+    } else {
+      this.animateObject(this.IMAGES_ALERT);
+    }
+  }
+
+
   endbossHit() {
     this.energy -= 20;
-
     if (this.energy > 0) {
       this.animateObject(this.IMAGES_HURT);
     } else if (!this.isDead) {

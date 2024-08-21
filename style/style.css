@@ -65,7 +65,6 @@ main {
   position: relative;
   height: 520px;
   width: 760px;
-  /* background-color: black; */
   border: 20px groove #70312d;
   box-shadow: 4px 4px 8px 0px #000000;
 }
