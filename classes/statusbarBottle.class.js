@@ -1,6 +1,6 @@
 class StatusbarBottle extends MovableObject {
-    x = 300; 
-    y = 16;
+    x = 16;
+    y = 64;
     height = 40;
     width = 120;
 

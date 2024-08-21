@@ -46,19 +46,30 @@
 
             <div id="gameOverlay">
 
-                <div id="startGameScreen" class="overlayBtnContainer">
+                <div id="startGameScreen" class="overlayBtnContainer" class="screen">
                     <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_2.png" alt="Start screen Image">
                     <button class="startGameBtn" onclick="startGame()">Start Game</button>
                 </div>
 
+
                 <div id="controlsOverlay" style="display: none;">
+
                     <div id="menu">
-                        <img class="menuBtn" id="pauseBtn" onclick="togglePause()" src="./assets/img/icons/pause.png" alt="Audio Icon">
+                        <img class="menuBtn" id="pauseBtn" onclick="togglePause()" src="./assets/img/icons/pause.png" alt="Pause Icon">
                         <img class="menuBtn" id="audioBtn" onclick="toggleAudio()" src="./assets/img/icons/audio.png" alt="Audio Icon">
-                        <img class="menuBtn" id="fullscreenBtn" onclick="" src="./assets/img/icons/fullscreenOpen.svg" alt="Audio Icon">
+                        <img class="menuBtn" id="fullscreenBtn" onclick="" src="./assets/img/icons/fullscreenOpen.svg" alt="Fullscreen Icon">
                     </div>
 
-                    <div id="touchControls"></div>
+                    <div id="touchControls">
+                        <div id="touchControlsLeft">
+                            <img class="menuBtn" id="" onclick="" src="./assets/img/6_salsa_bottle/salsa_bottle.png" alt="Throw Objects Button">
+                            <img class="menuBtn" id="" onclick="" src="./assets/img/icons/pepeJump.png" alt="Character Jump Button">
+                        </div>
+                        <div id="touchControlsRight">
+                            <img class="menuBtn" id="" onclick="" src="./assets/img/icons/left.png" alt="Left Button">
+                            <img class="menuBtn" id="" onclick="" src="./assets/img/icons/right.png" alt="Right Button">
+                        </div>
+                    </div>
                 </div>
 
                 <div id="restartGameScreen" style="display: none;" class="screen">
@@ -98,13 +109,13 @@
 
 
         <section class="infoSection">
-            <a href="./html/imprint.html">Imprint</a>
-            <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
-            <a href="./html/privacy.html">Privacy</a>
-            <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
             <a href="https://linkedin.com/in/davidhofer-dev">LinkedIn</a>
             <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
             <a href="https://github.com/HoferDavid">Github</a>
+            <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
+            <a href="./html/imprint.html">Imprint</a>
+            <img src="./assets/img/icons/sombrero.png" alt="Sombrero Icon">
+            <a href="./html/privacy.html">Privacy</a>
         </section>
     </main>
 

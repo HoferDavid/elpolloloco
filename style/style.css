@@ -41,6 +41,7 @@ main {
 }
 
 #game {
+  position: relative;
   height: 520px;
   width: 760px;
   background-color: black;
@@ -48,10 +49,17 @@ main {
   box-shadow: 4px 4px 8px 0px #000000;
 }
 
-#gameOverlay {
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* #gameOverlay {
   position: relative;
   display: inline-block;
-}
+} */
 
 .bgImages {
   width: 720px;
@@ -87,17 +95,29 @@ h1 {
 }
 
 #controlsOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
   display: flex;
-  min-height: 100%;
-  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  padding: 8px 0px;
+}
+
+#controlsOverlay .menuBtn {
+  pointer-events: auto;
 }
 
 #menu {
   display: flex;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
-  justify-content: flex-end;
-  padding-right: 8px;
+  justify-content: center;
   /* position: absolute;
   top: 10%;
   left: 84%;
@@ -119,6 +139,20 @@ h1 {
 .menuBtn:hover {
   transform: scale(1.02);
 }
+
+#touchControls {
+  display: flex;
+  padding: 0px 16px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#touchControlsLeft,
+#touchControlsRight {
+  display: flex;
+  gap: 16px;
+}
+
 
 .howtoSection {
   width: 720px;

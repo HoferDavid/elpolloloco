@@ -6,10 +6,11 @@ let keyboard = new Keyboard();
 function startGame() {
   toggleClasses("startGameScreen", "canvas");
   document.getElementById('controlsOverlay').style.display = 'flex';
-  document.getElementById('controlsOverlay').classList.add('visible');
   initLevel();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
+
+  toggleAudio(); // to delete
 }
 
 
