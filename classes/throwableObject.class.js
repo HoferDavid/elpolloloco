@@ -68,12 +68,10 @@ class ThrowableObject extends MovableObject {
 
 
     checkGroundCollision() {
-        if (this.y > 300 && this.isAboveGround()) {
-            // setTimeout(() => {
-            //     world.audio.bottleBroken.play();
-            // }, 100);
-            // world.audio.bottleBroken.pause();
+        if (this.y > 300 && !this.isBroken) {
+            world.audio.bottleBroken.play();
             this.splashAnimation();
+            this.isBroken = true;
         }
     }
 
