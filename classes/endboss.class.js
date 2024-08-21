@@ -94,7 +94,7 @@ class Endboss extends MovableObject {
         world.audio.chickenDeadSound.play();
         this.animateObject(this.IMAGES_DEAD);
         setTimeout(() => {
-          gameWin();
+          gameEnd('winScreen');
         }, 600);
       }, 200);
     }

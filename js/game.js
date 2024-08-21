@@ -10,7 +10,7 @@ function startGame() {
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
 
-  toggleAudio(); // to delete
+  // toggleAudio(); // to delete
 }
 
 
@@ -23,36 +23,17 @@ function reStartGame() {
 }
 
 
-function gameWin() {
+function gameEnd(result) {
   clearAllIntervals();
   clearAllAudioIntervals();
-
   document.getElementById('controlsOverlay').style.display = 'none';
-
   setTimeout(() => {
-    toggleClasses('canvas', 'winScreen');
-    world.audio.gameWinSound.play();
-  }, 1000);
-
-  setTimeout(() => {
-    toggleClasses('winScreen', 'restartGameScreen');
-  }, world.audio.gameWinSound.duration * 1000);
-}
-
-
-function gameOver() {
-  clearAllIntervals();
-  clearAllAudioIntervals();
-
-  document.getElementById('controlsOverlay').style.display = 'none';
-
-  setTimeout(() => {
-    toggleClasses('canvas', 'loseScreen');
+    document.getElementById(result).style.display = 'flex';
     world.audio.gameOverSound.play();
   }, 500);
-
   setTimeout(() => {
-    toggleClasses('loseScreen', 'restartGameScreen');
+    document.getElementById(result).style.display = 'none';
+    toggleClasses('canvas', 'restartGameScreen');
   }, world.audio.gameOverSound.duration * 1000);
 }
 

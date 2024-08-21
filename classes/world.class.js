@@ -24,7 +24,7 @@ class World {
     this.setWorld();
     this.checkInterval();
     this.throwableObjects = [];
-    this.audio.soundtrack.play(); // Unmute it
+    // this.audio.soundtrack.play(); // Unmute it
   }
 
   setWorld() {
@@ -201,7 +201,7 @@ class World {
 
 
   throwObjectCollisionEnemy() {
-    outerLoop: for (let i = 0; i < this.throwableObjects.length; i++) {
+    for (let i = 0; i < this.throwableObjects.length; i++) {
       let bottle = this.throwableObjects[i];
 
       for (let j = 0; j < this.level.enemies.length; j++) {
@@ -219,7 +219,6 @@ class World {
           setTimeout(() => {
             this.level.enemies.splice(j, 1);
           }, 200);
-          break outerLoop;
         }
       }
     }

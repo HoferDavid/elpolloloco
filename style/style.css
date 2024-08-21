@@ -65,7 +65,7 @@ main {
   position: relative;
   height: 520px;
   width: 760px;
-  background-color: black;
+  /* background-color: black; */
   border: 20px groove #70312d;
   box-shadow: 4px 4px 8px 0px #000000;
 }
@@ -87,6 +87,10 @@ main {
   width: 100%;
 }
 
+#startGameScreen {
+  height: 480px;
+}
+
 .bgImages {
   width: 720px;
   height: 480px;
@@ -101,6 +105,19 @@ main {
 #winScreen img {
   height: 100%;
   width: 64%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#loseScreen,
+#winScreen {
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 2s ease-in;
+  animation-fill-mode: forwards;
 }
 
 .startGameBtn {
