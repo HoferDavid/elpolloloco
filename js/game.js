@@ -4,10 +4,10 @@ let keyboard = new Keyboard();
 
 
 function startGame() {
-  toggleClasses("startGameScreen", "canvas");
+  toggleClasses('startGameScreen', 'canvas');
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
 
   toggleAudio(); // to delete
@@ -15,9 +15,9 @@ function startGame() {
 
 
 function reStartGame() {
-  toggleClasses("restartGameScreen", "canvas");
+  toggleClasses('restartGameScreen', 'canvas');
   initLevel();
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
 }
 
@@ -27,12 +27,12 @@ function gameWin() {
   clearAllAudioIntervals();
 
   setTimeout(() => {
-    toggleClasses("canvas", "winScreen");
+    toggleClasses('canvas', 'winScreen');
     world.audio.gameWinSound.play();
   }, 1000);
 
   setTimeout(() => {
-    toggleClasses("winScreen", "restartGameScreen");
+    toggleClasses('winScreen', 'restartGameScreen');
   }, world.audio.gameWinSound.duration * 1000);
 }
 
@@ -42,12 +42,12 @@ function gameOver() {
   clearAllAudioIntervals();
 
   setTimeout(() => {
-    toggleClasses("canvas", "loseScreen");
+    toggleClasses('canvas', 'loseScreen');
     world.audio.gameOverSound.play();
   }, 500);
 
   setTimeout(() => {
-    toggleClasses("loseScreen", "restartGameScreen");
+    toggleClasses('loseScreen', 'restartGameScreen');
   }, world.audio.gameOverSound.duration * 1000);
 }
 
@@ -59,7 +59,7 @@ function handleKey(event) {
     " ": "SPACE",
     "d": "D",
   };
-  if (keyMap[event.key]) keyboard[keyMap[event.key]] = event.type === "keydown";
+  if (keyMap[event.key]) keyboard[keyMap[event.key]] = event.type === 'keydown';
 }
 
 
@@ -77,40 +77,56 @@ function clearAllAudioIntervals() {
 }
 
 
-function togglePause() {
-  console.log('pause');
-  clearAllIntervals();
+function toggleFullscreen() {
+  console.log('fullscreenBtn clicked');
+
+  let elem = document.getElementById("game");
+
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen();
+    document.getElementById('fullscreenBtn').src = 'assets/img/icons/fullscreenExit.svg';
+  } else {
+    document.exitFullscreen();
+    document.getElementById('fullscreenBtn').src = 'assets/img/icons/fullscreenOpen.svg';
+  }
 }
 
 
+// function togglePause() {
+//   console.log('pause');
+// }
+
+
 function toggleAudio() {
-  let audioBtn = document.getElementById("audioBtn");
+  let audioBtn = document.getElementById('audioBtn');
   let currentSrc = audioBtn.src.split("/").pop();
-  let mute = currentSrc === "audio.png";
+  let mute = currentSrc === 'audio.png';
   if (mute) {
-    audioBtn.src = "assets/img/icons/audioMuted.png";
-    console.log("audio mute");
+    audioBtn.src = 'assets/img/icons/audioMuted.png';
+    console.log('audio mute');
   } else {
-    audioBtn.src = "assets/img/icons/audio.png";
-    console.log("audio unmute");
+    audioBtn.src = 'assets/img/icons/audio.png';
+    console.log('audio unmute');
   }
   world.audio.muteAudio(mute);
 }
 
 
 function toggleClasses(a, b) {
-  const elementA = document.getElementById(a);
-  const elementB = document.getElementById(b);
-
-  elementA.classList.remove('visible');
-  
-  setTimeout(() => {
-    elementA.style.display = 'none';
-    elementB.style.display = 'flex';
-    elementB.classList.add('visible');
-  }, 500);
+  document.getElementById(a).style.display = 'none';
+  document.getElementById(b).style.display = 'flex';
 }
 
 
-window.addEventListener("keydown", handleKey);
-window.addEventListener("keyup", handleKey);
+window.addEventListener('keydown', handleKey);
+window.addEventListener('keyup', handleKey);
+
+window.addEventListener('resize', function(event) {
+  console.log(window.innerWidth);
+
+  if (window.innerWidth <= 800) {
+    document.getElementById('touchControls').style.display = 'flex';
+  } else {
+    document.getElementById('touchControls').style.display = 'none';
+  }
+});

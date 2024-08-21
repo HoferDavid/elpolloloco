@@ -6,7 +6,7 @@ class Character extends MovableObject {
   speed = 10;
   world;
   idleTime = 0;
-  idleTimeout = 1000; // 5000
+  idleTimeout = 3000;
   offset = {
     x: 30,
     y: 120,

@@ -52,35 +52,35 @@ class DrawableObject {
     }
 
 
-    drawFrame(ctx) {
-        if (this.drawFrameHitboxInstances()) {
-            ctx.beginPath();
-            ctx.lineWidth = '1';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
+    // drawFrame(ctx) {
+    //     if (this.drawFrameHitboxInstances()) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '1';
+    //         ctx.strokeStyle = 'blue';
+    //         ctx.rect(this.x, this.y, this.width, this.height);
+    //         ctx.stroke();
+    //     }
+    // }
 
 
-    drawFrameHitbox(ctx) {
-        const thisLeft = this.x + this.offset.x;
-        const thisTop = this.y + this.offset.y;
-        const hitboxWidth = this.width + this.offset.w;
-        const hitboxHeight = this.height + this.offset.h;
+    // drawFrameHitbox(ctx) {
+    //     const thisLeft = this.x + this.offset.x;
+    //     const thisTop = this.y + this.offset.y;
+    //     const hitboxWidth = this.width + this.offset.w;
+    //     const hitboxHeight = this.height + this.offset.h;
     
-        if (this.drawFrameHitboxInstances()) {
-            ctx.beginPath();
-            ctx.lineWidth = '2';
-            ctx.strokeStyle = 'red';
-            ctx.rect(thisLeft, thisTop, hitboxWidth, hitboxHeight);
-            ctx.stroke();
-        }
-    }
+    //     if (this.drawFrameHitboxInstances()) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '2';
+    //         ctx.strokeStyle = 'red';
+    //         ctx.rect(thisLeft, thisTop, hitboxWidth, hitboxHeight);
+    //         ctx.stroke();
+    //     }
+    // }
 
 
-    drawFrameHitboxInstances() {
-        const classes = [Character, Endboss, Chicken, Chick, Coin, Bottle];
-        return classes.some(cls => this instanceof cls);
-    }
+    // drawFrameHitboxInstances() {
+    //     const classes = [Character, Endboss, Chicken, Chick, Coin, Bottle];
+    //     return classes.some(cls => this instanceof cls);
+    // }
 }
