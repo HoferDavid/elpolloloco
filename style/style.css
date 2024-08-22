@@ -196,6 +196,17 @@ h2 {
   transition: 0.2s;
 }
 
+#backToMenuBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  height: 48px;
+  width: 72px;
+  font-family: "mexico", Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}
+
 .menuBtn:hover {
   transform: scale(1.02);
 }
@@ -314,7 +325,7 @@ footer {
 }
 
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 800px) {
   #game {
     height: 100%;
     width: 100%;
@@ -337,6 +348,13 @@ footer {
 @media only screen and (max-height: 480px) {
   canvas {
     height: 100dvh;
+  }
+
+  #game {
+    height: 100%;
+    width: 100%;
+    border: none;
+    box-shadow: none;
   }
 
   h1 {

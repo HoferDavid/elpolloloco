@@ -4,17 +4,19 @@ let keyboard = new Keyboard();
 
 
 function startGame() {
+  checkMobileFullscreen();
   toggleClasses('startGameScreen', 'canvas');
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
 
-  toggleAudio(); // to delete
+  // toggleAudio(); // to delete
 }
 
 
 function reStartGame() {
+  checkMobileFullscreen();
   toggleClasses('restartGameScreen', 'canvas');
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
@@ -36,6 +38,17 @@ function gameEnd(result) {
     document.getElementById(result).style.display = 'none';
     toggleClasses('canvas', 'restartGameScreen');
   }, sound.duration * 1000);
+}
+
+
+function backtoMenu() {
+  console.log('backtomenu btn click');
+  
+  clearAllIntervals();
+  clearAllAudioIntervals();
+  document.exitFullscreen();
+  toggleClasses('canvas', 'restartGameScreen');
+  document.getElementById('controlsOverlay').style.display = 'none';
 }
 
 
@@ -114,10 +127,20 @@ function checkScreenHeight() {
 }
 
 
+function checkMobileFullscreen() {
+  checkScreenSize();
+  if (window.innerHeight < 800) {
+    toggleFullscreen();
+  }
+}
+
+
 function screenHeightMobile() {
   document.getElementById('howtoSection').style.display = 'none';
   document.getElementById('infoSection').style.display = 'none';
   document.getElementById('footer').style.display = 'none';
+  document.getElementById('fullscreenBtn').style.display = 'none';
+  document.getElementById('touchControls').style.display = 'flex';
 }
 
 
