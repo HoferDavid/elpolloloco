@@ -39,17 +39,6 @@ function gameEnd(result) {
 }
 
 
-function handleKey(event) {
-  const keyMap = {
-    "ArrowRight": "RIGHT",
-    "ArrowLeft": "LEFT",
-    " ": "SPACE",
-    "d": "D",
-  };
-  if (keyMap[event.key]) keyboard[keyMap[event.key]] = event.type === 'keydown';
-}
-
-
 function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) {
     window.clearInterval(i);
