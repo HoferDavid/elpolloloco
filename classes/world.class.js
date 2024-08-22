@@ -98,7 +98,7 @@ class World {
     }, 20);
     setInterval(() => {
       this.throwObjects();
-    }, 100);
+    }, 200);
   }
 
   checkCollisionsWithEnemies() {

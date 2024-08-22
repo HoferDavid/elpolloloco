@@ -128,6 +128,3 @@ function screenSizeDesktop() {
   document.getElementById('howtoSection').style.display = 'flex';
   document.getElementById('infoSection').style.display = 'flex';
 }
-
-
-

@@ -2,7 +2,7 @@ class ThrowableObject extends MovableObject {
     height = 72;
     width = 56;
     speedY = 20;
-    isBroken = false;
+    // chickenIsBroken = false;
     
 
     IMAGES = [
@@ -96,16 +96,14 @@ class ThrowableObject extends MovableObject {
     throwObjectCollisionEnemy() {
         for (let i = 0; i < world.throwableObjects.length; i++) {
           let bottle = world.throwableObjects[i];
-    
+
           for (let j = 0; j < world.level.enemies.length; j++) {
             let enemy = world.level.enemies[j];
-    
-            if (bottle.isColliding(enemy)) {
 
-            console.log('chicken hit');
+            if (bottle.isColliding(enemy) && !bottle.chickenIsBroken) {
+
+            bottle.chickenIsBroken = true;
                 
-
-    
               world.audio.bottleBroken.play();
               world.audio.chickenDeadSound.play();
               setTimeout(() => {
@@ -114,8 +112,6 @@ class ThrowableObject extends MovableObject {
     
               enemy.isDead();
 
-              console.log('enemy dead', enemy);
-              
               setTimeout(() => {
                 world.level.enemies.splice(j, 1);
               }, 100);
@@ -123,46 +119,6 @@ class ThrowableObject extends MovableObject {
           }
         }
     }
-
-
-
-    // throwObjectCollisionEnemy() {
-    //     for (let i = 0; i < world.throwableObjects.length; i++) {
-    //         let bottle = world.throwableObjects[i];
-
-    //         if (bottle.isBroken) continue;
-    
-    //         for (let j = 0; j < world.level.enemies.length; j++) {
-    //             let enemy = world.level.enemies[j];
-    
-    //             if (bottle.isColliding(enemy)) { // Verwendung von bottle.isBroken
-    
-    //                 console.log('chicken hit', enemy);
-
-    //                 bottle.isBroken = true;
-    
-    //                 // Spiele die Sounds sofort ab
-    //                 world.audio.bottleBroken.play();
-    //                 world.audio.chickenDeadSound.play();
-    
-    //                 // Starte die Animation der zerbrochenen Flasche
-    //                 bottle.splashAnimation();
-    
-    //                 // Markiere den Feind als tot
-    //                 enemy.isDead();
-    
-    //                 // Entferne den Feind mit einer kurzen Verzögerung aus dem Array
-    //                 setTimeout(() => {
-    //                     world.level.enemies.splice(j, 1);
-    //                 }, 200);
-
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
-    
-
 
 
     throwObjectCollisionEndboss() {
