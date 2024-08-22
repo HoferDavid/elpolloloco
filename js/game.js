@@ -42,11 +42,12 @@ function gameEnd(result) {
 
 
 function backtoMenu() {
-  console.log('backtomenu btn click');
-  
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+
   clearAllIntervals();
   clearAllAudioIntervals();
-  document.exitFullscreen();
   toggleClasses('canvas', 'restartGameScreen');
   document.getElementById('controlsOverlay').style.display = 'none';
 }
@@ -106,24 +107,53 @@ window.addEventListener('keyup', handleKey);
 
 
 
+
 window.addEventListener('load', checkScreenSize);
 window.addEventListener('resize', checkScreenSize);
 
 
 function checkScreenSize() {
-  checkScreenWidth();
-  checkScreenHeight();
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+
+  console.log('innerwidth', width);
+  console.log('innerheight', height);
+
+  checkScreenOrientation(width, height);
+
+  if (height <= 850) {
+    hideDesktopInfos();
+  }
 }
 
 
-function checkScreenHeight() {
-  console.log(window.innerHeight);
+function hideDesktopInfos() {
+  toggleClasses('howtoSection', 'touchControls');
+  document.getElementById('infoSection').style.display = 'none';
+  document.getElementById('footer').style.display = 'none';
+}
 
-  if (window.innerHeight < 900) {
-    screenHeightMobile();
+
+function checkScreenOrientation(width, height) {
+  if (width <= 800 && height > width) {
+    showRotateOverlay();
   } else {
-    screenHeightDesktop();
+    hideRotateOverlay();
   }
+}
+
+
+function showRotateOverlay() {
+  toggleClasses('game', 'touchControls');
+  toggleClasses('howtoSection', 'rotateOverlay');
+  document.getElementById('infoSection').style.display = 'none';
+}
+
+
+function hideRotateOverlay() {
+  toggleClasses('touchControls', 'game');
+  toggleClasses('rotateOverlay', 'howtoSection');
+  document.getElementById('infoSection').style.display = 'flex';
 }
 
 
@@ -131,46 +161,8 @@ function checkMobileFullscreen() {
   checkScreenSize();
   if (window.innerHeight < 800) {
     toggleFullscreen();
-  }
-}
-
-
-function screenHeightMobile() {
-  document.getElementById('howtoSection').style.display = 'none';
-  document.getElementById('infoSection').style.display = 'none';
-  document.getElementById('footer').style.display = 'none';
-  document.getElementById('fullscreenBtn').style.display = 'none';
-  document.getElementById('touchControls').style.display = 'flex';
-}
-
-
-function screenHeightDesktop() {
-  document.getElementById('footer').style.display = 'flex';
-}
-
-
-function checkScreenWidth() {
-  if (window.innerWidth <= 800) {
-    screenWidthMobile();
+    toggleClasses('fullscreenBtn', 'touchControls');
   } else {
-    screenWidthDesktop();
+    document.getElementById('fullscreenBtn').style.display = 'flex';
   }
-}
-
-
-function screenWidthMobile() {
-  document.getElementById('touchControls').style.display = 'flex';
-  document.getElementById('rotateOverlay').style.display = 'flex';
-  document.getElementById('game').style.display = 'none';
-  document.getElementById('howtoSection').style.display = 'none';
-  document.getElementById('infoSection').style.display = 'none';
-}
-
-
-function screenWidthDesktop() {
-  document.getElementById('touchControls').style.display = 'none';
-  document.getElementById('rotateOverlay').style.display = 'none';
-  document.getElementById('game').style.display = 'flex';
-  document.getElementById('howtoSection').style.display = 'flex';
-  document.getElementById('infoSection').style.display = 'flex';
 }
