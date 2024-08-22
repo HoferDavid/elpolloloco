@@ -99,8 +99,8 @@ function toggleClasses(a, b) {
   document.getElementById(b).style.display = 'flex';
 }
 
-window.addEventListener('keydown', handleKey);
-window.addEventListener('keyup', handleKey);
+// window.addEventListener('keydown', handleKey);
+// window.addEventListener('keyup', handleKey);
 
 
 

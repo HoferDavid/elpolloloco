@@ -92,6 +92,14 @@ main {
   height: 480px;
 }
 
+/* #restartGameScreen {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+} */
+
 .bgImages {
   width: 720px;
   height: 480px;
@@ -194,6 +202,11 @@ h2 {
   box-shadow: 1px 1px 2px 0px #000000;
   cursor: pointer;
   transition: 0.2s;
+}
+
+#touchControls button {
+  background: none;
+  border: none;
 }
 
 #backToMenuBtn {
@@ -355,6 +368,11 @@ footer {
     width: 100%;
     border: none;
     box-shadow: none;
+  }
+
+  #startGameScreen,
+  .bgImages {
+    height: 100%;
   }
 
   h1 {
