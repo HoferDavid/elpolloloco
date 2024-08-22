@@ -85,23 +85,57 @@ function toggleClasses(a, b) {
   document.getElementById(b).style.display = 'flex';
 }
 
-
-window.addEventListener('load', checkScreenSize);
-window.addEventListener('resize', checkScreenSize);
 window.addEventListener('keydown', handleKey);
 window.addEventListener('keyup', handleKey);
 
 
+
+
+
+
+window.addEventListener('load', checkScreenSize);
+window.addEventListener('resize', checkScreenSize);
+
+
 function checkScreenSize() {
-  if (window.innerWidth <= 800) {
-    screenSizeMobile();
+  checkScreenWidth();
+  checkScreenHeight();
+}
+
+
+function checkScreenHeight() {
+  console.log(window.innerHeight);
+
+  if (window.innerHeight < 900) {
+    screenHeightMobile();
   } else {
-    screenSizeDesktop();
+    screenHeightDesktop();
   }
 }
 
 
-function screenSizeMobile() {
+function screenHeightMobile() {
+  document.getElementById('howtoSection').style.display = 'none';
+  document.getElementById('infoSection').style.display = 'none';
+  document.getElementById('footer').style.display = 'none';
+}
+
+
+function screenHeightDesktop() {
+  document.getElementById('footer').style.display = 'flex';
+}
+
+
+function checkScreenWidth() {
+  if (window.innerWidth <= 800) {
+    screenWidthMobile();
+  } else {
+    screenWidthDesktop();
+  }
+}
+
+
+function screenWidthMobile() {
   document.getElementById('touchControls').style.display = 'flex';
   document.getElementById('rotateOverlay').style.display = 'flex';
   document.getElementById('game').style.display = 'none';
@@ -110,7 +144,7 @@ function screenSizeMobile() {
 }
 
 
-function screenSizeDesktop() {
+function screenWidthDesktop() {
   document.getElementById('touchControls').style.display = 'none';
   document.getElementById('rotateOverlay').style.display = 'none';
   document.getElementById('game').style.display = 'flex';
