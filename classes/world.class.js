@@ -98,11 +98,7 @@ class World {
     }, 20);
     setInterval(() => {
       this.throwObjects();
-      this.throwObjectCollisionEnemy();
     }, 100);
-    setInterval(() => {
-      this.throwObjectCollisionEndboss();
-    }, 200);
   }
 
   checkCollisionsWithEnemies() {
@@ -188,7 +184,6 @@ class World {
   }
 
 
-
   throwObjects() {
     if (this.keyboard.D && this.character.bottles > 0) {
       let bottle = new ThrowableObject(
@@ -200,58 +195,4 @@ class World {
       this.setPercentage(this.statusbarBottle, this.character.bottles);
     }
   }
-
-
-  throwObjectCollisionEnemy() {
-    for (let i = 0; i < this.throwableObjects.length; i++) {
-      let bottle = this.throwableObjects[i];
-
-      for (let j = 0; j < this.level.enemies.length; j++) {
-        let enemy = this.level.enemies[j];
-
-        if (bottle.isColliding(enemy)) {
-
-          world.audio.bottleBroken.play();
-          this.audio.chickenDeadSound.play();
-          setTimeout(() => {
-            bottle.splashAnimation();
-          }, 1000);
-
-          enemy.isDead();
-          setTimeout(() => {
-            this.level.enemies.splice(j, 1);
-          }, 200);
-        }
-      }
-    }
-  }
-
-
-  throwObjectCollisionEndboss() {
-    for (let i = 0; i < this.throwableObjects.length; i++) {
-        let bottle = this.throwableObjects[i];
-        let bottleAlreadyHit = false;
-
-        for (let j = 0; j < this.level.endboss.length; j++) {
-            let endboss = this.level.endboss[j];
-
-            if (bottle.isColliding(endboss) && !bottleAlreadyHit) {
-              
-              bottleAlreadyHit = true;
-
-              world.audio.bottleBroken.play();
-
-              this.audio.endbossHitSound.play();
-
-                bottle.splashAnimation();
-                endboss.endbossHit();
-                setTimeout(() => {
-                  this.throwableObjects.splice(i, 1);   
-                }, 100);
-
-                this.setPercentage(this.statusbarEndboss, endboss.energy);
-            }
-        }
-    }
-}
 }

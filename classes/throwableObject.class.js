@@ -2,7 +2,8 @@ class ThrowableObject extends MovableObject {
     height = 72;
     width = 56;
     speedY = 20;
-    world;
+    isBroken = false;
+    
 
     IMAGES = [
         './assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -28,8 +29,7 @@ class ThrowableObject extends MovableObject {
         this.x = x;
         this.y = y;
         this.throwObject();
-        this.applyGravity(); 
-        // this.throwObjects();
+        this.applyGravity();
         this.animate();
     }
 
@@ -41,8 +41,15 @@ class ThrowableObject extends MovableObject {
 
         setInterval(() => {
             this.animateObject(this.IMAGES);
-            // this.throwObjects();
         }, 100);
+
+        setInterval(() => {
+            this.throwObjectCollisionEndboss();
+        }, 160);
+
+        setInterval(() => {
+            this.throwObjectCollisionEnemy();
+        }, 200);
     };
 
 
@@ -86,17 +93,103 @@ class ThrowableObject extends MovableObject {
     }
 
 
-    // throwObjects() {
-    //     if (this.world.keyboard.D && this.world.character.bottles > 0) {
-    //         console.log('throw');
-            
-    //       let bottle = new ThrowableObject(
-    //         this.world.character.x + 44,
-    //         this.world.character.y + 100
-    //       );
-    //       this.world.throwableObjects.push(bottle);
-    //       this.world.character.bottles--;
-    //       this.world.setPercentage(this.world.statusbarBottle, this.world.character.bottles);
+    throwObjectCollisionEnemy() {
+        for (let i = 0; i < world.throwableObjects.length; i++) {
+          let bottle = world.throwableObjects[i];
+    
+          for (let j = 0; j < world.level.enemies.length; j++) {
+            let enemy = world.level.enemies[j];
+    
+            if (bottle.isColliding(enemy)) {
+
+            console.log('chicken hit');
+                
+
+    
+              world.audio.bottleBroken.play();
+              world.audio.chickenDeadSound.play();
+              setTimeout(() => {
+                bottle.splashAnimation();
+              }, 500);
+    
+              enemy.isDead();
+
+              console.log('enemy dead', enemy);
+              
+              setTimeout(() => {
+                world.level.enemies.splice(j, 1);
+              }, 100);
+            }
+          }
+        }
+    }
+
+
+
+    // throwObjectCollisionEnemy() {
+    //     for (let i = 0; i < world.throwableObjects.length; i++) {
+    //         let bottle = world.throwableObjects[i];
+
+    //         if (bottle.isBroken) continue;
+    
+    //         for (let j = 0; j < world.level.enemies.length; j++) {
+    //             let enemy = world.level.enemies[j];
+    
+    //             if (bottle.isColliding(enemy)) { // Verwendung von bottle.isBroken
+    
+    //                 console.log('chicken hit', enemy);
+
+    //                 bottle.isBroken = true;
+    
+    //                 // Spiele die Sounds sofort ab
+    //                 world.audio.bottleBroken.play();
+    //                 world.audio.chickenDeadSound.play();
+    
+    //                 // Starte die Animation der zerbrochenen Flasche
+    //                 bottle.splashAnimation();
+    
+    //                 // Markiere den Feind als tot
+    //                 enemy.isDead();
+    
+    //                 // Entferne den Feind mit einer kurzen Verzögerung aus dem Array
+    //                 setTimeout(() => {
+    //                     world.level.enemies.splice(j, 1);
+    //                 }, 200);
+
+    //                 break;
+    //             }
+    //         }
     //     }
-    //   }
+    // }
+    
+
+
+
+    throwObjectCollisionEndboss() {
+        for (let i = 0; i < world.throwableObjects.length; i++) {
+            let bottle = world.throwableObjects[i];
+    
+            for (let j = 0; j < world.level.endboss.length; j++) {
+                let endboss = world.level.endboss[j];
+    
+                if (bottle.isColliding(endboss) && !bottle.isBroken) {
+                  
+                    bottle.isBroken = true;
+    
+                  world.audio.bottleBroken.play();
+    
+                  world.audio.endbossHitSound.play();
+    
+                    bottle.splashAnimation();
+                    endboss.endbossHit();
+                    setTimeout(() => {
+                        world.throwableObjects.splice(i, 1);   
+                    }, 100);
+    
+                    world.setPercentage(world.statusbarEndboss, endboss.energy);
+                }
+            }
+        }
+    }
+
 }
