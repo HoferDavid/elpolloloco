@@ -4,8 +4,6 @@ let keyboard = new Keyboard();
 
 
 function startGame() {
-  // checkMobileFullscreen();
-  // toggleClasses('startGameScreen', 'canvas');
   document.getElementById('canvas').style.display = 'flex';
   document.getElementById('startGameScreen').style.display = 'flex';
   document.getElementById('controlsOverlay').style.display = 'flex';
@@ -18,10 +16,8 @@ function startGame() {
 
 
 function reStartGame() {
-  // checkMobileFullscreen();
-  // toggleClasses('restartGameScreen', 'canvas');
   document.getElementById('canvas').style.display = 'flex';
-  document.getElementById('startGameScreen').style.display = 'none';
+  document.getElementById('restartGameScreen').style.display = 'none';
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
   canvas = document.getElementById('canvas');
@@ -37,10 +33,16 @@ function gameEnd(result) {
   clearAllIntervals();
   clearAllAudioIntervals();
   document.getElementById('controlsOverlay').style.display = 'none';
+
+  // document.getElementById('startGameScreen').style.display = 'none';
+
   setTimeout(() => {
     document.getElementById(result).style.display = 'flex';
     sound.play();
   }, 500);
+
+  document.getElementById('startGameScreen').style.display = 'none';
+  
   setTimeout(() => {
     document.getElementById(result).style.display = 'none';
     toggleClasses('canvas', 'restartGameScreen');
@@ -118,6 +120,9 @@ function checkScreenSize() {
   if (height <= 850) {
     hideDesktopInfos();
   }
+  if (width > 1400 && width > height) {
+    document.getElementById('touchControls').style.display = 'flex';
+  }
 }
 
 
@@ -148,36 +153,4 @@ function hideRotateOverlay() {
   toggleClasses('touchControls', 'game');
   toggleClasses('rotateOverlay', 'howtoSection');
   document.getElementById('infoSection').style.display = 'flex';
-  document.getElementById('touchControls').style.display = 'flex';
 }
-
-
-
-
-
-// function checkMobileFullscreen() {
-//   checkScreenSize();
-//   if (window.innerHeight < 800 && !document.fullscreenElement) {
-//     document.getElementById('fullscreenBtn').style.display = 'flex';
-//     // toggleFullscreen();
-//     // toggleClasses('fullscreenBtn', 'touchControls');
-//   } else {
-//     document.getElementById('fullscreenBtn').style.display = 'flex';
-//   }
-// }
-
-
-
-
-
-
-// function checkMobileFullscreen() {
-//   checkScreenSize();
-//   if (window.innerHeight < 800 && !document.fullscreenElement) {
-//     document.getElementById('fullscreenBtn').style.display = 'flex';
-//     // toggleFullscreen();
-//     // toggleClasses('fullscreenBtn', 'touchControls');
-//   } else {
-//     document.getElementById('fullscreenBtn').style.display = 'flex';
-//   }
-// }

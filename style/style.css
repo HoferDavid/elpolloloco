@@ -92,14 +92,6 @@ main {
   height: 480px;
 }
 
-/* #restartGameScreen {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-} */
-
 .bgImages {
   width: 720px;
   height: 480px;
@@ -116,17 +108,17 @@ main {
   width: 64%;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 #loseScreen,
 #winScreen {
   z-index: 2;
   opacity: 0;
   animation: fadeIn 2s ease-in;
   animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .startGameBtn {
@@ -372,6 +364,10 @@ footer {
     width: 100%;
     border: none;
     box-shadow: none;
+  }
+
+  #loseScreen img {
+    height: 100dvh;
   }
 
   #startGameScreen,

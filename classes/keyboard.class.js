@@ -3,7 +3,6 @@ class Keyboard {
     LEFT = false;
     SPACE = false;
     D = false;
-    S = false;
 
 
     constructor() {
@@ -14,7 +13,7 @@ class Keyboard {
             this.keyupListener(e);
         })
 
-        window.addEventListener('load', () => {
+        window.addEventListener('DOMContentLoaded', () => {
             this.touchListener();
         })
     }
@@ -33,9 +32,6 @@ class Keyboard {
         if (e.key == 'd') {
             this.D = true;
         }
-        // if (e.key == 's') {
-        //     startGame();
-        // }
     }
 
 
@@ -52,9 +48,6 @@ class Keyboard {
         if (e.key == 'd') {
             this.D = false;
         }
-        // if (e.key == 's') {
-        //     this.S = false;
-        // }
     }
 
 
@@ -85,6 +78,10 @@ class Keyboard {
             e.preventDefault();
             startGame();
         });
+        document.getElementById('fullscreenBtn').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            toggleFullscreen();
+        });
     }
 
 
@@ -105,9 +102,5 @@ class Keyboard {
             e.preventDefault();
             this.D = false;
         });
-        // document.getElementById('btnThrow').addEventListener('touchend', (e) => {
-        //     e.preventDefault();
-        //     this.S = false;
-        // });
     }
 }
