@@ -72,8 +72,6 @@ class World {
   addToMap(mo) {
     if (mo.mirrorObject) this.mirrorImage(mo);
     mo.draw(this.ctx);
-    // mo.drawFrame(this.ctx); // To delete
-    // mo.drawFrameHitbox(this.ctx); // To delete
     if (mo.mirrorObject) this.mirrorImageBack(mo);
   }
 

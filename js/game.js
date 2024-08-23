@@ -4,19 +4,19 @@ let keyboard = new Keyboard();
 
 
 function startGame() {
-  document.getElementById('canvas').style.display = 'flex';
-  document.getElementById('startGameScreen').style.display = 'flex';
-  document.getElementById('controlsOverlay').style.display = 'flex';
-  initLevel();
-  canvas = document.getElementById('canvas');
-  world = new World(canvas, keyboard);
+  document.getElementById('startGameScreen').style.display = 'none';
+  resetGame();
 }
 
 
 function reStartGame() {
-  document.getElementById('canvas').style.display = 'flex';
   document.getElementById('restartGameScreen').style.display = 'none';
-  document.getElementById('startGameScreen').style.display = 'flex';
+  resetGame();
+}
+
+
+function resetGame() {
+  document.getElementById('canvas').style.display = 'flex';
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
   canvas = document.getElementById('canvas');
@@ -127,7 +127,7 @@ function hideDesktopInfos() {
 
 
 function checkScreenOrientation(width, height) {
-  if (width <= 800 && height > width || height > width) {
+  if (width <= 800 && height > width || height > width) { // if (width <= 800 && height > width || height > width) {
     showRotateOverlay();
   } else {
     hideRotateOverlay();
