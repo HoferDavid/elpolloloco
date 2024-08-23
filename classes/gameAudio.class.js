@@ -36,8 +36,10 @@ class GameAudio {
         this.endbossHitSound.playbackRate = 2;
 
         this.gameOverSound = new Audio('./assets/audio/gameOver.mp3');
+        this.endbossHitSound.volume = 0.6;
 
         this.gameWinSound = new Audio('./assets/audio/gameWin.mp3');
+        this.endbossHitSound.volume = 0.6;
 
         this.bottleBroken = new Audio('./assets/audio/bottleBroken.mp3');
         this.bottleBroken.playbackRate = 2;

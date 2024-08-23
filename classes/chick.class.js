@@ -1,9 +1,9 @@
 class Chick extends MovableObject {
     y = 380;
-    x = 600 + Math.random() * 3000;
+    x = 600 + Math.random() * 4000;
     height = 56;
     width = 40;
-    speed = 0.2 + Math.random() * 0.3;
+    speed = 0.2 + Math.random() * 0.5;
     
     IMAGES = [
         './assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -44,6 +44,6 @@ class Chick extends MovableObject {
 
 
     enemyJump() {
-        this.speedY = 20 + Math.random() * 1;
+        this.speedY = 40 + Math.random() * 2;
     }
 }

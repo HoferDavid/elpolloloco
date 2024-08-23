@@ -9,7 +9,7 @@ class Endboss extends MovableObject {
     h: -140,
     w: -80,
   };
-  speed = 0.16 + Math.random() * 0.1;
+  speed = 0.1 + Math.random() * 0.1;
 
   IMAGES_WALK = [
     "./assets/img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -87,7 +87,7 @@ class Endboss extends MovableObject {
       this.moveLeft();
     }, 300);
       this.animateObject(this.IMAGES_WALK);
-      this.speed = 0.16 + Math.random() * 0.2;
+      this.speed = 0.1 + Math.random() * 0.1;
     }
   }
 
