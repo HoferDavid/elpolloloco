@@ -3,6 +3,7 @@ class Keyboard {
     LEFT = false;
     SPACE = false;
     D = false;
+    S = false;
 
 
     constructor() {
@@ -32,6 +33,9 @@ class Keyboard {
         if (e.key == 'd') {
             this.D = true;
         }
+        // if (e.key == 's') {
+        //     startGame();
+        // }
     }
 
 
@@ -48,6 +52,9 @@ class Keyboard {
         if (e.key == 'd') {
             this.D = false;
         }
+        // if (e.key == 's') {
+        //     this.S = false;
+        // }
     }
 
 
@@ -74,6 +81,10 @@ class Keyboard {
             e.preventDefault();
             this.D = true;
         });
+        document.getElementById('startGameBtn').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startGame();
+        });
     }
 
 
@@ -94,5 +105,9 @@ class Keyboard {
             e.preventDefault();
             this.D = false;
         });
+        // document.getElementById('btnThrow').addEventListener('touchend', (e) => {
+        //     e.preventDefault();
+        //     this.S = false;
+        // });
     }
 }

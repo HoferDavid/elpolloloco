@@ -154,7 +154,7 @@ class Character extends MovableObject {
   }
 
   jumpingAnimation() {
-    if (this.world.audio.jumpSound.paused) {
+    if (this.world.audio.jumpSound.paused && this.world.keyboard.SPACE) {
         this.world.audio.jumpSound.play();
     }
     this.world.audio.snoringSound.pause();

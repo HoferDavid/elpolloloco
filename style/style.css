@@ -353,6 +353,10 @@ footer {
     width: 100%;
   }
 
+  #controlsOverlay {
+    padding: 2% 6%;
+  }
+
   h1 {
     font-size: 40px;
   }

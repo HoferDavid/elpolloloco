@@ -1,11 +1,13 @@
 let canvas;
-let world;
+let thisworld;
 let keyboard = new Keyboard();
 
 
 function startGame() {
-  checkMobileFullscreen();
-  toggleClasses('startGameScreen', 'canvas');
+  // checkMobileFullscreen();
+  // toggleClasses('startGameScreen', 'canvas');
+  document.getElementById('canvas').style.display = 'flex';
+  document.getElementById('startGameScreen').style.display = 'flex';
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
   canvas = document.getElementById('canvas');
@@ -16,8 +18,10 @@ function startGame() {
 
 
 function reStartGame() {
-  checkMobileFullscreen();
-  toggleClasses('restartGameScreen', 'canvas');
+  // checkMobileFullscreen();
+  // toggleClasses('restartGameScreen', 'canvas');
+  document.getElementById('canvas').style.display = 'flex';
+  document.getElementById('startGameScreen').style.display = 'none';
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
   canvas = document.getElementById('canvas');
@@ -26,6 +30,9 @@ function reStartGame() {
 
 
 function gameEnd(result) {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
   let sound = result === 'winScreen' ? world.audio.gameWinSound : world.audio.gameOverSound;
   clearAllIntervals();
   clearAllAudioIntervals();
@@ -42,10 +49,10 @@ function gameEnd(result) {
 
 
 function backtoMenu() {
+  document.getElementById('startGameScreen').style.display = 'none';
   if (document.fullscreenElement) {
     document.exitFullscreen();
   }
-
   clearAllIntervals();
   clearAllAudioIntervals();
   toggleClasses('canvas', 'restartGameScreen');
@@ -99,14 +106,6 @@ function toggleClasses(a, b) {
   document.getElementById(b).style.display = 'flex';
 }
 
-// window.addEventListener('keydown', handleKey);
-// window.addEventListener('keyup', handleKey);
-
-
-
-
-
-
 
 window.addEventListener('load', checkScreenSize);
 window.addEventListener('resize', checkScreenSize);
@@ -115,12 +114,7 @@ window.addEventListener('resize', checkScreenSize);
 function checkScreenSize() {
   let width = window.innerWidth;
   let height = window.innerHeight;
-
-  console.log('innerwidth', width);
-  console.log('innerheight', height);
-
   checkScreenOrientation(width, height);
-
   if (height <= 850) {
     hideDesktopInfos();
   }
@@ -135,7 +129,7 @@ function hideDesktopInfos() {
 
 
 function checkScreenOrientation(width, height) {
-  if (width <= 800 && height > width) {
+  if (width <= 800 && height > width || height > width) {
     showRotateOverlay();
   } else {
     hideRotateOverlay();
@@ -154,15 +148,36 @@ function hideRotateOverlay() {
   toggleClasses('touchControls', 'game');
   toggleClasses('rotateOverlay', 'howtoSection');
   document.getElementById('infoSection').style.display = 'flex';
+  document.getElementById('touchControls').style.display = 'flex';
 }
 
 
-function checkMobileFullscreen() {
-  checkScreenSize();
-  if (window.innerHeight < 800) {
-    toggleFullscreen();
-    toggleClasses('fullscreenBtn', 'touchControls');
-  } else {
-    document.getElementById('fullscreenBtn').style.display = 'flex';
-  }
-}
+
+
+
+// function checkMobileFullscreen() {
+//   checkScreenSize();
+//   if (window.innerHeight < 800 && !document.fullscreenElement) {
+//     document.getElementById('fullscreenBtn').style.display = 'flex';
+//     // toggleFullscreen();
+//     // toggleClasses('fullscreenBtn', 'touchControls');
+//   } else {
+//     document.getElementById('fullscreenBtn').style.display = 'flex';
+//   }
+// }
+
+
+
+
+
+
+// function checkMobileFullscreen() {
+//   checkScreenSize();
+//   if (window.innerHeight < 800 && !document.fullscreenElement) {
+//     document.getElementById('fullscreenBtn').style.display = 'flex';
+//     // toggleFullscreen();
+//     // toggleClasses('fullscreenBtn', 'touchControls');
+//   } else {
+//     document.getElementById('fullscreenBtn').style.display = 'flex';
+//   }
+// }
