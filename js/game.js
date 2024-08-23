@@ -4,13 +4,24 @@ let keyboard = new Keyboard();
 
 
 function startGame() {
-  document.getElementById('startGameScreen').style.display = 'none';
+  handleDisplayStyle('startGameScreen');
   resetGame();
 }
 
 
+function handleDisplayStyle(id) {
+  let { width, height } = getScreenSize();
+  if (width <= 932) {
+    document.getElementById(id).style.display = 'flex';
+  } else {
+    document.getElementById(id).style.display = 'none';
+  }
+}
+
+
+
 function reStartGame() {
-  document.getElementById('restartGameScreen').style.display = 'none';
+  handleDisplayStyle('restartGameScreen');
   resetGame();
 }
 
@@ -21,7 +32,6 @@ function resetGame() {
   initLevel();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
-
   world.audio.soundtrack.play();
 }
 
@@ -40,7 +50,6 @@ function gameEnd(result) {
     document.getElementById(result).style.display = 'none';
     toggleClasses('canvas', 'restartGameScreen');
   }, sound.duration * 1000);
-
   if (document.fullscreenElement) { document.exitFullscreen(); }
 }
 
@@ -122,17 +131,28 @@ function checkScreenSize() {
 }
 
 
+// function hideElements(width, height) {
+//   if (height <= 850) {
+//     hideDesktopInfos();
+//   }
+
+//   if (width > 1300 && width > height && height < 900) {
+//     document.getElementById('touchControls').style.display = 'flex';
+//   }
+// }
+
+
 function hideElements(width, height) {
   if (height <= 850) {
     hideDesktopInfos();
   }
-  if (width > 1400 && width > height) {
+
+  if (width > 1400 && height > 1000) {
+    document.getElementById('touchControls').style.display = 'none';
+  } else {
     document.getElementById('touchControls').style.display = 'flex';
   }
 }
-
-
-
 
 
 function hideDesktopInfos() {
@@ -143,12 +163,24 @@ function hideDesktopInfos() {
 
 
 function checkScreenOrientation(width, height) {
-  if (width <= 800 && height > width || height > width) { // if (width <= 800 && height > width || height > width) {
+  if (width <= 800 && height > width || height > width && !document.fullscreenElement) {
     showRotateOverlay();
   } else {
     hideRotateOverlay();
   }
 }
+
+
+// function checkPortaitLandscape() {
+//   if (window.matchMedia('(orientation: portrait)').matches) {
+//     console.log('portrait mode');
+//   } else if (window.matchMedia('(orientation: landscape)').matches) {
+//     console.log('landscape');
+//   }
+// }
+
+
+// window.addEventListener('load', checkPortaitLandscape);
 
 
 function showRotateOverlay() {
