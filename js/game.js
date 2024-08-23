@@ -10,14 +10,13 @@ function startGame() {
   initLevel();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
-
-  // toggleAudio(); // to delete
 }
 
 
 function reStartGame() {
   document.getElementById('canvas').style.display = 'flex';
   document.getElementById('restartGameScreen').style.display = 'none';
+  document.getElementById('startGameScreen').style.display = 'flex';
   document.getElementById('controlsOverlay').style.display = 'flex';
   initLevel();
   canvas = document.getElementById('canvas');
@@ -26,27 +25,21 @@ function reStartGame() {
 
 
 function gameEnd(result) {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  }
   let sound = result === 'winScreen' ? world.audio.gameWinSound : world.audio.gameOverSound;
   clearAllIntervals();
   clearAllAudioIntervals();
   document.getElementById('controlsOverlay').style.display = 'none';
 
-  // document.getElementById('startGameScreen').style.display = 'none';
-
-  setTimeout(() => {
-    document.getElementById(result).style.display = 'flex';
-    sound.play();
-  }, 500);
-
+  document.getElementById(result).style.display = 'flex';
+  sound.play();
   document.getElementById('startGameScreen').style.display = 'none';
-  
+
   setTimeout(() => {
     document.getElementById(result).style.display = 'none';
     toggleClasses('canvas', 'restartGameScreen');
   }, sound.duration * 1000);
+
+  if (document.fullscreenElement) { document.exitFullscreen(); }
 }
 
 

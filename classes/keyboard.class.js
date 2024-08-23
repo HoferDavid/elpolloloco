@@ -9,10 +9,11 @@ class Keyboard {
         window.addEventListener('keydown', (e) => {
             this.keydownListener(e);
         });
+
         document.addEventListener('keyup', (e) => {
             this.keyupListener(e);
         })
-
+        
         window.addEventListener('DOMContentLoaded', () => {
             this.touchListener();
         })
