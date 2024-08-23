@@ -87,7 +87,7 @@ class Endboss extends MovableObject {
       this.moveLeft();
     }, 300);
       this.animateObject(this.IMAGES_WALK);
-      // this.speed = 0.16 + Math.random() * 0.2;
+      this.speed = 0.16 + Math.random() * 0.2;
     }
   }
 

@@ -329,7 +329,6 @@ footer {
   padding: 0px 1px;
 }
 
-
 @media only screen and (max-width: 800px) {
   #game {
     height: 100%;
@@ -338,7 +337,6 @@ footer {
     box-shadow: none;
   }
 }
-
 
 @media only screen and (max-width: 720px) {
   canvas {

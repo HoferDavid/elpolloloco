@@ -24,7 +24,7 @@ class World {
     this.setWorld();
     this.checkInterval();
     this.throwableObjects = [];
-    this.audio.soundtrack.play();
+    // this.audio.soundtrack.play();
   }
 
   setWorld() {

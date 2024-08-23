@@ -21,6 +21,8 @@ function resetGame() {
   initLevel();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
+
+  world.audio.soundtrack.play();
 }
 
 
@@ -106,10 +108,21 @@ window.addEventListener('load', checkScreenSize);
 window.addEventListener('resize', checkScreenSize);
 
 
-function checkScreenSize() {
+function getScreenSize() {
   let width = window.innerWidth;
   let height = window.innerHeight;
+  return { width, height };
+}
+
+
+function checkScreenSize() {
+  let { width, height } = getScreenSize();
   checkScreenOrientation(width, height);
+  hideElements(width, height);
+}
+
+
+function hideElements(width, height) {
   if (height <= 850) {
     hideDesktopInfos();
   }
@@ -117,6 +130,9 @@ function checkScreenSize() {
     document.getElementById('touchControls').style.display = 'flex';
   }
 }
+
+
+
 
 
 function hideDesktopInfos() {

@@ -8,7 +8,6 @@ class Keyboard {
     constructor() {
         document.addEventListener('keydown', (e) => {
             this.keydownListener(e);
-            console.log(e);
         });
 
         document.addEventListener('keyup', (e) => {
