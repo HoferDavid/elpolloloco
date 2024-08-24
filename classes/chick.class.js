@@ -44,6 +44,6 @@ class Chick extends MovableObject {
 
 
     enemyJump() {
-        this.speedY = 40 + Math.random() * 2;
+        this.speedY = 1 + Math.random() * 40;
     }
 }

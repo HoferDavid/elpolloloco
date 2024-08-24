@@ -1,6 +1,7 @@
 let canvas;
 let thisworld;
 let keyboard = new Keyboard();
+let audioMuted = sessionStorage.getItem('audioMuted') === 'true';
 
 
 function startGame() {
@@ -19,7 +20,6 @@ function handleDisplayStyle(id) {
 }
 
 
-
 function reStartGame() {
   handleDisplayStyle('restartGameScreen');
   resetGame();
@@ -32,7 +32,14 @@ function resetGame() {
   initLevel();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
-  world.audio.soundtrack.play();
+
+  audioMuted = sessionStorage.getItem('audioMuted') === 'true';
+
+  if (audioMuted) {
+    world.audio.muteAudio(true);
+  } else {
+    world.audio.soundtrack.play();
+  }
 }
 
 
@@ -98,12 +105,13 @@ function toggleAudio() {
   let mute = currentSrc === 'audio.png';
   if (mute) {
     audioBtn.src = 'assets/img/icons/audioMuted.png';
-    console.log('audio mute');
+    sessionStorage.setItem('audioMuted', 'true');
+    world.audio.muteAudio(true);
   } else {
     audioBtn.src = 'assets/img/icons/audio.png';
-    console.log('audio unmute');
+    sessionStorage.setItem('audioMuted', 'false');
+    world.audio.muteAudio(false);
   }
-  world.audio.muteAudio(mute);
 }
 
 
@@ -131,22 +139,10 @@ function checkScreenSize() {
 }
 
 
-// function hideElements(width, height) {
-//   if (height <= 850) {
-//     hideDesktopInfos();
-//   }
-
-//   if (width > 1300 && width > height && height < 900) {
-//     document.getElementById('touchControls').style.display = 'flex';
-//   }
-// }
-
-
 function hideElements(width, height) {
   if (height <= 850) {
     hideDesktopInfos();
   }
-
   if (width > 1400 && height > 1000) {
     document.getElementById('touchControls').style.display = 'none';
   } else {
@@ -169,18 +165,6 @@ function checkScreenOrientation(width, height) {
     hideRotateOverlay();
   }
 }
-
-
-// function checkPortaitLandscape() {
-//   if (window.matchMedia('(orientation: portrait)').matches) {
-//     console.log('portrait mode');
-//   } else if (window.matchMedia('(orientation: landscape)').matches) {
-//     console.log('landscape');
-//   }
-// }
-
-
-// window.addEventListener('load', checkPortaitLandscape);
 
 
 function showRotateOverlay() {

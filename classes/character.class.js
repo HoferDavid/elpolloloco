@@ -187,9 +187,13 @@ class Character extends MovableObject {
   }
 
   isDead() {
-    this.animateObject(this.characterImages.IMAGES_DEAD);
+    // this.animateObject(this.characterImages.IMAGES_DEAD);
+    setInterval(() => {
+      this.animateObject(this.characterImages.IMAGES_DEAD);
+    }, 300);
+
     setTimeout(() => {
       gameEnd('loseScreen');
-    }, 500);
+    }, 1000);
   }
 }
