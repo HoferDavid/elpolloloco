@@ -10,16 +10,6 @@ function startGame() {
 }
 
 
-function handleDisplayStyle(id) {
-  let { width, height } = getScreenSize();
-  if (width <= 932) {
-    document.getElementById(id).style.display = 'flex';
-  } else {
-    document.getElementById(id).style.display = 'none';
-  }
-}
-
-
 function reStartGame() {
   handleDisplayStyle('restartGameScreen');
   resetGame();
@@ -29,6 +19,7 @@ function reStartGame() {
 function resetGame() {
   document.getElementById('canvas').style.display = 'flex';
   document.getElementById('controlsOverlay').style.display = 'flex';
+
   initLevel();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
@@ -43,6 +34,16 @@ function resetGame() {
 }
 
 
+function handleDisplayStyle(id) {
+  let { width, height } = getScreenSize();
+  if (width <= 932) {
+    document.getElementById(id).style.display = 'flex';
+  } else {
+    document.getElementById(id).style.display = 'none';
+  }
+}
+
+
 function gameEnd(result) {
   let sound = result === 'winScreen' ? world.audio.gameWinSound : world.audio.gameOverSound;
   clearAllIntervals();
@@ -51,6 +52,8 @@ function gameEnd(result) {
 
   document.getElementById(result).style.display = 'flex';
   sound.play();
+
+  document.getElementById('restartGameScreen').style.display = 'none';
   document.getElementById('startGameScreen').style.display = 'none';
 
   setTimeout(() => {
@@ -153,7 +156,6 @@ function hideElements(width, height) {
 
 function hideDesktopInfos() {
   toggleClasses('howtoSection', 'touchControls');
-  document.getElementById('infoSection').style.display = 'none';
   document.getElementById('footer').style.display = 'none';
 }
 
@@ -170,12 +172,10 @@ function checkScreenOrientation(width, height) {
 function showRotateOverlay() {
   toggleClasses('game', 'touchControls');
   toggleClasses('howtoSection', 'rotateOverlay');
-  document.getElementById('infoSection').style.display = 'none';
 }
 
 
 function hideRotateOverlay() {
   toggleClasses('touchControls', 'game');
   toggleClasses('rotateOverlay', 'howtoSection');
-  document.getElementById('infoSection').style.display = 'flex';
 }

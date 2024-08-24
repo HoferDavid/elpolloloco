@@ -255,24 +255,24 @@ h2 {
 }
 
 #infoSection {
-  width: 720px;
   display: flex;
+  width: 100%;
   justify-content: space-evenly;
   align-items: center;
+  position: absolute;
+  top: 94%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   letter-spacing: 1px;
-  background-color: rgb(247, 194, 115);
-  border: 4px groove #70312d;
-  box-shadow: 1px 1px 2px 0px #000000;
+  cursor: pointer;
 }
 
 #infoSection a {
-  cursor: pointer;
+  color: white;
   text-decoration: none;
-  color: rgb(69, 28, 37);
 }
 
-.startGameBtn:hover,
-#infoSection a:hover {
+.startGameBtn:hover {
   color: rgb(188, 78, 46);
 }
 
