@@ -195,7 +195,7 @@ function checkScreenSize() {
  */
 function hideElements(width, height) {
   if (height <= 850) { hideDesktopInfos() }
-  if (width > 1400 && height > 1000) { document.getElementById("touchControls").style.display = "none" } 
+  if (width > 1000 && height > 1024) { document.getElementById("touchControls").style.display = "none" } 
   else { document.getElementById("touchControls").style.display = "flex" }
 }
 
@@ -216,7 +216,7 @@ function hideDesktopInfos() {
  * @param {number} height - The current screen height.
  */
 function checkScreenOrientation(width, height) {
-  if ( (width <= 800 && height > width) || (height > width && !document.fullscreenElement)) {
+  if (width <= 800 && height > width) { // if ( (width <= 800 && height > width) || (height > width && !document.fullscreenElement)) {
     showRotateOverlay();
   } else {
     hideRotateOverlay();
@@ -228,7 +228,7 @@ function checkScreenOrientation(width, height) {
  * This function hides the game element and shows the rotate overlay, adjusting the display of other elements accordingly.
  */
 function showRotateOverlay() {
-  toggleClasses("game", "touchControls");
+  document.getElementById("game").style.display = "none";
   toggleClasses("howtoSection", "rotateOverlay");
 }
 
@@ -237,6 +237,6 @@ function showRotateOverlay() {
  * This function shows the game element and hides the rotate overlay, adjusting the display of other elements accordingly.
  */
 function hideRotateOverlay() {
-  toggleClasses("touchControls", "game");
+  document.getElementById("game").style.display = "flex";
   toggleClasses("rotateOverlay", "howtoSection");
 }
