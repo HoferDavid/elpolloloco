@@ -14,6 +14,10 @@ class StatusbarBottle extends MovableObject {
   ];
 
   
+  /**
+   * The first image in the `IMAGES` array is loaded immediately using the `loadImg` method from the parent class,
+   * followed by preloading all images in the `IMAGES` array using the `loadImages` method.
+   */
   constructor() {
     super().loadImg(this.IMAGES[0]);
     this.loadImages(this.IMAGES);

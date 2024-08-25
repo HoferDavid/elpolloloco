@@ -17,6 +17,10 @@ class Bottle extends MovableObject {
   ];
 
 
+  /**
+   * Constructs a new instance of the object, sets a random image from the available images, 
+   * and starts the animation.
+   */
   constructor() {
     super();
     this.setRandomImage(this.IMAGES);
@@ -24,6 +28,10 @@ class Bottle extends MovableObject {
   }
 
   
+  /**
+   * Starts the animation of the object by cycling through images at a set interval.
+   * Changes to the next image every 500 milliseconds.
+   */
   animate() {
     setInterval(() => {
       this.nextImage();

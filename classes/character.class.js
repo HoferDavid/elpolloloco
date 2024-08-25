@@ -17,6 +17,16 @@ class Character extends MovableObject {
   direction = "right";
 
 
+  /**
+   * Constructs a new instance of the character object, initializing it with default images, 
+   * preloading various image sets, applying gravity, and starting the animation.
+   * 
+   * The constructor performs the following actions:
+   * - Loads the initial standing image.
+   * - Preloads images for different character states (standing, sleeping, walking, jumping, hurt, dead).
+   * - Applies gravity to the character.
+   * - Starts the character's animation.
+   */
   constructor() {
     super().loadImg(this.characterImages.IMAGES_STANDING[0]);
     this.loadImages(this.characterImages.IMAGES_STANDING);

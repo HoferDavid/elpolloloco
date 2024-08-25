@@ -13,6 +13,14 @@ class Coin extends MovableObject {
   IMAGES = ["./assets/img/8_coin/coin_1.png", "./assets/img/8_coin/coin_2.png"];
 
 
+  /**
+   * Constructs a new instance of the object, initializing it with a default image and setting up its animations.
+   * 
+   * The constructor performs the following actions:
+   * - Loads a default coin image from the specified file path.
+   * - Loads additional images for the object from the `IMAGES` array.
+   * - Starts the object's animation.
+   */
   constructor() {
     super().loadImg("./assets/img/8_coin/coin_1.png");
     this.loadImages(this.IMAGES);

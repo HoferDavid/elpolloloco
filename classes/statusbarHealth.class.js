@@ -15,6 +15,10 @@ class StatusbarHealth extends DrawableObject {
   ];
 
   
+  /**
+   * The first image in the `IMAGES` array is loaded immediately using the `loadImg` method from the parent class,
+   * followed by preloading all images in the `IMAGES` array using the `loadImages` method.
+   */
   constructor() {
     super().loadImg(this.IMAGES[5]);
     this.loadImages(this.IMAGES);

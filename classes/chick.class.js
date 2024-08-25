@@ -16,6 +16,16 @@ class Chick extends MovableObject {
   ];
 
 
+  /**
+   * Constructs a new instance of the object, initializing it with the first image in the `IMAGES` array,
+   * preloading all images, starting the animation, and applying gravity.
+   * 
+   * The constructor performs the following actions:
+   * - Loads the initial image from the `IMAGES` array.
+   * - Preloads all images in the `IMAGES` array.
+   * - Starts the object's animation.
+   * - Applies gravity to the object.
+   */
   constructor() {
     super().loadImg(this.IMAGES[0]);
     this.loadImages(this.IMAGES);

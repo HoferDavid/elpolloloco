@@ -53,6 +53,14 @@ class Endboss extends MovableObject {
   ];
 
   
+  /**
+   * Constructs a new instance of the object, initializing it with various images and starting its animations.
+   * 
+   * The constructor performs the following actions:
+   * - Loads the initial walking image from the `IMAGES_WALK` array.
+   * - Preloads additional image sets for different states, including walking, alert, attack, hurt, and dead states.
+   * - Starts the animation sequence for the object.
+   */
   constructor() {
     super().loadImg(this.IMAGES_WALK[0]);
     this.loadImages(this.IMAGES_WALK);

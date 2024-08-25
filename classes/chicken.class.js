@@ -16,6 +16,15 @@ class Chicken extends MovableObject {
   ];
 
 
+  /**
+   * Constructs a new instance of the object, initializing it with the first image in the `IMAGES` array,
+   * preloading all images, including images for the "dead" state, and starting the animation.
+   * 
+   * The constructor performs the following actions:
+   * - Loads the initial image from the `IMAGES` array.
+   * - Preloads all images in the `IMAGES` array and the `IMAGES_DEAD` array.
+   * - Starts the object's animation.
+   */
   constructor() {
     super().loadImg(this.IMAGES[0]);
     this.loadImages(this.IMAGES);

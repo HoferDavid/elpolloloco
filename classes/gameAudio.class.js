@@ -1,4 +1,13 @@
 class GameAudio {
+
+
+  /**
+   * Constructs an instance of the class, initializing and configuring various audio elements.
+   *
+   * The constructor initializes several audio elements for different game actions and states, such as background music, sound effects for running, jumping, picking up items, and more. 
+   * Each audio element is configured with a specific volume, and some are also adjusted for playback speed. 
+   * All initialized audio elements are stored in an array for easy management.
+   */
   constructor() {
     this.soundtrack = new Audio("./assets/audio/soundtrack.mp3");
     this.soundtrack.volume = 0.2;

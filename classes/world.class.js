@@ -15,6 +15,15 @@ class World {
   damage = 0;
   dead = false;
 
+
+  /**
+   * Initializes the game world by setting up the canvas context, keyboard input, and endboss, 
+   * and starts various processes such as drawing, world configuration, collision checking, and object throwing.
+   *
+   * @param {HTMLCanvasElement} canvas - The canvas element where the game will be rendered.
+   * @param {Object} keyboard - The keyboard input handler for controlling the game.
+   * @param {Object} endboss - The endboss object that represents the final boss in the game.
+   */
   constructor(canvas, keyboard, endboss) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;

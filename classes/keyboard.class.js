@@ -5,6 +5,11 @@ class Keyboard {
   D = false;
 
 
+  /**
+   * Initializes the event listeners for keyboard and touch inputs.
+   * The constructor sets up event listeners for 'keydown' and 'keyup' events on the document
+   * to handle keyboard inputs, and it also initializes a listener for touch events when the DOM is fully loaded.
+   */
   constructor() {
     document.addEventListener("keydown", (e) => {
       this.keydownListener(e);

@@ -19,6 +19,13 @@ class ThrowableObject extends MovableObject {
     "./assets/img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
+
+  /**
+   * Initializes a throwable object by loading images, setting the position, and initiating various behaviors such as throwing, gravity, and animation.
+   *
+   * @param {number} x - The initial x-coordinate for the object.
+   * @param {number} y - The initial y-coordinate for the object.
+   */
   constructor(x, y) {
     super().loadImg(this.IMAGES[0]);
     this.loadImages(this.IMAGES);
