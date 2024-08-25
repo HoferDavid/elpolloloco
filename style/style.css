@@ -7,6 +7,10 @@
   display: none;
 }
 
+.positionAbsolute {
+  position: absolute;
+}
+
 .screen {
   transition: opacity 1s ease-in-out;
   opacity: 0;
@@ -71,7 +75,6 @@ main {
 }
 
 #canvas {
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
