@@ -3,6 +3,7 @@ class GameAudio {
     constructor() {
         this.soundtrack = new Audio('./assets/audio/soundtrack.mp3');
         this.soundtrack.volume = 0.2;
+        this.soundtrack.preload = 'auto';
         
         this.runningSound = new Audio('./assets/audio/running.mp3');
         this.runningSound.volume = 0.4;

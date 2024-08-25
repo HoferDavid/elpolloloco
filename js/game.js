@@ -5,13 +5,17 @@ let audioMuted = sessionStorage.getItem('audioMuted') === 'true';
 
 
 function startGame() {
-  handleDisplayStyle('startGameScreen');
+
+  handleDisplayStyle('startGameScreen')
+
   resetGame();
 }
 
 
 function reStartGame() {
-  handleDisplayStyle('restartGameScreen');
+
+  handleDisplayStyle('restartGameScreen')
+
   resetGame();
 }
 
@@ -38,6 +42,7 @@ function handleDisplayStyle(id) {
   let { width, height } = getScreenSize();
   if (width <= 932) {
     document.getElementById(id).style.display = 'flex';
+    toggleFullscreen();
   } else {
     document.getElementById(id).style.display = 'none';
   }
@@ -98,6 +103,7 @@ function toggleFullscreen() {
   } else {
     document.exitFullscreen();
     document.getElementById('fullscreenBtn').src = 'assets/img/icons/fullscreenOpen.svg';
+    backtoMenu();
   }
 }
 

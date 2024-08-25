@@ -152,6 +152,8 @@ class World {
     if (this.character.energy == 0) {
       this.character.isDead();
     }
+    console.log(this.character.energy);
+    
   }
 
   setPercentage(statusbar, percentage) {

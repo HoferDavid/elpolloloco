@@ -14,7 +14,7 @@ class Character extends MovableObject {
     w: -70,
   };
   characterImages = new CharacterImages();
-  direction = 'right';
+  direction = "right";
 
 
   constructor() {
@@ -33,23 +33,16 @@ class Character extends MovableObject {
   animate() {
     setInterval(() => {
       this.hasMoved = false;
-      if (this.canMoveRight()) {
-        this.moveRight();
-      }
-      if (this.canMoveLeft()) {
-        this.moveLeft();
-      }
-      if (this.canJump()) {
-        this.jump();
-      }
-      if (this.world.keyboard.D) {
-        this.hasMoved = true;
-      }
+      if (this.canMoveRight()) { this.moveRight() }
+      if (this.canMoveLeft()) { this.moveLeft() }
+      if (this.canJump()) { this.jump() }
+      if (this.world.keyboard.D) { this.hasMoved = true }
       this.setSleepingSettings();
       this.setOtherStates();
       this.world.cameraX = -this.x + 100;
     }, 1000 / 60);
   }
+
 
   updateAnimation() {
     if (this.animationInterval) clearInterval(this.animationInterval);
@@ -64,6 +57,7 @@ class Character extends MovableObject {
     (animations[this.currentState] || animations.default)();
   }
 
+
   setState(newState) {
     if (this.currentState !== newState) {
       this.currentState = newState;
@@ -71,22 +65,23 @@ class Character extends MovableObject {
     }
   }
 
+
   resetIdleTimer() {
     this.idleTime = 0;
   }
+
 
   canMoveRight() {
     return this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX;
   }
 
+
   moveRight() {
     super.moveRight();
     this.mirrorObject = false;
-    if (!this.isAboveGround()) {
-      this.setState("walking");
-    }
+    if (!this.isAboveGround()) { this.setState("walking") }
     this.hasMoved = true;
-    this.direction = 'right';
+    this.direction = "right";
   }
 
   canMoveLeft() {
@@ -100,7 +95,7 @@ class Character extends MovableObject {
       this.setState("walking");
     }
     this.hasMoved = true;
-    this.direction = 'left';
+    this.direction = "left";
   }
 
   canJump() {
@@ -154,15 +149,15 @@ class Character extends MovableObject {
   }
 
   jumpingAnimation() {
-    if (this.world.audio.jumpSound.paused && this.world.keyboard.SPACE) { // (this.world.audio.jumpSound.paused)
-        this.world.audio.jumpSound.play();
+    if (this.world.audio.jumpSound.paused && this.world.keyboard.SPACE) {
+      this.world.audio.jumpSound.play();
     }
     this.world.audio.snoringSound.pause();
 
     this.animationInterval = setInterval(() => {
-        this.animateObject(this.characterImages.IMAGES_JUMPING);
+      this.animateObject(this.characterImages.IMAGES_JUMPING);
     }, 80);
-}
+  }
 
   walkingAnimation() {
     this.animationInterval = setInterval(() => {
@@ -178,7 +173,7 @@ class Character extends MovableObject {
       this.world.audio.snoringSound.play();
     }, 500);
   }
-  
+
   defaultAnimation() {
     this.animateObject(this.characterImages.IMAGES_STANDING);
     this.animationInterval = setInterval(() => {
@@ -187,13 +182,12 @@ class Character extends MovableObject {
   }
 
   isDead() {
-    // this.animateObject(this.characterImages.IMAGES_DEAD);
     setInterval(() => {
       this.animateObject(this.characterImages.IMAGES_DEAD);
     }, 300);
 
     setTimeout(() => {
-      gameEnd('loseScreen');
+      gameEnd("loseScreen");
     }, 1000);
   }
 }
