@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El pollo loco</title>
-    <link rel="icon" href="./assets/img/icons/sombrero.png"/>
+    <link rel="icon" href="./assets/img/icons/sombrero.png" />
 
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/fonts.css">
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/fonts.css" />
 
     <script src="./classes/drawableObject.class.js"></script>
     <script src="./classes/movableObject.class.js"></script>
@@ -31,103 +31,91 @@
     <script src="./classes/level.class.js"></script>
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
-</head>
+  </head>
 
-
-<body>
-
+  <body>
     <main>
-        <h1>El pollo loco</h1>
+      <h1>El pollo loco</h1>
 
-        <div id="rotateOverlay" style="display: none;">
-            <h2>Please Rotate Your Device!</h2>
-            <img src="./assets/img/icons/rotateScreenWhite.png" alt="Rotate Device">
+      <div id="rotateOverlay" style="display: none">
+        <h2>Please Rotate Your Device!</h2>
+        <img src="./assets/img/icons/rotateScreenWhite.png" alt="Rotate Device"/>
+      </div>
+
+      <section id="game">
+        <canvas id="canvas" style="display: none" width="720" height="480"></canvas>
+
+        <div id="gameOverlay">
+          <div id="startGameScreen" class="overlayBtnContainer">
+            <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_2.png" alt="Start screen Image"/>
+            <button id="startGameBtn" class="startGameBtn" onclick="startGame()">Start Game</button>
+
+            <section id="infoSection">
+              <a href="https://linkedin.com/in/davidhofer-dev">LinkedIn</a>
+              <a href="https://github.com/HoferDavid">Github</a>
+              <a href="./html/imprint.html">Imprint</a>
+              <a href="./html/privacy.html">Privacy</a>
+            </section>
+          </div>
+
+          <div id="controlsOverlay" style="display: none">
+            <div id="menu"><img class="menuBtn" id="audioBtn" onclick="toggleAudio()" src="./assets/img/icons/audio.png" alt="Audio Icon"/>
+              <button id="backToMenuBtn" class="menuBtn" onclick="backtoMenu()">Home</button>
+              <img class="menuBtn" id="fullscreenBtn" onclick="toggleFullscreen()" src="./assets/img/icons/fullscreenOpen.svg" alt="Fullscreen Icon"/>
+            </div>
+
+            <div id="touchControls" style="display: none">
+              <div id="touchControlsLeft">
+                <img class="menuBtn" id="btnThrow" src="./assets/img/6_salsa_bottle/salsa_bottle.png" alt="Throw Objects Button"/>
+                <img class="menuBtn" id="btnJump" src="./assets/img/icons/pepeJump.png" alt="Character Jump Button"/>
+              </div>
+              <div id="touchControlsRight">
+                <img class="menuBtn" id="btnLeft" src="./assets/img/icons/left.png" alt="Left Button"/>
+                <img class="menuBtn" id="btnRight" src="./assets/img/icons/right.png" alt="Right Button"/>
+              </div>
+            </div>
+          </div>
+
+          <div id="restartGameScreen" style="display: none">
+            <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="End screen Image" />
+            <button class="startGameBtn" onclick="reStartGame()">Play again</button>
+          </div>
+
+          <div id="winScreen" style="display: none">
+            <img src="./assets/img/9_intro_outro_screens/win/won_1.png" alt="Win screen Image"/>
+          </div>
+
+          <div id="loseScreen" style="display: none">
+            <img class="bgImages" src="./assets/img/9_intro_outro_screens/game_over/game over!.png" alt="Lose screen Image"/>
+          </div>
         </div>
+      </section>
 
-        <section id="game">
-
-            <canvas id="canvas" style="display: none;" width="720" height="480"></canvas>
-
-
-            <div id="gameOverlay">
-
-                <div id="startGameScreen" class="overlayBtnContainer">
-                    <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_2.png" alt="Start screen Image">
-                    <button id="startGameBtn" class="startGameBtn" onclick="startGame()">Start Game</button>
-
-                    <section id="infoSection">
-                        <a href="https://linkedin.com/in/davidhofer-dev">LinkedIn</a>
-                        <a href="https://github.com/HoferDavid">Github</a>
-                        <a href="./html/imprint.html">Imprint</a>
-                        <a href="./html/privacy.html">Privacy</a>
-                    </section>
-                </div>
-
-                <div id="controlsOverlay" style="display: none;">
-
-                    <div id="menu">
-                        <img class="menuBtn" id="audioBtn" onclick="toggleAudio()" src="./assets/img/icons/audio.png" alt="Audio Icon">
-                        <button id="backToMenuBtn" class="menuBtn" onclick="backtoMenu()">Home</button>
-                        <img class="menuBtn" id="fullscreenBtn" onclick="toggleFullscreen()" src="./assets/img/icons/fullscreenOpen.svg" alt="Fullscreen Icon">
-                    </div>
-
-                    <div id="touchControls" style="display: none;">
-                        <div id="touchControlsLeft">
-                            <img class="menuBtn" id="btnThrow" src="./assets/img/6_salsa_bottle/salsa_bottle.png" alt="Throw Objects Button">
-                            <img class="menuBtn" id="btnJump" src="./assets/img/icons/pepeJump.png" alt="Character Jump Button">
-                        </div>
-                        <div id="touchControlsRight">
-                            <img class="menuBtn" id="btnLeft" src="./assets/img/icons/left.png" alt="Left Button">
-                            <img class="menuBtn" id="btnRight" src="./assets/img/icons/right.png" alt="Right Button">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="restartGameScreen" style="display: none;">
-                    <img class="bgImages" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="End screen Image">
-                    <button class="startGameBtn" onclick="reStartGame()">Play again</button>
-                </div>
-
-                <div id="winScreen" style="display: none;">
-                    <img src="./assets/img/9_intro_outro_screens/win/won_1.png" alt="Win screen Image">
-                </div>
-
-                <div id="loseScreen" style="display: none;">
-                    <img class="bgImages" src="./assets/img/9_intro_outro_screens/game_over/game over!.png" alt="Lose screen Image">
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section id="howtoSection">
-            <div class="arrowContainer">
-                <img src="./assets/img/icons//d.png" alt="D Key">
-                <div>Throw</div>
-            </div>
-            <div class="seperator"></div>
-            <div class="arrowContainer">
-                <img src="./assets/img/icons/space.png" alt="D Key">
-                <div>Jump</div>
-            </div>
-            <div class="seperator"></div>
-            <div class="arrowContainer">
-                <img src="./assets/img/icons/left.png" alt="Left Arrow Key">
-                <div>Move</div>
-                <img src="./assets/img/icons/right.png" alt="Right Arrow Key">
-            </div>
-        </section>
-        
+      <section id="howtoSection">
+        <div class="arrowContainer">
+          <img src="./assets/img/icons//d.png" alt="D Key" />
+          <div>Throw</div>
+        </div>
+        <div class="seperator"></div>
+        <div class="arrowContainer">
+          <img src="./assets/img/icons/space.png" alt="D Key" />
+          <div>Jump</div>
+        </div>
+        <div class="seperator"></div>
+        <div class="arrowContainer">
+          <img src="./assets/img/icons/left.png" alt="Left Arrow Key" />
+          <div>Move</div>
+          <img src="./assets/img/icons/right.png" alt="Right Arrow Key" />
+        </div>
+      </section>
     </main>
 
-
     <footer id="footer">
-        <a href="https://linkedin.com/in/davidhofer-dev" class="madeByDavid">
-            <img id="davidPic" src="./assets/img/icons/dhlogoWhiteTransparent.png" alt="Logo"/>
-            <p id="davidText">Made with<img id="heartIcon" src="./assets/img/icons/heartRed.png" alt="Heart Icon"/>by David</p>
-        </a>
+      <a href="https://linkedin.com/in/davidhofer-dev" class="madeByDavid">
+        <img id="davidPic" src="./assets/img/icons/dhlogoWhiteTransparent.png" alt="Logo"/>
+        <p id="davidText">Made with<img id="heartIcon" src="./assets/img/icons/heartRed.png" alt="Heart Icon"/>by David
+        </p>
+      </a>
     </footer>
-
-</body>
+  </body>
 </html>

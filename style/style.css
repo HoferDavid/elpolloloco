@@ -53,7 +53,7 @@ main {
   color: white;
   width: 100%;
   height: 100dvh;
-  background-color: rgba(0, 0, 0, 0.50);
+  background-color: rgba(0, 0, 0, 0.5);
   gap: 16px;
 }
 
@@ -117,8 +117,12 @@ main {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .startGameBtn {
@@ -182,7 +186,7 @@ h2 {
   gap: 16px;
   width: 100%;
   justify-content: center;
-} 
+}
 
 .menuBtn {
   display: flex;
@@ -227,7 +231,6 @@ h2 {
   display: flex;
   gap: 16px;
 }
-
 
 #howtoSection {
   width: 720px;
@@ -295,7 +298,11 @@ h2 {
 /* Footer */
 footer {
   background: rgb(71, 45, 46);
-  background: linear-gradient(90deg,rgba(71, 45, 46, 1) 0%,rgba(93, 89, 89, 0.01) 50%);
+  background: linear-gradient(
+    90deg,
+    rgba(71, 45, 46, 1) 0%,
+    rgba(93, 89, 89, 0.01) 50%
+  );
   width: 100%;
   height: 60px;
   display: flex;

@@ -80,7 +80,8 @@ a {
   padding: 0px 4px 0px 4px;
 }
 
-.arrowPageUp {display: flex;
+.arrowPageUp {
+  display: flex;
   height: 40px;
   width: 40px;
   transition: 0.2s;
