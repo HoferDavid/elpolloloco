@@ -1,22 +1,25 @@
 class Cloud extends MovableObject {
-    y = 10 + Math.random() * 80;
-    width = 500;
-    height = 260;
-    speed = 0.1 + Math.random() * 0.20;
+  y = 10 + Math.random() * 80;
+  width = 500;
+  height = 260;
+  speed = 0.1 + Math.random() * 0.2;
+
+  
+  constructor(imgPath, x) {
+    super().loadImg(imgPath);
+    this.x = x;
+    this.animate();
+  }
 
 
-    constructor(imgPath, x) {
-        super().loadImg(imgPath);
-        this.x = x;
-        this.animate();
-    }
-
-    animate() {
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-    }
-
-
+  /**
+   * Starts the animation loop for the enemy.
+   * 
+   * Continuously moves the enemy to the left at a rate of approximately 60 frames per second (fps).
+   */
+  animate() {
+    setInterval(() => {
+      this.moveLeft();
+    }, 1000 / 60);
+  }
 }
-

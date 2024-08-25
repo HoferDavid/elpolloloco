@@ -30,6 +30,11 @@ class Character extends MovableObject {
   }
 
 
+  /**
+   * Starts the main animation loop, which updates the object's movement, state, and camera position.
+   * 
+   * Runs at approximately 60 frames per second (fps).
+   */
   animate() {
     setInterval(() => {
       this.hasMoved = false;
@@ -44,6 +49,11 @@ class Character extends MovableObject {
   }
 
 
+  /**
+   * Updates the character's animation based on its current state.
+   * 
+   * Clears any previous animation intervals before starting a new animation.
+   */
   updateAnimation() {
     if (this.animationInterval) clearInterval(this.animationInterval);
     const animations = {
@@ -58,6 +68,11 @@ class Character extends MovableObject {
   }
 
 
+  /**
+   * Sets a new state for the character and triggers an update of the animation.
+   * 
+   * @param {string} newState - The new state to set for the character.
+   */
   setState(newState) {
     if (this.currentState !== newState) {
       this.currentState = newState;
@@ -66,16 +81,27 @@ class Character extends MovableObject {
   }
 
 
+  /**
+   * Resets the idle timer to 0, typically used when the character performs an action.
+   */
   resetIdleTimer() {
     this.idleTime = 0;
   }
 
 
+  /**
+   * Checks if the character can move to the right.
+   * 
+   * @returns {boolean} True if the character can move right, false otherwise.
+   */
   canMoveRight() {
     return this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX;
   }
 
 
+  /**
+   * Moves the character to the right, updates the state, and sets the direction.
+   */
   moveRight() {
     super.moveRight();
     this.mirrorObject = false;
@@ -84,63 +110,98 @@ class Character extends MovableObject {
     this.direction = "right";
   }
 
+
+  /**
+   * Checks if the character can move to the left.
+   * 
+   * @returns {boolean} True if the character can move left, false otherwise.
+   */
   canMoveLeft() {
     return this.world.keyboard.LEFT && this.x > 0;
   }
 
+
+  /**
+   * Moves the character to the left, updates the state, and sets the direction.
+   */
   moveLeft() {
     super.moveLeft();
     this.mirrorObject = true;
-    if (!this.isAboveGround()) {
-      this.setState("walking");
-    }
+    if (!this.isAboveGround()) { this.setState("walking") }
     this.hasMoved = true;
     this.direction = "left";
   }
 
+
+  /**
+   * Checks if the character can jump.
+   * 
+   * @returns {boolean} True if the character can jump, false otherwise.
+   */
   canJump() {
     return this.world.keyboard.SPACE && !this.isAboveGround();
   }
 
+
+  /**
+   * Makes the character jump, updates the state, and sets the hasMoved flag.
+   */
   jump() {
     this.speedY = 30;
     this.setState("jumping");
     this.hasMoved = true;
   }
 
+
+  /**
+   * Makes the character jump on an enemy, reducing the jump height.
+   */
   jumpOnEnemy() {
     this.speedY = 20;
   }
 
+
+  /**
+   * Updates the idle time and sets the character to the sleeping state if idle for too long.
+   */
   setSleepingSettings() {
-    if (this.hasMoved) {
-      this.resetIdleTimer();
-    } else {
-      this.idleTime += 1000 / 60;
-    }
-    if (this.idleTime >= this.idleTimeout) this.setState("sleeping");
+    if (this.hasMoved) { this.resetIdleTimer() } 
+    else { this.idleTime += 1000 / 60 }
+    if (this.idleTime >= this.idleTimeout) { this.setState("sleeping") }
   }
 
+
+  /**
+   * Updates the character's state based on various conditions, such as being hurt or jumping.
+   */
   setOtherStates() {
-    if (this.isHurt()) {
-      this.setState("hurt");
-    } else if (this.isAboveGround()) {
-      this.setState("jumping");
-    } else if (!this.hasMoved && this.idleTime < this.idleTimeout) {
-      this.setState("standing");
-    }
+    if (this.isHurt()) { this.setState("hurt") } 
+    else if (this.isAboveGround()) { this.setState("jumping") } 
+    else if (!this.hasMoved && this.idleTime < this.idleTimeout) { this.setState("standing") }
   }
 
+
+  /**
+   * Collects a coin, plays the coin pickup sound, and increments the coin count.
+   */
   collectCoin() {
     this.world.audio.coinPickupSound.play();
     this.coins++;
   }
 
+
+  /**
+   * Collects a bottle, plays the bottle pickup sound, and increments the bottle count.
+   */
   collectBottle() {
     this.world.audio.bottlePickupSound.play();
     this.bottles++;
   }
 
+
+  /**
+   * Plays the hurt animation and sound in a loop.
+   */
   hurtAnimation() {
     this.animationInterval = setInterval(() => {
       this.animateObject(this.characterImages.IMAGES_HURT);
@@ -148,17 +209,20 @@ class Character extends MovableObject {
     }, 40);
   }
 
-  jumpingAnimation() {
-    if (this.world.audio.jumpSound.paused && this.world.keyboard.SPACE) {
-      this.world.audio.jumpSound.play();
-    }
-    this.world.audio.snoringSound.pause();
 
-    this.animationInterval = setInterval(() => {
-      this.animateObject(this.characterImages.IMAGES_JUMPING);
-    }, 80);
+  /**
+   * Plays the jumping animation and sound in a loop.
+   */
+  jumpingAnimation() {
+    if (this.world.audio.jumpSound.paused && this.world.keyboard.SPACE) { this.world.audio.jumpSound.play() }
+    this.world.audio.snoringSound.pause();
+    this.animationInterval = setInterval(() => { this.animateObject(this.characterImages.IMAGES_JUMPING) }, 80);
   }
 
+
+  /**
+   * Plays the walking animation and sound in a loop.
+   */
   walkingAnimation() {
     this.animationInterval = setInterval(() => {
       this.animateObject(this.characterImages.IMAGES_WALKING);
@@ -167,6 +231,10 @@ class Character extends MovableObject {
     }, 40);
   }
 
+
+  /**
+   * Plays the sleeping animation and sound in a loop.
+   */
   sleepingAnimation() {
     this.animationInterval = setInterval(() => {
       this.animateObject(this.characterImages.IMAGES_SLEEPING);
@@ -174,6 +242,10 @@ class Character extends MovableObject {
     }, 500);
   }
 
+
+  /**
+   * Plays the default standing animation in a loop.
+   */
   defaultAnimation() {
     this.animateObject(this.characterImages.IMAGES_STANDING);
     this.animationInterval = setInterval(() => {
@@ -181,13 +253,12 @@ class Character extends MovableObject {
     }, 400);
   }
 
-  isDead() {
-    setInterval(() => {
-      this.animateObject(this.characterImages.IMAGES_DEAD);
-    }, 300);
 
-    setTimeout(() => {
-      gameEnd("loseScreen");
-    }, 1000);
+  /**
+   * Plays the death animation, and after 1 second, triggers the game end function.
+   */
+  isDead() {
+    setInterval(() => { this.animateObject(this.characterImages.IMAGES_DEAD) }, 300);
+    setTimeout(() => { gameEnd("loseScreen") }, 1000);
   }
 }

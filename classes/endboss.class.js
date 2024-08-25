@@ -52,6 +52,7 @@ class Endboss extends MovableObject {
     "./assets/img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
 
+  
   constructor() {
     super().loadImg(this.IMAGES_WALK[0]);
     this.loadImages(this.IMAGES_WALK);
@@ -63,18 +64,24 @@ class Endboss extends MovableObject {
   }
 
 
+  /**
+   * Continuously animates the end boss based on the distance between the boss and the player's character.
+   * The animation type (left or right) is determined by the position of the character relative to the boss.
+   */
   animate() {
     setInterval(() => {
       const distance = this.x - world.character.x;
-      if (distance >= 0) {
-        this.animationLeft(distance);
-      } else {
-        this.animationRight(distance);
-      }
+      if (distance >= 0) { this.animationLeft(distance) } 
+      else { this.animationRight(distance) }
     }, 160);
   }
 
 
+  /**
+   * Animates the end boss when the player's character is to the left of the boss.
+   * 
+   * @param {number} distance - The horizontal distance between the boss and the character.
+   */
   animationLeft(distance) {
     if (distance < 400 && distance > 0) {
       this.animateObject(this.IMAGES_ATTACK);
@@ -83,15 +90,20 @@ class Endboss extends MovableObject {
       this.animateObject(this.IMAGES_ALERT);
       this.speed = 0;
     } else if (distance >= 500) {
-    setInterval(() => {
-      this.moveLeft();
-    }, 300);
+      setInterval(() => {
+        this.moveLeft();
+      }, 300);
       this.animateObject(this.IMAGES_WALK);
       this.speed = 0.1 + Math.random() * 0.1;
     }
   }
 
 
+  /**
+   * Animates the end boss when the player's character is to the right of the boss.
+   * 
+   * @param {number} distance - The horizontal distance between the boss and the character.
+   */
   animationRight(distance) {
     if (distance > -300) {
       this.mirrorObject = true;
@@ -103,6 +115,10 @@ class Endboss extends MovableObject {
   }
 
 
+  /**
+   * Handles the end boss being hit, reducing its energy and playing the appropriate animation.
+   * If the boss's energy drops to zero or below, it triggers the boss's death sequence and ends the game.
+   */
   endbossHit() {
     this.energy -= 20;
     if (this.energy > 0) {
@@ -112,7 +128,7 @@ class Endboss extends MovableObject {
         world.audio.chickenDeadSound.play();
         this.animateObject(this.IMAGES_DEAD);
         setTimeout(() => {
-          gameEnd('winScreen');
+          gameEnd("winScreen");
         }, 600);
       }, 200);
     }
