@@ -45,6 +45,15 @@ function resetGame() {
 }
 
 
+document.addEventListener('keydown', () => {
+  try {
+    world.audio.soundtrack.play();
+  } catch (error) {
+    console.error("Failed to play soundtrack:", error);
+  }
+}, { once: true });
+
+
 /**
  * This function hides the controls overlay, sets the canvas to an absolute position, displays the result screen,
  * and plays the result sound. After the sound duration, it hides the result screen and shows the restart game screen.
