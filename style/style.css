@@ -26,7 +26,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   height: 100dvh;
   background-image: url("../assets/img/images/bg.png");
@@ -75,12 +75,9 @@ main {
 }
 
 .canvas {
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .gameOverlay {
@@ -340,12 +337,17 @@ footer {
   padding: 0px 1px;
 }
 
-@media only screen and (max-width: 800px) {
-  #game {
-    height: 100%;
-    width: 100%;
-    border: none;
-    box-shadow: none;
+@media only screen and (orientation: landscape) and (max-width: 992px) {
+  canvas {
+      width: 100dvw;
+      height: 100dvh;
+  }
+
+  .game {
+      width: 100dvw;
+      height: 100dvh;
+      border: none;
+      box-shadow: none;
   }
 }
 
