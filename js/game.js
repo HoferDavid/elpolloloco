@@ -28,8 +28,8 @@ function reStartGame() {
 
 
 /**
- * This function displays the canvas and controls overlay, initializes the level, sets up the game world, 
- * and manages audio settings based on the user's preferences stored in sessionStorage. 
+ * This function displays the canvas and controls overlay, initializes the level, sets up the game world,
+ * and manages audio settings based on the user's preferences stored in sessionStorage.
  * Additionally, it toggles the visibility of the fullscreen button based on the screen size.
  */
 function resetGame() {
@@ -122,7 +122,7 @@ function toggleFullscreen() {
  */
 function toggleFullscreenBtn() {
   let { width, height } = getScreenSize();
-  if (width <= 932) { document.getElementById("fullscreenBtn").style.display = "none" } 
+  if (width <= 932) { document.getElementById("fullscreenBtn").style.display = "none" }
   else { document.getElementById("fullscreenBtn").style.display = "flex" }
 }
 
@@ -195,7 +195,7 @@ function checkScreenSize() {
  */
 function hideElements(width, height) {
   if (height <= 850) { hideDesktopInfos() }
-  if (width > 1000 && height > 1024) { document.getElementById("touchControls").style.display = "none" } 
+  if (width > 1000 && height > 1024) { document.getElementById("touchControls").style.display = "none" }
   else { document.getElementById("touchControls").style.display = "flex" }
 }
 

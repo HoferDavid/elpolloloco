@@ -3,55 +3,55 @@ let level1;
 
 /**
  * Initializes the game level by creating a new instance of the `Level` class.
- * 
+ *
  * The level includes:
  * - A mix of `Chicken` and `Chick` objects.
  * - A single `Endboss` object.
  * - Several `Cloud` objects, each with a different position.
  * - Coins and bottles scattered throughout the level.
  * - Multiple layers of `BackgroundObject` objects representing the game's background.
- * 
+ *
  * The generated level is assigned to the global variable `level1`.
  */
-function initLevel() { 
+function initLevel() {
 
 level1 = new Level(
     [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(), 
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick(),
-        new Chick()
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick(),
+        // new Chick()
     ],
     [
         new Endboss()
@@ -64,7 +64,7 @@ level1 = new Level(
         new Cloud('./assets/img/5_background/layers/4_clouds/1.png', 2900 + Math.random() * 100),
         new Cloud('./assets/img/5_background/layers/4_clouds/2.png', 3600 + Math.random() * 100),
         new Cloud('./assets/img/5_background/layers/4_clouds/1.png', 4300 + Math.random() * 100)
-    ],                                               
+    ],
     [
         new Coin(),
         new Coin(),

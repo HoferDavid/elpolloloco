@@ -44,7 +44,7 @@ main {
   flex-direction: column;
 }
 
-#rotateOverlay {
+.rotateOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -61,12 +61,12 @@ main {
   gap: 16px;
 }
 
-#rotateOverlay img {
+.rotateOverlay img {
   height: 80px;
   width: 80px;
 }
 
-#game {
+.game {
   position: relative;
   height: 520px;
   width: 760px;
@@ -74,7 +74,7 @@ main {
   box-shadow: 4px 4px 8px 0px #000000;
 }
 
-#canvas {
+.canvas {
   top: 0;
   left: 0;
   z-index: 1;
@@ -83,7 +83,7 @@ main {
   display: block;
 }
 
-#gameOverlay {
+.gameOverlay {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +91,7 @@ main {
   width: 100%;
 }
 
-#startGameScreen {
+.startGameScreen {
   height: 480px;
 }
 
@@ -100,19 +100,19 @@ main {
   height: 480px;
 }
 
-#winScreen {
+.winScreen {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#winScreen img {
+.winScreen img {
   height: 100%;
   width: 64%;
 }
 
-#loseScreen,
-#winScreen {
+.loseScreen,
+.winScreen {
   z-index: 2;
   opacity: 0;
   animation: fadeIn 2s ease-in;
@@ -132,6 +132,7 @@ main {
   display: flex;
   padding: 8px 16px;
   background-color: rgb(247, 194, 115);
+  color: black;
   border: 4px groove #70312d;
   box-shadow: 1px 1px 2px 0px #000000;
   font-family: "mexico", Arial, Helvetica, sans-serif;
@@ -164,7 +165,7 @@ h2 {
   text-align: center;
 }
 
-#controlsOverlay {
+.controlsOverlay {
   position: absolute;
   top: 0%;
   bottom: 20%;
@@ -180,11 +181,11 @@ h2 {
   padding: 2% 2%;
 }
 
-#controlsOverlay .menuBtn {
+.controlsOverlay .menuBtn {
   pointer-events: auto;
 }
 
-#menu {
+.menu {
   display: flex;
   gap: 16px;
   width: 100%;
@@ -201,14 +202,15 @@ h2 {
   box-shadow: 1px 1px 2px 0px #000000;
   cursor: pointer;
   transition: 0.2s;
+  color: black;
 }
 
-#touchControls button {
+.touchControls button {
   background: none;
   border: none;
 }
 
-#backToMenuBtn {
+.backToMenuBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,19 +225,19 @@ h2 {
   transform: scale(1.02);
 }
 
-#touchControls {
+.touchControls {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-#touchControlsLeft,
-#touchControlsRight {
+.touchControlsLeft,
+.touchControlsRight {
   display: flex;
   gap: 16px;
 }
 
-#howtoSection {
+.howtoSection {
   width: 720px;
   height: 80px;
   display: flex;
@@ -259,7 +261,7 @@ h2 {
   background-color: #70312d;
 }
 
-#infoSection {
+.infoSection {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
@@ -272,7 +274,7 @@ h2 {
   cursor: pointer;
 }
 
-#infoSection a {
+.infoSection a {
   color: white;
   text-decoration: none;
 }
@@ -281,7 +283,7 @@ h2 {
   color: rgb(188, 78, 46);
 }
 
-#infoSection img {
+.infoSection img {
   height: 40px;
   width: 40px;
 }
@@ -293,7 +295,7 @@ h2 {
 }
 
 .audioBtn:hover,
-#infoSection a:hover,
+.infoSection a:hover,
 .madeByDavid:hover {
   transform: scale(1.02);
 }
@@ -322,18 +324,18 @@ footer {
   text-decoration: none;
 }
 
-#davidPic {
+.davidPic {
   height: 32px;
 }
 
-#davidText {
+.davidText {
   display: flex;
   align-items: center;
   color: rgb(71, 45, 46);
   font-size: 12px;
 }
 
-#heartIcon {
+.heartIcon {
   height: 16px;
   padding: 0px 1px;
 }
@@ -352,7 +354,7 @@ footer {
     width: 100%;
   }
 
-  #controlsOverlay {
+  .controlsOverlay {
     padding: 2% 6%;
   }
 
@@ -366,18 +368,18 @@ footer {
     height: 100dvh;
   }
 
-  #game {
+  .game {
     height: 100%;
     width: 100%;
     border: none;
     box-shadow: none;
   }
 
-  #loseScreen img {
+  .loseScreen img {
     height: 100dvh;
   }
 
-  #startGameScreen,
+  .startGameScreen,
   .bgImages {
     height: 100%;
   }
